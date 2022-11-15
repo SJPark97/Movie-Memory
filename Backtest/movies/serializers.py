@@ -13,6 +13,8 @@ class MovieListSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    img = serializers.ImageField(use_url=True)
+
     class Meta:
         model = Review
         fields = '__all__'
@@ -28,6 +30,3 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = '__all__'
         # read_only_fields = ('user', )
-
-
-

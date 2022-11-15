@@ -1,6 +1,6 @@
-
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+
 # Authentication Decorators
 # from rest_framework.decorators import authentication_classes
 
@@ -14,7 +14,6 @@ from .serializers import MovieListSerializer, MovieSerializer, ReviewSerializer
 from .models import Movie, Review
 
 from django.shortcuts import render
-
 
 
 @api_view(['GET', 'POST'])
@@ -43,7 +42,7 @@ def movie_detail(request, movie_pk):
         serializer = MovieSerializer(movie)
         print(serializer.data)
         return Response(serializer.data)
-    
+
     elif request.method == 'DELETE':
         movie.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -82,8 +81,6 @@ def review_detail(request, review_pk):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
-
-    
 
 
 @api_view(['POST'])

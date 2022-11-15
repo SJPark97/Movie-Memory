@@ -12,15 +12,14 @@ class Movie(models.Model):
     runtime = models.IntegerField()
     genres = models.CharField(max_length=30)
     popularity = models.FloatField()
-    season = models.IntegerField(blank=True)
-    weather = models.IntegerField(blank=True)
+    season = models.IntegerField(default=0)
+    weather = models.IntegerField(default=0)
 
 
 class Review(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE,blank=True)
-    title = models.CharField(max_length=50,blank=True)
-    content = models.TextField(blank=True)
-    # img = models.ImageField(blank=True, upload_to='item_images')
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50)
+    content = models.TextField()
+    img = models.ImageField(upload_to='%Y/%m/%d/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
