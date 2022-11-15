@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h1>Hello,</h1>
+    <p>Today is Sunny day :)</p>
     <BannerComp/>
     <UserRecommend/>
     <GenreRecommend/>

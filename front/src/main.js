@@ -5,8 +5,17 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faBell } from "@fortawesome/free-regular-svg-icons";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 Vue.use(BootstrapVue)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+library.add(faBell)
+library.add(faHouse)
+library.add(faBars)
 
 Vue.config.productionTip = false
 

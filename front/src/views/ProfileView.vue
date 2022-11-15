@@ -1,9 +1,12 @@
 <template>
   <div>
+    <!-- https://bootstrap-vue.org/docs/components/tabs -->
     <MyStorage/>
     <UpdateUserInfo/>
   </div>
 </template>
+
+
 
 <script>
 import MyStorage from '@/components/MyStorage'
