@@ -16,11 +16,11 @@ class Movie(models.Model):
     weather = models.IntegerField()
 
 
-# class Review(models.Model):
-#     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-#     title = models.CharField(max_length=50)
-#     content = models.TextField()
-#     img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
+class Review(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50)
+    content = models.TextField()
+    # img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 

@@ -1,0 +1,18 @@
+[
+  {
+    "model": "movies.movie",
+    "pk": 1,
+    "fields": {
+      "title": "제목",
+      "poster_URL": "http://127.0.0.1:8000/api/v1/movies/",
+      "video_key": "키",
+      "release_date": "개봉",
+      "overview": "줄거",
+      "runtime": 2,
+      "genres": "장르",
+      "popularity": 3.5,
+      "season": 1,
+      "weather": 1
+    }
+  }
+]
