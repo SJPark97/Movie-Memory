@@ -35,10 +35,10 @@ export default {
 <style lang="scss" scoped>
 .movie-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
   position: absolute;
 }
 
@@ -50,10 +50,10 @@ export default {
   font-size: 5px;
   margin-top: 15px;
   margin-bottom: 15px;
-  margin-left: 1%;
-  margin-right: 1%;
+  margin-left: 20px;
+  margin-right: 20px;
   // border: 1px solid gray;
-  box-shadow: 2px 2px 5px 0px rgb(27, 26, 26);
+  box-shadow: 2px 2px 5px 0px rgb(44, 44, 44);
   transition: transform .2s;
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hello,</h1>
+    <h1>Hello,{{ username }}</h1>
     <p>Today is Sunny day :)</p>
     <BannerComp/>
     <UserRecommend/>
@@ -22,6 +22,11 @@ export default {
     UserRecommend,
     GenreRecommend,
     NowWeather,
+  },
+  computed: {
+    username() {
+      return this.$store.state.username
+    }
   }
 }
 </script>

@@ -15,6 +15,7 @@ export default new Vuex.Store({
     token: null,
     movies: [],
     reviews: [],
+    username: null,
   },
   getters: {
   },
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     GET_MOVIES(state, movies) {
       state.movies = movies
+    },
+    LogIn(state, username) {
+      state.username = username
     }
   },
   actions: {
@@ -31,6 +35,7 @@ export default new Vuex.Store({
       const username = payload.username
       const password1 = payload.password1
       const password2 = payload.password2
+      context.commit('LogIn', username)
 
       axios({
         method: 'post',
@@ -50,6 +55,7 @@ export default new Vuex.Store({
     logIn(context, payload) {
       const username = payload.username
       const password = payload.password
+      context.commit('LogIn', username)
 
       axios({
         method: 'post',
