@@ -22,8 +22,16 @@ URL 정리
 - 댓글 조회: api/v1/comments/
 - 댓글 상세: api/v1/comments/<int:comment_pk>/
 - 댓글 만들기: api/v1/reviews/<int:review_pk>/comments/
-- 계정: accounts/
+- 계정 로그인: accounts/login/
+- 계정 로그아웃: accounts/logout/
+- 계정 정보 수정: accounts/user/
 - 계정 생성: accounts/signup/
+- 계정 생성 이메일 재전송: accounts/signup/resend-email/
+- 계정 생성 이메일 확인: accounts/signup/verify-email/
+- 계정 비밀번호 체인지: accounts/password/change/
+- 계정 비밀번호 리셋: accounts/password/reset/
+- 계정 비밀번호 리셋 확인: accounts/password/reset/confirm/
+  
 
 [TMDB API](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id)
 
