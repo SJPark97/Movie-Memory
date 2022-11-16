@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <i class="fas fa-bars"></i>
     <div 
       data-aos="slide-up" 
       data-aos-easing="ease-out-sine" 
@@ -14,6 +13,9 @@
     <div class="ball">
       <p>로그인</p>
     </div>
+    <SignUp/>
+    <hr>
+    <LogIn/>
     <!-- <img src="https://i.pinimg.com/564x/9a/5d/63/9a5d639d97a1e32db48e3c99326ccd1e.jpg" alt=""> -->
     <!-- <img class="top-image" src="https://i.pinimg.com/564x/48/32/9b/48329b6a1f27db84fa7fbbce55059557.jpg" alt="">
     <img src="https://i.pinimg.com/736x/99/6e/03/996e037a9b237f9b191981d5f7ef503d.jpg" alt="">
@@ -27,10 +29,8 @@
      -->
     <img src="https://i.pinimg.com/564x/59/ec/f6/59ecf6b1014140e645931a27ee9e0869.jpg" alt="">
     <img src="https://i.pinimg.com/736x/14/7a/ec/147aec9f1bb6c4586b718a0ace9121ca.jpg" alt="">
-    <img src="https://i.pinimg.com/564x/8c/53/fe/8c53fe970d55bdbd6835032d504ce3b6.jpg" alt="">
+    <!-- <img src="https://i.pinimg.com/564x/8c/53/fe/8c53fe970d55bdbd6835032d504ce3b6.jpg" alt=""> -->
 
-    <LogIn/>
-    <SignUp/>
 
   </div>
 </template>
@@ -58,6 +58,64 @@ export default {
 
 
 <style>
+.home {
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+}
+
+.top-image {
+  height: 30rem;
+  z-index: 1;
+  /* position: relative; */
+  top: 0px;
+}
+
+.home>img {
+  /* -webkit-transform: rotate(90deg);  */
+  margin: 0;
+  padding: 0;
+  /* display: inline-block; */
+  position: relative;
+  height: 30rem;
+  /* width: rem; */
+  object-fit: contain;
+  top: 100px;
+}
+
+@keyframes ball {
+  0% {
+    top:0px;
+  }
+  95% {
+    width: 100px;
+  }
+  to {
+    top:300px;
+    width:115px;
+    /* height:90px */
+  } 
+}
+
+.ball {
+  position:relative;
+  left: 100px;
+  top:0;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:rgb(228, 212, 212);
+  animation:ball 1s ease-in Infinite Alternate;
+}
+
+.home>div>h1 {
+  font-size: 5rem;
+  z-index: 2;
+  position: relative;
+  font-family: Harmond;
+  margin: 0;
+  top: 50px;
+}
 
 
 </style>
