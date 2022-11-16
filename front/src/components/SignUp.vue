@@ -36,6 +36,9 @@ export default {
         username, password1, password2
       }
       this.$store.dispatch('SignUp', payload)
+      this.username = null
+      this.password1 = null
+      this.password2 = null
     }
   }
 }

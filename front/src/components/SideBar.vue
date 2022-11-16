@@ -35,7 +35,7 @@
           this.showLink = false;
           setTimeout(() => {
             this.showSidebar = false;
-          }, 500);
+          }, 50);
           this.$emit('open-side-bar', this.showLink)
         }
         else {
@@ -106,7 +106,7 @@
   @mixin nav-childs($values...) {
     @each $var in $values {
       &:nth-child(#{$var}) {
-        transition: transform linear calc(.1s * #{$var}), display .5s;
+        transition: transform linear calc(.05s * #{$var}), display .5s;
       }
     }
   }

@@ -9,6 +9,7 @@
         img-size
         tag="article"
         class="movie-card"
+        @click="goToDetail(movie.id)"
       >
     </b-card>
     </div>
@@ -22,6 +23,11 @@ export default {
   name: 'MovieList',
   props: {
     movies: Array,
+  },
+  methods: {
+    goToDetail(id) {
+      this.$router.push({ name: 'movie_detail', params: {movie_id: id}})
+    }
   }
 }
 </script>

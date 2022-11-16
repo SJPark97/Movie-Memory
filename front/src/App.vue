@@ -94,9 +94,11 @@ p {
   margin-left: 180px;
   transition: .5s;
 }
+
 .is-back {
   margin-left: 0;
   transition: .5s;
+  transition-delay: .17s;
 }
 
 

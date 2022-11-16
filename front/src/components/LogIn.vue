@@ -31,6 +31,8 @@ export default {
         username, password
       }
       this.$store.dispatch('logIn', payload)
+      this.username = null
+      this.password = null
     }
   }
 }

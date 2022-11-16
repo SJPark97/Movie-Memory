@@ -22,14 +22,14 @@ const routes = [
     component: MainView,
   },
   {
-    path: 'movies/:movie_id',
-    name: 'movie_detail',
-    component: DetailView,
-  },
-  {
-    path: '/movies',
+    path: '/movies/',
     name: 'movie_list',
     component: () => import('../views/ReadView.vue')
+  },
+  {
+    path: '/movies/:movie_id',
+    name: 'movie_detail',
+    component: DetailView,
   },
   {
     path: '/:userName',

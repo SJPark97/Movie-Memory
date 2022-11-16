@@ -14,6 +14,7 @@ export default new Vuex.Store({
   state: {
     token: null,
     movies: [],
+    reviews: [],
   },
   getters: {
   },
@@ -77,7 +78,19 @@ export default new Vuex.Store({
         .catch((error) => {
           console.log(error)
         })
-    }
+    },
+    // createReview(context, payload) {
+    //   const moviePk = payload.moviePk
+    //   const title = payload.title
+    //   const content = payload.content
+    //   const imgFile = payload.imgFile
+
+    //   newReview = {
+    //     title, content, imgFile
+    //   }
+
+    //   this.$commit('CREATE_REVIEW')
+    // }
   },
   modules: {
   }
