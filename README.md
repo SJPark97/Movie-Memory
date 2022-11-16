@@ -13,6 +13,18 @@
 9. 검색 (자동완성, 포스터)
 10. 리뷰&댓글 알림 (새 알림, 이전 알림, 모든 알림)
 
+URL 정리
+- 영화 조회: api/v1/movies/
+- 영화 상세: api/v1/movies/<int:movie_pk>/
+- 리뷰 조회: api/v1/reviews/
+- 리뷰 상세: api/v1/reviews/<int:review_pk>/
+- 리뷰 만들기: api/v1/movies/<int:movie_pk>/reviews/
+- 댓글 조회: api/v1/comments/
+- 댓글 상세: api/v1/comments/<int:comment_pk>/
+- 댓글 만들기: api/v1/reviews/<int:review_pk>/comments/
+- 계정: accounts/
+- 계정 생성: accounts/signup/
+
 [TMDB API](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id)
 
 # Front
