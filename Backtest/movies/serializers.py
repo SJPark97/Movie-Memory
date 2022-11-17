@@ -3,13 +3,13 @@ from .models import Movie, Review, Comment, Genre
 
 
 class GenreSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Genre
         fields = ('name',)
 
 
 class MovieListSerializer(serializers.ModelSerializer):
+    genre_id = GenreSerializer(read_only=True, many=True)
 
     class Meta:
         model = Movie
@@ -25,7 +25,6 @@ class ReviewListSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Comment
         fields = '__all__'
@@ -33,8 +32,6 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    comment_set = CommentSerializer(many=True, read_only=True)
-    comment_count = serializers.IntegerField(source='comment_set.count', read_only=True)
     img = serializers.ImageField(use_url=True)
     username = serializers.CharField(source='user.username', read_only=True)
 
@@ -45,23 +42,8 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class MovieSerializer(serializers.ModelSerializer):
-    review_set = ReviewSerializer(many=True, read_only=True)
-    review_count = serializers.IntegerField(source='review_set.count', read_only=True)
+    genre_id = GenreSerializer(read_only=True, many=True)
 
     class Meta:
         model = Movie
         fields = '__all__'
-
-
-# class GenreMovieSerializer(serializers.ModelSerializer):
-#     movies = MovieSerializer(many=True, read_only=True)
-#     class Meta:
-#         model = Genre
-#         fields = '__all__'
-
-
-# class MovieSerializer(serializers.ModelSerializer):
-#     genre = GenreSerializer(many=True, read_only=True)
-#     class Meta:
-#         model = Movie
-#         fields = '__all__'
