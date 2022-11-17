@@ -3,11 +3,6 @@
     <div class="control">
       <i class="fas fa-angle-double-right" @click="showNav"></i>
     </div>
-    <!-- <div class="navigation-icons">
-      <router-link to="/main"><i class="fas fa-home"></i></router-link>
-      <router-link to="/movies"><i class="fas fa-video"></i></router-link>
-      <i class="fas fa-bell"></i>
-    </div> -->
     <div class="navigation-links">
       <transition-group name="fade">
 

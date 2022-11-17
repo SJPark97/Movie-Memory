@@ -2,21 +2,21 @@
   <div class="auth-div">
     <h2>로그인</h2>
     <form @submit.prevent="LogIn">
-
-      <label for="username-login">아이디</label>
-      <input type="text" id="username-login" v-model="username">
-      <br>
-      <label for="password-login">비밀번호</label>
-      <input type="password" id="password-login" v-model="password">
-      <br>
-      <input type="submit">
+      <div class="login-input">
+        <label for="username-login">아이디</label>
+        <input type="text" id="username-login" v-model="username">
+      </div>
+      
+      <div class="login-input">
+        <label for="password-login">비밀번호</label>
+        <input type="password" id="password-login" v-model="password">
+      </div>
+        
+      <input type="submit" class="input-btn">
     </form>
   </div>
 </template>
 
-<!-- 
-  팝업으로 띄울까 고민 중
-  https://lusaxweb.github.io/vuesax/components/popup.html#default -->
 
 <script>
 
@@ -50,7 +50,26 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+h2 {
+  margin-bottom: 20px;
+}
+
+.login-input { 
+  display: inline-block;
+  width: 370px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.login-input > input {
+  width: 280px
+}
+
+.input-btn {
+  margin-top: 20px;
+}
 
 </style>

@@ -1,51 +1,48 @@
 <template>
   <div id="app" class="scroll-container">
-    <SideBar @open-side-bar="OpenSideBar"/>
+    <SideBar @open-side-bar="OpenSideBar" />
     <div :class="`${pullDiv ? 'is-pulled' : 'is-back'}`">
-              <!-- data-aos="fade-right"
-        data-aos-offset="100"
-        data-aos-duration="1000"
-        data-aos-easing="ease-out-sine" -->
-      <router-view class="scroll-area"
-      ></router-view>
+      <router-view></router-view>
+      <!-- <router-view class="animate__animated animate__fadeInLeft"></router-view> -->
     </div>
-
   </div>
 </template>
 
 <script>
-  import SideBar from '@/components/SideBar.vue'
+import SideBar from "@/components/SideBar.vue";
 
-  export default {
-    data() {
-      return {
-        pullDiv: false,
+export default {
+  data() {
+    return {
+      pullDiv: false,
+    };
+  },
+  components: {
+    SideBar,
+  },
+  methods: {
+    getMovies() {
+      this.$store.dispatch("getMovies");
+    },
+    getReviews() {
+      this.$store.dispatch("getReviews");
+    },
+    OpenSideBar(open) {
+      if (open === true) {
+        this.pullDiv = true;
+      } else {
+        this.pullDiv = false;
       }
+      console.log(this.pullDiv);
     },
-    components: {
-      SideBar,
-    },
-    methods: {
-      getMovies() {
-        this.$store.dispatch('getMovies')
-      },
-      getReviews() {
-        this.$store.dispatch('getReviews')
-      },
-      OpenSideBar(open) {
-        if (open === true) {
-          this.pullDiv = true
-        } else {
-          this.pullDiv = false
-        }
-        console.log(this.pullDiv)
-      }
-    },
-    created() {
-      this.getMovies()
-      this.getReviews()
-    }
-  }
+    
+  },
+  created() {
+    this.getMovies();
+    this.getReviews();
+  },
+};
+
 </script>
 
 <style lang="scss">
@@ -53,42 +50,49 @@
 
 @font-face {
   font-family: "Harmond";
-  src: local("Harmond"),
-    url(./fonts/Harmond-ExtBdItaExp.otf) format("truetype")
+  src: local("Harmond"), url(./fonts/Harmond-ExtBdItaExp.otf) format("truetype");
 }
-@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200;300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Hahmlet:wght@200;300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap");
 
 html {
   scroll-behavior: smooth;
   background-color: rgb(212, 201, 201);
+  -ms-overflow-style: none;
 }
-
-html,
-body {
-  min-height: 100%;
-  background-color: rgb(212, 201, 201);
-  width: 100vw;
-  // overflow-x: hidden;
+html::-webkit-scrollbar {
+  display: none;
 }
 
 #app {
   margin: 0;
-  font-family: 'Hahmlet', serif;
-  font-family: 'Cinzel', serif;
+  font-family: "Hahmlet", serif;
+  font-family: "Cinzel", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background-color: rgb(212, 201, 201);
   color: black;
+  width: 100vw;
+  height: 100vh;
+}
+#app::before {
+  content: '';
+  background-image: url('https://www.cinecasero.uy/img/noise-full.png');
+  opacity: 0.03;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+
 }
 
 
 div {
   margin: 0;
   padding-top: 5px;
-  font-family: 'Hahmlet', serif;
+  font-family: "Hahmlet", serif;
 }
 
 p {
@@ -97,14 +101,18 @@ p {
 
 .is-pulled {
   margin-left: 180px;
-  transition: .5s;
+  transition: 0.5s;
+  height: 100vh;
 }
 
 .is-back {
   margin-left: 0;
-  transition: .5s;
-  transition-delay: .17s;
+  transition: 0.5s;
+  transition-delay: 0.17s;
 }
 
-
+.animate__fadeInLeft {
+  animation-delay: 0.2s;
+  animation-duration: 10s;
+}
 </style>

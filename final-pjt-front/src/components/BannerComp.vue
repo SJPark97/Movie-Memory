@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="slide">
       <!-- https://bootstrap-vue.org/docs/components/carousel -->
       <b-carousel
         id="carousel-no-animation"
@@ -37,6 +37,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.slide {
+  display: inline-block;
+  width: 80%;
+}
 </style>
