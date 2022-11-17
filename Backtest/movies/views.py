@@ -35,10 +35,8 @@ def movie_list(request):
 def movie_detail(request, movie_pk):
     # movie = Movie.objects.get(pk=movie_pk)
     movie = get_object_or_404(Movie, pk=movie_pk)
-
     if request.method == 'GET':
         serializer = MovieSerializer(movie)
-        print(serializer.data)
         return Response(serializer.data)
 
     elif request.method == 'DELETE':
