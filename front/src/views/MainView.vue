@@ -1,12 +1,11 @@
 <template>
   <div>
-    <h1>Hello,{{ username }}</h1>
-    {{ $store.state.token }}
-    <p>Today is Sunny day :)</p>
+    <h1>Hello,{{ $store.state.username }}</h1>
+    <h1 class="animate__animated animate__fadeInUp">An animated element</h1>
+    <NowWeather/>
     <BannerComp/>
     <UserRecommend/>
     <GenreRecommend/>
-    <NowWeather/>
   </div>
 </template>
 
@@ -16,6 +15,7 @@ import UserRecommend from '@/components/UserRecommend'
 import GenreRecommend from '@/components/GenreRecommend'
 import NowWeather from '@/components/NowWeather'
 
+
 export default {
   name: 'MainView',
   components: {
@@ -24,11 +24,6 @@ export default {
     GenreRecommend,
     NowWeather,
   },
-  computed: {
-    username() {
-      return this.$store.state.username
-    }
-  }
 }
 </script>
 

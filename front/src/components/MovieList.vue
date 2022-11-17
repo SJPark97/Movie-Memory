@@ -10,9 +10,11 @@
         tag="article"
         class="movie-card"
         @click="goToDetail(movie.id)"
+        scrollable
       >
-    </b-card>
+      </b-card>
     </div>
+
   </div>
 </template>
 
@@ -24,6 +26,17 @@ export default {
   props: {
     movies: Array,
   },
+  data() {
+    return {
+      topicData: [],
+      limit: 0,
+    }
+  },
+  computed: {
+    rows() {
+        return this.movies.length
+      }
+  },
   methods: {
     goToDetail(id) {
       this.$router.push({ name: 'movie_detail', params: {movie_id: id}})
@@ -33,17 +46,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .movie-list {
+  background-color: rgba(255, 255, 255, 0.2);
   display: flex;
+  flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  flex-grow: 1;
+  flex-shrink: 0;
+  margin-top: 100px;
   margin-left: 15%;
   margin-right: 15%;
-  position: absolute;
+  // position: fixed;
+  // width: 100vw;
+  height: 80vh;
+  overflow-y: auto;
 }
 
 .movie-card {
   display: inline-block;
+  flex: 1 1 1 30%;
   padding: 0;
   height: 15rem;
   width: 10rem;
@@ -67,8 +90,6 @@ export default {
 .movie-card>img {
   height: 100%;
 }
-
-
 
 
 </style>

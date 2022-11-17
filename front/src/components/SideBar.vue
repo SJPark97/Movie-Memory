@@ -10,9 +10,10 @@
     </div> -->
     <div class="navigation-links">
       <transition-group name="fade">
-        <div v-show="showLink" key="1"><router-link to="/main">Home</router-link></div>
-        <div v-show="showLink" key="2"><router-link to="/movies">Movies</router-link></div>
-        <div v-show="showLink" key="3"><router-link to="/">#</router-link></div>
+
+        <div v-show="showLink" key="1"><h4>Hi,{{ username }}</h4></div>
+        <div v-show="showLink" key="2"><router-link to="/main">Home</router-link></div>
+        <div v-show="showLink" key="3"><router-link to="/movies">Movies</router-link></div>
         <div v-show="showLink" key="4"><router-link to="/">#</router-link></div>
         <div v-show="showLink" key="5"><button @click="logOut">LOGOUT</button></div>
 
@@ -28,6 +29,11 @@
       return {
         showSidebar: false,
         showLink: false
+      }
+    },
+    computed: {
+      username() {
+        return this.$store.state.username
       }
     },
     methods: {
@@ -58,7 +64,7 @@
 <style lang="scss" scoped>
 
   .container {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 0px;

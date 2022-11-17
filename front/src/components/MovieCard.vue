@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div  class="movie-card">
     <h1>{{ movie.title }}</h1>
     <img :src="movie.poster_URL" alt="">
     <p>{{ movie.overview }}</p>

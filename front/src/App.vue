@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" class="scroll-container">
     <SideBar @open-side-bar="OpenSideBar"/>
     <div :class="`${pullDiv ? 'is-pulled' : 'is-back'}`">
               <!-- data-aos="fade-right"
         data-aos-offset="100"
         data-aos-duration="1000"
         data-aos-easing="ease-out-sine" -->
-      <router-view
+      <router-view class="scroll-area"
       ></router-view>
     </div>
 
@@ -29,6 +29,9 @@
       getMovies() {
         this.$store.dispatch('getMovies')
       },
+      getReview() {
+        this.$store.dispatch('getReviews')
+      },
       OpenSideBar(open) {
         if (open === true) {
           this.pullDiv = true
@@ -40,6 +43,7 @@
     },
     created() {
       this.getMovies()
+      // this.getReview()
     }
   }
 </script>
@@ -57,7 +61,7 @@
 
 
 html {
-  scroll-behavior: initial;
+  scroll-behavior: smooth;
   background-color: rgb(212, 201, 201);
 }
 
@@ -79,6 +83,7 @@ body {
   background-color: rgb(212, 201, 201);
   color: black;
 }
+
 
 div {
   margin: 0;

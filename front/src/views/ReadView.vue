@@ -1,13 +1,16 @@
 <template>
-  <div >
-    <SearchBar @search-movie="searchMovie"/>
-    <span class="sort-selector">
-      <b-form-group v-slot="{ ariaDescribedby }">
-        <b-form-radio  @change="SortFamous" v-model="selected" value="A" :aria-describedby="ariaDescribedby" name="some-radios" >인기순</b-form-radio>
-        <b-form-radio  @change="SortCurrent" v-model="selected" value="B" :aria-describedby="ariaDescribedby" name="some-radios" >최신순</b-form-radio>
-      </b-form-group>
-    </span>
-    <MovieList :movies="movieList"/>
+  <div>
+    <header>
+      <SearchBar @search-movie="searchMovie" class="search-bar"/>
+      <span class="sort-selector" >
+        <b-form-group v-slot="{ ariaDescribedby }">
+          <b-form-radio @change="sortMovies" v-model="selected" value="A" :aria-describedby="ariaDescribedby" name="some-radios" >인기순</b-form-radio>
+          <b-form-radio @change="sortMovies" v-model="selected" value="B" :aria-describedby="ariaDescribedby" name="some-radios" >최신순</b-form-radio>
+        </b-form-group>
+      </span>
+    </header>
+    <MovieList :movies="movieList" class="animate__animated animate__fadeInUp"/> 
+
   </div>
 </template>
 
@@ -34,21 +37,22 @@ export default {
     }
   },
   methods: {
-    SortFamous() {
-      if (! this.searchYes) {
-        this.movieList = this.movies
-      } 
-      this.movieList.sort((a, b) => {
-        return b.popularity - a.popularity
+    sortMovies() {
+      if (this.selected === 'A') {
+        if (! this.searchYes) {
+          this.movieList = this.movies
+        } 
+        this.movieList.sort((a, b) => {
+          return b.popularity - a.popularity
+        })
+      } else { 
+        if (!this.searchYes) {
+          this.movieList = this.movies
+        }
+        this.movieList.sort((a, b) => {
+          return b.release_date.localeCompare(a.release_date)
       })
-    },
-    SortCurrent() {
-      if (!this.searchYes) {
-        this.movieList = this.movies
       }
-      this.movieList.sort((a, b) => {
-        return b.release_date.localeCompare(a.release_date)
-      })
     },
     searchMovie(keyword) {
       const movies = this.movies.filter((movie) => {
@@ -61,33 +65,34 @@ export default {
     }
   },
   created() {
-    this.SortFamous()
+    this.sortMovies()
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+body {
+  padding-top: 100px;
+  justify-content: center;
+  background-color: black;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left:0;
+  right: 0;
+  padding: 1rem;
+}
 
 .search-bar {
   /* display: inline-block; */
   margin-bottom: 3px;
   /* width: 30%; */
   /* height: 50px; */
-  /* display: flex;
-  justify-content: center; */
 }
 
-.search-bar>input[type=text] {
-  display: inline-block;
-  width: calc(50% - 10px * 3);
-  padding-left: 30px;
-  height: 50px;
-  font-size: 20px;
-  border-radius: 30px;
-  border-style: solid;
-  border-width: 1px;
-  box-shadow: 1px 1px 1px 0px gray;
-}
 
 .sort-selector {
   display: inline-block;

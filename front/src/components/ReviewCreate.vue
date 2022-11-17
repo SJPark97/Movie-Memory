@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="review-create">
     <form @submit.prevent="createReview">
       <label for="review-title">제목</label>
       <input type="text" id="review-title" v-model.trim="reviewTitle">
@@ -7,7 +7,7 @@
       <label for="review-content">내용</label>
       <textarea name="review-content" id="review-content" cols="70" rows="10" v-model.trim="reviewContent"></textarea>
       <br>
-      <input @change="uploadImg" ref="reviewImg" type="file" accept="image/png, image/jpg, image/jpeg, image/gif, image/svg+xml">
+      <input @change="uploadImg" ref="reviewImg" type="file" accept="image/*">
       <br>
       <input type="submit">
     </form>
@@ -42,24 +42,21 @@ export default {
       console.log(this.reviewImg)
     },
     createReview() {
+      const formData = new FormData()
+      formData.append('title', this.reviewTitle)
+      formData.append('content', this.reviewContent)
+      formData.append('img', this.$refs.reviewImg.files[0])
+      
       const moviePk = this.$route.params.movie_id
-      const title = this.reviewTitle
-      const content = this.reviewContent
-      const img = this.reviewImg[0].name
-      console.log(img)
-
-      const payload = {
-        title, content, img
-      }
 
       axios({
         method: 'post',
         url: `${API_URL}/api/v1/movies/${moviePk}/reviews/`,
-        header: {
+        headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization' : `Token ${this.token}`
         },
-        data: payload,
+        data: formData,
       })
         .then((response) => {
           console.log(response)

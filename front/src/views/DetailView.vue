@@ -22,5 +22,24 @@ export default {
 </script>
 
 <style>
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.movie-card {
+  display: inline-block;
+  width: 80%;
+}
+
+.review-create {
+  display: inline-block;
+  width: 80%;
+}
+
+.review-list {
+  display: inline-block;
+  width: 80%;
+}
 
 </style>
