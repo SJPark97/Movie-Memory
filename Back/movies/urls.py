@@ -14,7 +14,7 @@ urlpatterns = [
     path('reviews/<int:review_pk>/comments/', views.comment_create),
 
     # # 필수 작성
-    # path('schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('schema/', SpectacularAPIView.as_view(), name='schema'),
     # # optional UI
-    # path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
