@@ -28,9 +28,9 @@ export default new Vuex.Store({
     GET_MOVIES(state, movies) {
       state.movies = movies
     },
-    // GET_REVIEWS(state, reviews) {
-    //   state.reviews = reviews
-    // },
+    GET_REVIEWS(state, reviews) {
+      state.reviews = reviews
+    },
     LogIn(state, username) {
       state.username = username
     },
@@ -92,18 +92,18 @@ export default new Vuex.Store({
           console.log(error)
         })
     },
-    // getReview(context) {
-    //   axios({
-    //     mathod: 'get',
-    //     url: `${API_URL}/api/v1/reviews`,
-    //   })
-    //     .then((response) => {
-    //       context.commit('GET_REVIEWS', response.data)
-    //     })
-    //     .catch((error) => {
-    //       console.log(error)
-    //     })
-    // }
+    getReviews(context) {
+      axios({
+        mathod: 'get',
+        url: `${API_URL}/api/v1/reviews`,
+      })
+        .then((response) => {
+          context.commit('GET_REVIEWS', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   },
   modules: {
   }

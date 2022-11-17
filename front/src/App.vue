@@ -29,7 +29,7 @@
       getMovies() {
         this.$store.dispatch('getMovies')
       },
-      getReview() {
+      getReviews() {
         this.$store.dispatch('getReviews')
       },
       OpenSideBar(open) {
@@ -43,7 +43,7 @@
     },
     created() {
       this.getMovies()
-      // this.getReview()
+      this.getReviews()
     }
   }
 </script>

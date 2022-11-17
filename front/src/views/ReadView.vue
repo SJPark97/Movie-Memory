@@ -34,7 +34,7 @@ export default {
   computed: {
     movies() {
       return this.$store.state.movies
-    }
+    },
   },
   methods: {
     sortMovies() {
@@ -79,7 +79,7 @@ body {
 }
 
 header {
-  position: fixed;
+  // position: fixed;
   top: 0;
   left:0;
   right: 0;

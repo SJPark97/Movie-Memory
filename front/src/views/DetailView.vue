@@ -1,8 +1,8 @@
 <template>
   <div>
-    <MovieCard/>
+    <MovieCard :movie="movie"/>
     <ReviewCreate/>
-    <ReviewList/>
+    <ReviewList :reviews="thisMovieReview"/>
   </div>
 </template>
 
@@ -17,6 +17,41 @@ export default {
     MovieCard,
     ReviewCreate,
     ReviewList,
+  },
+  computed: {
+    movies() {
+      return this.$store.state.movies
+    },
+    reviews() {
+      return this.$store.state.reviews
+    }
+  },
+  data() {
+    return {
+      movie: null,
+      thisMovieReview: [],
+    }
+  },
+  methods: {
+    singleMovieDetail(id) {
+      for (const movie of this.movies) {
+        if(movie.id === Number(id)) {
+          this.movie = movie
+          break
+        }
+      }
+    },
+    getMovieReview() {
+      const thisReviews = this.reviews.filter((review) => {
+        return review.movie === this.movie.id
+      })
+      this.thisMovieReview = thisReviews
+      console.log(this.thisMovieReview)
+    }
+  },
+  created() {
+    this.singleMovieDetail(this.$route.params.movie_id)
+    this.getMovieReview()
   }
 }
 </script>
