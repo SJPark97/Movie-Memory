@@ -11,8 +11,6 @@
       <br>
       <input type="submit">
     </form>
-    <p @click="signUp">회원가입</p>
-    <SignUp v-if="signUpAva"/>
   </div>
 </template>
 
@@ -31,6 +29,11 @@ export default {
       signUpAva: false,
     }
   },
+  computed: {
+    token() {
+      return this.$store.state.token
+    }
+  },
   methods: {
     LogIn() {
       const username = this.username
@@ -42,12 +45,7 @@ export default {
       this.$store.dispatch('logIn', payload)
       this.username = null
       this.password = null
-
-      this.$route.push({name: 'main'})
     },
-    signUp() {
-      this.signUpAva = true
-    }
   }
 }
 </script>

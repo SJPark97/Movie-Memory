@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
+import router from '@/router'
 
 Vue.use(Vuex)
 
@@ -22,12 +23,17 @@ export default new Vuex.Store({
   mutations: {
     SAVE_TOKEN(state, token) {
       state.token = token
+      router.push({name: 'main'})
     },
     GET_MOVIES(state, movies) {
       state.movies = movies
     },
     LogIn(state, username) {
       state.username = username
+    },
+    LOGOUT(state) {
+      state.token = null
+      state.username = null
     }
   },
   actions: {
@@ -35,7 +41,6 @@ export default new Vuex.Store({
       const username = payload.username
       const password1 = payload.password1
       const password2 = payload.password2
-      context.commit('LogIn', username)
 
       axios({
         method: 'post',
@@ -45,8 +50,8 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
-          console.log(response)
           context.commit('SAVE_TOKEN', response.data.key)
+          context.commit('LogIn', username)
         })
         .catch((error) => {
           console.log(error)
@@ -55,7 +60,6 @@ export default new Vuex.Store({
     logIn(context, payload) {
       const username = payload.username
       const password = payload.password
-      context.commit('LogIn', username)
 
       axios({
         method: 'post',
@@ -65,11 +69,12 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
-          console.log(response)
           context.commit('SAVE_TOKEN', response.data.key)
+          context.commit('LogIn', username)
         })
         .catch((error) => {
           console.log(error)
+          alert('응 돌아가~')
         })
     },
     getMovies(context) {
@@ -78,7 +83,6 @@ export default new Vuex.Store({
         url: `${API_URL}/api/v1/movies/`,
       })
         .then((response) => {
-          console.log(response, context)
           context.commit('GET_MOVIES', response.data)
         })
         .catch((error) => {

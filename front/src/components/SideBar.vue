@@ -14,7 +14,8 @@
         <div v-show="showLink" key="2"><router-link to="/movies">Movies</router-link></div>
         <div v-show="showLink" key="3"><router-link to="/">#</router-link></div>
         <div v-show="showLink" key="4"><router-link to="/">#</router-link></div>
-        <div v-show="showLink" key="5"><router-link to="/">#</router-link></div>
+        <div v-show="showLink" key="5"><button @click="logOut">LOGOUT</button></div>
+
       </transition-group>
     </div>
     <!-- <i class="fas fa-music"></i> -->
@@ -45,6 +46,10 @@
           }, 500);
           this.$emit('open-side-bar', this.showSidebar)
         }
+      },
+      logOut() {
+        this.$store.commit('LOGOUT')
+        window.localStorage.clear()
       }
     }
   }

@@ -41,7 +41,7 @@ export default {
       this.password1 = null
       this.password2 = null
 
-      this.$route.push({name: 'main'})
+      this.$router.push({name: 'main'})
     }
   }
 }
