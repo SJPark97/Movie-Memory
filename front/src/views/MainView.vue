@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Hello,{{ username }}</h1>
+    {{ $store.state.token }}
     <p>Today is Sunny day :)</p>
     <BannerComp/>
     <UserRecommend/>

@@ -7,7 +7,7 @@
       <label for="review-content">내용</label>
       <textarea name="review-content" id="review-content" cols="70" rows="10" v-model.trim="reviewContent"></textarea>
       <br>
-      <input @change="uploadImg" ref="reviewImg" type="file" accept="image/*">
+      <input @change="uploadImg" ref="reviewImg" type="file" accept="image/png, image/jpg, image/jpeg, image/gif, image/svg+xml">
       <br>
       <input type="submit">
     </form>
@@ -31,6 +31,11 @@ export default {
       reviewImg: null,
     }
   },
+  computed: {
+    token() {
+      return this.$store.state.token
+    }
+  },
   methods: {
     uploadImg() {
       this.reviewImg = this.$refs.reviewImg.files
@@ -52,6 +57,7 @@ export default {
         url: `${API_URL}/api/v1/movies/${moviePk}/reviews/`,
         header: {
           'Content-Type': 'multipart/form-data',
+          'Authorization' : `Token ${this.token}`
         },
         data: payload,
       })
