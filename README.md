@@ -16,12 +16,16 @@
 URL 정리
 - 영화 조회: api/v1/movies/
 - 영화 상세: api/v1/movies/<int:movie_pk>/
+- 영화 리뷰 조회: api/v1/movies/<int:movie_pk>/reviews/
 - 리뷰 조회: api/v1/reviews/
 - 리뷰 상세: api/v1/reviews/<int:review_pk>/
 - 리뷰 만들기: api/v1/movies/<int:movie_pk>/reviews/
+- 유저 리뷰 조회: : api/v1/user/<int:user_pk>/reviews/
 - 댓글 조회: api/v1/comments/
 - 댓글 상세: api/v1/comments/<int:comment_pk>/
 - 댓글 만들기: api/v1/reviews/<int:review_pk>/comments/
+- 유저 댓글조회: : api/v1/user/<int:user_pk>/comments/
+- 리뷰 댓글 조회: api/v1/reviews/<int:review_pk>/comments/
 - 계정 로그인: accounts/login/
 - 계정 로그아웃: accounts/logout/
 - 계정 정보 수정: accounts/user/
