@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import 'animate.css';
 
 import Paginate from 'vuejs-paginate'
@@ -21,6 +22,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add(faBell)
 library.add(faHouse)
 library.add(faBars)
+library.add(faXmark)
 
 Vue.config.productionTip = false
 

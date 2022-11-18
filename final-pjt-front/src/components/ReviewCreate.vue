@@ -21,9 +21,6 @@ const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'ReviewCreate',
-  // props: {
-  //   moviePk: Number,
-  // },
   data() {
     return {
       reviewTitle: null,
@@ -46,7 +43,7 @@ export default {
       formData.append('title', this.reviewTitle)
       formData.append('content', this.reviewContent)
       formData.append('img', this.$refs.reviewImg.files[0])
-      
+      console.log(formData)
       const moviePk = this.$route.params.movie_id
 
       axios({
@@ -64,11 +61,27 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+      this.$router.go()
     } 
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+.review-create {
+  display: inline-block;
+  width: 800px;
+  height: 500px;
+  position: absolute;
+  /* object-fit: contain; */
+  top: 60px;
+  left: 150px;
+  padding-top: 40px;
+  padding-left: 60px;
+  padding-right: 60px;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 10px 3px rgb(136, 136, 136);
+  z-index: 999;
+  background-color: rgb(218, 210, 210);
+}
 </style>

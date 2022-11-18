@@ -6,6 +6,8 @@
   </div>
 </template>
 
+
+<!-- VUE_APP_WEATHER_API_KEY=4fb4e5763cb97001341a93c1a5bd0b20 -->
 <script>
 
 // import _ from 'lodash'
@@ -37,7 +39,6 @@ export default {
         }
       })
         .then((response) => {
-          console.log(response.data.weather[0])
           this.weather = response.data.weather[0].description
         })
     },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="movie-list">
+    <div>
       <b-card
         v-for="movie in movies" :key="movie.id"
         :img-src="movie.poster_URL"
@@ -48,7 +48,7 @@ export default {
 <style lang="scss" scoped>
 
 .movie-list {
-  background-color: rgba(255, 255, 255, 0.2);
+  // background-color: rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -59,8 +59,8 @@ export default {
   margin-left: 15%;
   margin-right: 15%;
   // position: fixed;
-  // width: 100vw;
-  height: 80vh;
+  // width: 80%;
+  height: auto;
   overflow-y: auto;
 }
 

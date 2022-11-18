@@ -15,7 +15,10 @@ export default new Vuex.Store({
   state: {
     token: null,
     movies: [],
+    movie: null,
     reviews: [],
+    movieReviews: [],
+    review: null,
     username: null,
   },
   getters: {
@@ -23,13 +26,26 @@ export default new Vuex.Store({
   mutations: {
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push({name: 'main'})
+      router.push({ name: 'main' })
     },
     GET_MOVIES(state, movies) {
       state.movies = movies
     },
+    GET_ONE_MOVIE(state, movie) {
+      state.movie = movie
+    },
     GET_REVIEWS(state, reviews) {
       state.reviews = reviews
+    },
+    GET_MOVIE_REVIEWS(state, reviews) {
+      if (reviews === 'error') {
+        state.movieReviews = null
+      } else {
+        state.movieReviews = reviews
+      }
+    },
+    GET_ONE_REVIEW(state, review) {
+      state.review = review
     },
     LogIn(state, username) {
       state.username = username
@@ -82,23 +98,60 @@ export default new Vuex.Store({
     },
     getMovies(context) {
       axios({
-        mathod: 'get',
+        method: 'get',
         url: `${API_URL}/api/v1/movies/`,
       })
         .then((response) => {
           context.commit('GET_MOVIES', response.data)
         })
         .catch((error) => {
-          console.log(error)
+          console.log('getMovies', error)
+        })
+    },
+    getOneMovie(context, movieId) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/${movieId}/`,
+      })
+        .then((response) => {
+          context.commit('GET_ONE_MOVIE', response.data)
+        })
+        .catch((error) => {
+          console.log('getOneMovies', error)
         })
     },
     getReviews(context) {
       axios({
-        mathod: 'get',
-        url: `${API_URL}/api/v1/reviews`,
+        method: 'get',
+        url: `${API_URL}/api/v1/reviews/`,
       })
         .then((response) => {
           context.commit('GET_REVIEWS', response.data)
+        })
+        .catch((error) => {
+          console.log('getReviews', error)
+        })
+    },
+    getMovieReview(context, movieId) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/${movieId}/reviews/`,
+      })
+        .then((response) => {
+          context.commit('GET_MOVIE_REVIEWS', response.data)
+        })
+        .catch((error) => {
+          console.log('getMovieReviews', error)
+          context.commit('GET_MOVIE_REVIEWS', "error")
+        })
+    },
+    getOneReview(context, reviewId) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/reviews/${reviewId}/`,
+      })
+        .then((response) => {
+          context.commit('GET_ONE_REVIEW', response.data)
         })
         .catch((error) => {
           console.log(error)

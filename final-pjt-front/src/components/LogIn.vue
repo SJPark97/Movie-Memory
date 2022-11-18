@@ -13,15 +13,21 @@
       </div>
         
       <input type="submit" class="input-btn">
+      <p @click="popSignup">SIGNUP</p>
+      <SignUp v-show="signUpAva" @pop-exit="popExit"/>
     </form>
   </div>
 </template>
 
 
 <script>
+import SignUp from "@/components/SignUp";
 
 export default {
   name: 'LogIn',
+  components: {
+    SignUp,
+  },
   data() {
     return {
       username: null,
@@ -46,6 +52,12 @@ export default {
       this.username = null
       this.password = null
     },
+    popSignup() {
+      this.signUpAva = true
+    },
+    popExit() {
+      this.signUpAva = false
+    }
   }
 }
 </script>
@@ -54,6 +66,24 @@ export default {
 
 h2 {
   margin-bottom: 20px;
+}
+
+
+.auth-div {
+  display: inline-block;
+  width: 500px;
+  height: 300px;
+  position: absolute;
+  /* object-fit: contain; */
+  top: 60px;
+  left: 150px;
+  padding-top: 40px;
+  padding-left: 60px;
+  padding-right: 60px;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 10px 3px rgb(136, 136, 136);
+  z-index: 999;
+  background-color: rgb(218, 210, 210);
 }
 
 .login-input { 
@@ -65,11 +95,15 @@ h2 {
 }
 
 .login-input > input {
-  width: 280px
+  width: 280px;
+  height: 33px;
+  border: 1px solid gray;
+  border-radius: 8px;
 }
 
 .input-btn {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 </style>

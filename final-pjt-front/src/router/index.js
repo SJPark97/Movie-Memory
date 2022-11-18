@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import MainView from '../views/MainView.vue'
 import DetailView from '../views/DetailView.vue'
 // import ReadView from '../views/ReadView.vue'
+import ReviewView from '../views/ReviewView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import NotFound404 from '../views/NotFound404.vue'
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/movies/:movie_id',
     name: 'movie_detail',
     component: DetailView,
+  },
+  {
+    path: '/reviews/:review_id',
+    name: 'review_detail',
+    component: ReviewView,
   },
   {
     path: '/:userName',

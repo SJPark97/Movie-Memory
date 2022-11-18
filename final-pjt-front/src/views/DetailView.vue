@@ -1,8 +1,9 @@
 <template>
   <div>
-    <MovieCard :movie="movie"/>
-    <ReviewCreate/>
-    <ReviewList :reviews="thisMovieReview"/>
+    <MovieCard/>
+    <p @click="popReview">리뷰 등록</p>
+    <ReviewCreate v-show="popAva"/>
+    <ReviewList/>
   </div>
 </template>
 
@@ -22,36 +23,26 @@ export default {
     movies() {
       return this.$store.state.movies
     },
-    reviews() {
-      return this.$store.state.reviews
-    }
   },
   data() {
     return {
-      movie: null,
-      thisMovieReview: [],
+      popAva: false,
     }
   },
   methods: {
-    singleMovieDetail(id) {
-      for (const movie of this.movies) {
-        if(movie.id === Number(id)) {
-          this.movie = movie
-          break
-        }
-      }
+    getOneMovie(movie_id) {
+      this.$store.dispatch("getOneMovie", movie_id)
     },
-    getMovieReview() {
-      const thisReviews = this.reviews.filter((review) => {
-        return review.movie === this.movie.id
-      })
-      this.thisMovieReview = thisReviews
-      console.log(this.thisMovieReview)
+    getMovieReview(movie_id) {
+      this.$store.dispatch("getMovieReview", movie_id)
+    },
+    popReview() {
+      this.popAva = true
     }
   },
   created() {
-    this.singleMovieDetail(this.$route.params.movie_id)
-    this.getMovieReview()
+    this.getOneMovie(this.$route.params.movie_id)
+    this.getMovieReview(this.$route.params.movie_id)
   }
 }
 </script>

@@ -5,6 +5,7 @@
       <router-view></router-view>
       <!-- <router-view class="animate__animated animate__fadeInLeft"></router-view> -->
     </div>
+    <a href="#app" class="moveToTop">TOP</a>
   </div>
 </template>
 
@@ -33,7 +34,6 @@ export default {
       } else {
         this.pullDiv = false;
       }
-      console.log(this.pullDiv);
     },
     
   },
@@ -76,18 +76,17 @@ html::-webkit-scrollbar {
   width: 100vw;
   height: 100vh;
 }
-#app::before {
-  content: '';
-  background-image: url('https://www.cinecasero.uy/img/noise-full.png');
-  opacity: 0.03;
-  position: fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-
-}
-
+// #app::before {
+//   content: '';
+//   background-image: url('https://www.cinecasero.uy/img/noise-full.png');
+//   opacity: 0.03;
+//   position: fixed;
+//   z-index:-1 !important;
+//   top:0;
+//   left:0;
+//   right:0;
+//   bottom:0;
+// }
 
 div {
   margin: 0;
@@ -97,6 +96,12 @@ div {
 
 p {
   margin: 0;
+}
+
+.moveToTop {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
 }
 
 .is-pulled {

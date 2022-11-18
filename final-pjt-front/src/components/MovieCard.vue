@@ -1,18 +1,22 @@
 <template>
   <div class="movie-card">
-    <h1>{{ movie.title }}</h1>
-    <img :src="movie.poster_URL" alt="">
-    <p>{{ movie.overview }}</p>
-    <p>{{ movie.genres }}</p>
-    <p>{{ movie.popularity }}</p>
+    <h1>{{ movie?.title }}</h1>
+    <img :src="movie?.poster_URL" alt="">
+    <p>{{ movie?.overview }}</p>
+    <div v-for="(genre, index) in movie?.genres" :key="index">
+      <span>{{ genre.name }}</span>
+    </div>
+    <p>{{ movie?.popularity }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'MovieCard',
-  props: {
-    movie: Object,
+  computed: {
+    movie() {
+      return this.$store.state.movie
+    }
   }
 }
 </script>

@@ -18,7 +18,6 @@
       <img src="https://i.pinimg.com/564x/83/33/9d/83339d35fe78f3560079301346164b42.jpg" alt="">
       <div class="loader" @animationend="popDiv"></div>
       <LogIn class="login-pop animate__animated animate__fadeIn"/>
-      <!-- <SignUp /> -->
     </div>
 
   </div>
@@ -33,13 +32,11 @@ import "aos/dist/aos.css";
 AOS.init();
 
 import LogIn from "@/components/LogIn";
-import SignUp from "@/components/SignUp";
 
 export default {
   name: "HomeView",
   components: {
     LogIn,
-    SignUp,
   },
   data() {
     return {
@@ -161,26 +158,8 @@ img {
 }
 
 .login-pop {
-  animation-delay: 6.7s;
+  /* animation-delay: 6.7s; */
 }
-.auth-div {
-  display: inline-block;
-  width: 500px;
-  height: 300px;
-  position: absolute;
-  /* object-fit: contain; */
-  top: 60px;
-  left: 150px;
-  padding-top: 40px;
-  padding-left: 60px;
-  padding-right: 60px;
-  border: 1px solid gray;
-  box-shadow: 5px 5px 10px 3px rgb(136, 136, 136);
-  z-index: 999;
-  background-color: rgb(218, 210, 210);
-}
-
-
 .ball {
   position: relative;
   left: 200px;
@@ -191,6 +170,5 @@ img {
   background: rgb(228, 212, 212);
   animation: ball 1s ease-in Infinite Alternate;
 }
-
 
 </style>

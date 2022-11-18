@@ -63,6 +63,7 @@
     top: 0;
     left: 0;
     width: 0px;
+    height: 100vh;
     padding: 0px;
     min-height: calc(100vh - 20px);
     background-color: rgba($color: rgb(200, 195, 191), $alpha: .8);
@@ -85,6 +86,7 @@
     }
     &.show {
       width: 180px;
+      height: 100vh;
       padding: 20px;
       .control > i {
         color: #fff;

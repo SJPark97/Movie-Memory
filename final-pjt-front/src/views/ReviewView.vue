@@ -1,0 +1,116 @@
+<template>
+  <div>
+    <div>
+      <h5> REVIEW </h5>
+    </div>
+    <div class="review">
+      <div class="title">
+        <h1>{{ review.title }}</h1>
+        <p>작성자: {{ review.username }}</p>
+        <span>작성일시 : {{ review?.created_at.substr(0, 10) }}</span>
+        <span>수정일시 : {{ review?.updated_at.substr(0, 10) }}</span>
+        <hr>
+      </div>
+      <div class="content">
+        <img :src="`http://127.0.0.1:8000${review?.img}`" alt="">
+        <h4>{{ review.content }}</h4>
+      </div>
+    </div>
+    <p>이 영화의 다른 리뷰 보기 (시간있으면 하겠음)</p>
+    <div v-for="review in otherReview" :key="review.id">
+      {{ review.title }}
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ReviewView',
+  computed: {
+    review() {
+      return this.$store.state.review
+    },
+    otherReview() {
+      return this.$store.state.movieReviews
+    }
+  },
+  methods: {
+    getOneReview(reviewId) {
+      this.$store.dispatch("getOneReview", reviewId)
+    },
+    getMovieReview(movie_id) {
+      this.$store.dispatch("getMovieReview", movie_id)
+    },
+  },
+  created() {
+    this.getOneReview(this.$route.params.review_id)
+    this.getMovieReview(this.review.movie)
+  }
+}
+</script>
+
+<style scoped>
+
+h5 {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  width: 150px;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+.review {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  width: 70%;
+  height: auto;
+  /* border: 2px solid rgb(203, 120, 134); */
+  /* border-top-left-radius: 30px; */
+  /* border-bottom-right-radius: 30px; */
+  /* box-shadow: 1px 1px 3px 3px rgb(136, 136, 136); */
+  padding: 20px;
+}
+span {
+  font-size: 8px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.title {
+  display: inline-block;
+  height: 100px;
+  width: 80%;
+  text-align: left;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 50px;
+}
+
+.title > h1 {
+  margin-bottom: 15px;
+}
+
+.title > p {
+  margin: 0
+}
+.content {
+  display: inline-block;
+  width: 80%;
+  margin-left: 30px;
+  margin-right: 30px;
+
+}
+
+.content > img {
+  width: 300px; 
+}
+
+.content > h4 {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 20px;
+  
+}
+</style>
