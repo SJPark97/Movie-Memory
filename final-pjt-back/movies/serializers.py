@@ -1,8 +1,15 @@
 from rest_framework import serializers
-from .models import Movie, Review, Comment
+from .models import Movie, Review, Comment, Genre
+
+
+class GenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = ('name',)
 
 
 class MovieListSerializer(serializers.ModelSerializer):
+    genres = GenreSerializer(read_only=True, many=True)
 
     class Meta:
         model = Movie
@@ -18,16 +25,13 @@ class ReviewListSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Comment
         fields = '__all__'
-        read_only_fields = ('review',)
+        read_only_fields = ('review', 'user')
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    comment_set = CommentSerializer(many=True, read_only=True)
-    comment_count = serializers.IntegerField(source='comment_set.count', read_only=True)
     img = serializers.ImageField(use_url=True)
     username = serializers.CharField(source='user.username', read_only=True)
 
@@ -38,11 +42,8 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class MovieSerializer(serializers.ModelSerializer):
-    review_set = ReviewSerializer(many=True, read_only=True)
-    review_count = serializers.IntegerField(source='review_set.count', read_only=True)
+    genres = GenreSerializer(read_only=True, many=True)
 
     class Meta:
         model = Movie
         fields = '__all__'
-
-

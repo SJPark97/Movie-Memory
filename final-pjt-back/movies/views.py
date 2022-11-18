@@ -10,9 +10,14 @@ from rest_framework.permissions import IsAuthenticated
 
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
-from .serializers import MovieListSerializer, MovieSerializer, ReviewSerializer, CommentSerializer, ReviewListSerializer
+from .serializers import (
+    MovieListSerializer,
+    MovieSerializer,
+    ReviewSerializer,
+    CommentSerializer,
+    ReviewListSerializer,
+)
 from .models import Movie, Review, Comment
-
 
 
 @api_view(['GET', 'POST'])
@@ -79,14 +84,19 @@ def review_detail(request, review_pk):
             return Response(serializer.data)
 
 
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 def review_create(request, movie_pk):
-    movie = Movie.objects.get(pk=movie_pk)
-    movie = get_object_or_404(Movie, pk=movie_pk)
-    serializer = ReviewSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(movie=movie, user=request.user)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    # movie = Movie.objects.get(pk=movie_pk)
+    if request.method == 'POST':
+        movie = get_object_or_404(Movie, pk=movie_pk)
+        serializer = ReviewSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(movie=movie, user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    elif request.method == 'GET':
+        reviews = get_list_or_404(Review, movie=movie_pk)
+        serializer = ReviewListSerializer(reviews, many=True)
+        return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -118,11 +128,30 @@ def comment_detail(request, comment_pk):
             return Response(serializer.data)
 
 
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 def comment_create(request, review_pk):
-    # review = Review.objects.get(pk=review_pk)
-    review = get_object_or_404(Review, pk=review_pk)
-    serializer = CommentSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(review=review)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    if request.method == 'POST':
+        # review = Review.objects.get(pk=review_pk)
+        review = get_object_or_404(Review, pk=review_pk)
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(review=review, user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    elif request.method == 'GET':
+        comments = get_list_or_404(Comment, review=review_pk)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def user_reviews(request, user_pk):
+    reviews = get_list_or_404(Review, user=user_pk)
+    serializer = ReviewListSerializer(reviews, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def user_comments(request, user_pk):
+    comments = get_list_or_404(Comment, user=user_pk)
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)
