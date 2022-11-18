@@ -9,7 +9,7 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class MovieListSerializer(serializers.ModelSerializer):
-    genre_id = GenreSerializer(read_only=True, many=True)
+    genres = GenreSerializer(read_only=True, many=True)
 
     class Meta:
         model = Movie
@@ -28,7 +28,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
-        read_only_fields = ('review',)
+        read_only_fields = ('review', 'user')
 
 
 class ReviewSerializer(serializers.ModelSerializer):
@@ -42,7 +42,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class MovieSerializer(serializers.ModelSerializer):
-    genre_id = GenreSerializer(read_only=True, many=True)
+    genres = GenreSerializer(read_only=True, many=True)
 
     class Meta:
         model = Movie

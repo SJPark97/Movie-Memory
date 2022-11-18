@@ -135,9 +135,23 @@ def comment_create(request, review_pk):
         review = get_object_or_404(Review, pk=review_pk)
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(review=review)
+            serializer.save(review=review, user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
     elif request.method == 'GET':
         comments = get_list_or_404(Comment, review=review_pk)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
+
+
+@api_view(['GET'])
+def user_reviews(request, user_pk):
+    reviews = get_list_or_404(Review, user=user_pk)
+    serializer = ReviewListSerializer(reviews, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def user_comments(request, user_pk):
+    comments = get_list_or_404(Comment, user=user_pk)
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)

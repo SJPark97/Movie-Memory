@@ -12,9 +12,12 @@ urlpatterns = [
     path('comments/', views.comment_list),
     path('comments/<int:comment_pk>/', views.comment_detail),
     path('reviews/<int:review_pk>/comments/', views.comment_create),
-
+    path('user/<int:user_pk>/reviews/', views.user_reviews),
+    path('user/<int:user_pk>/comments/', views.user_comments),
     # # 필수 작성
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     # # optional UI
-    path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path(
+        'swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'
+    ),
 ]
