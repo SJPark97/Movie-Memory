@@ -2,9 +2,10 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from django.urls import path
 from . import views
 
-
+app_name = 'movies'
 urlpatterns = [
     path('movies/', views.movie_list),
+    path('movies/genres/<int:genres_pk>/', views.genres_movies, name = 'genre_recommend'),
     path('movies/<int:movie_pk>/', views.movie_detail),
     path('movies/<int:movie_pk>/reviews/', views.review_create),
     path('movies/<int:movie_pk>/likes/', views.like_movies),
