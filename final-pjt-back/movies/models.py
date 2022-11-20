@@ -7,6 +7,7 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
     title = models.CharField(max_length=50)
     poster_URL = models.URLField(max_length=200)
     video_key = models.TextField(blank=True)
@@ -22,6 +23,7 @@ class Movie(models.Model):
 class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
     title = models.CharField(max_length=50)
     content = models.TextField()
     img = models.ImageField(upload_to='%Y/%m/%d/')
@@ -32,6 +34,7 @@ class Review(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_comments')
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
