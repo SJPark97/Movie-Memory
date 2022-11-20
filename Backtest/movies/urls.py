@@ -6,12 +6,15 @@ from . import views
 urlpatterns = [
     path('movies/', views.movie_list),
     path('movies/<int:movie_pk>/', views.movie_detail),
+    path('movies/<int:movie_pk>/reviews/', views.review_create),
+    path('movies/<int:movie_pk>/likes/', views.like_movies),
     path('reviews/', views.review_list),
     path('reviews/<int:review_pk>/', views.review_detail),
-    path('movies/<int:movie_pk>/reviews/', views.review_create),
+    path('reviews/<int:review_pk>/comments/', views.comment_create),
+    path('reviews/<int:review_pk>/likes/', views.like_reviews),
     path('comments/', views.comment_list),
     path('comments/<int:comment_pk>/', views.comment_detail),
-    path('reviews/<int:review_pk>/comments/', views.comment_create),
+    path('comments/<int:comment_pk>/likes/', views.like_comments),
     path('user/<int:user_pk>/reviews/', views.user_reviews),
     path('user/<int:user_pk>/comments/', views.user_comments),
     # # 필수 작성

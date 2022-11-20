@@ -25,6 +25,8 @@ class ReviewListSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username', read_only=True)
+    like_comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = Comment
         fields = '__all__'
@@ -32,9 +34,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    img = serializers.ImageField(use_url=True)
     username = serializers.CharField(source='user.username', read_only=True)
-
+    like_reviews = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = Review
         fields = '__all__'
@@ -43,6 +44,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 class MovieSerializer(serializers.ModelSerializer):
     genres = GenreSerializer(read_only=True, many=True)
+    like_movies = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Movie
