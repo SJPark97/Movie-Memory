@@ -1,4 +1,5 @@
 from rest_framework.response import Response
+from django.shortcuts import redirect
 from rest_framework.decorators import api_view
 from django.contrib.auth import get_user_model
 
@@ -18,6 +19,7 @@ from .models import Profile
 def my_profile(request):
     if request.method == 'POST':
         serializer = ProfileSerializer(data=request.data)
+        print(request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -57,3 +59,31 @@ def follow(request, user_id):
         }
         return Response(context, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_202_ACCEPTED)
+
+
+@api_view(['GET'])
+def genres_movies(request):
+    profile = get_object_or_404(Profile, user=request.user.id)
+    genres = {
+    28: profile.action,
+    12: profile.adventure,
+    16: profile.animation,
+    35: profile.comedy,
+    80: profile.crime,
+    99: profile.documentary,
+    18: profile.drama,
+    10751: profile.family,
+    14: profile.fantasy,
+    36: profile.history,
+    27: profile.horror,
+    10402: profile.music,
+    9648: profile.mystery,
+    10749: profile.romance,
+    878: profile.science,
+    10770: profile.tv,
+    53: profile.thriller,
+    10752: profile.war,
+    37: profile.western,
+    }
+    best_genre = sorted(genres.items(), key=lambda x: -x[1])[0][0]
+    return redirect('movies:genre_recommend', best_genre)

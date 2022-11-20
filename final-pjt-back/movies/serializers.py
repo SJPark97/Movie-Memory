@@ -30,7 +30,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
-        read_only_fields = ('review', 'user')
+        read_only_fields = ('review', 'user', 'like_users')
 
 
 class ReviewSerializer(serializers.ModelSerializer):
@@ -39,7 +39,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = '__all__'
-        read_only_fields = ('movie', 'user')
+        read_only_fields = ('movie', 'user', 'like_users')
 
 
 class MovieSerializer(serializers.ModelSerializer):
@@ -49,3 +49,4 @@ class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = '__all__'
+        read_only_fields = ('like_users',)
