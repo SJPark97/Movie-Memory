@@ -17,18 +17,24 @@ URL 정리
 - 영화 조회: api/v1/movies/
 - 영화 상세: api/v1/movies/<int:movie_pk>/
 - 영화 리뷰 조회: api/v1/movies/<int:movie_pk>/reviews/
+- 영화 좋아요: api/v1/movies/<int:movie_pk>/likes/
 - 리뷰 조회: api/v1/reviews/
 - 리뷰 상세: api/v1/reviews/<int:review_pk>/
 - 리뷰 만들기: api/v1/movies/<int:movie_pk>/reviews/
+- 리뷰 좋아요: api/v1/reviews/<int:movie_pk>/likes/
 - 유저 리뷰 조회: : api/v1/user/<int:user_pk>/reviews/
 - 댓글 조회: api/v1/comments/
 - 댓글 상세: api/v1/comments/<int:comment_pk>/
 - 댓글 만들기: api/v1/reviews/<int:review_pk>/comments/
-- 유저 댓글조회: : api/v1/user/<int:user_pk>/comments/
+- 댓글 좋아요: api/v1/comments/<int:movie_pk>/likes/
+- 유저 댓글 조회: : api/v1/user/<int:user_pk>/comments/
 - 리뷰 댓글 조회: api/v1/reviews/<int:review_pk>/comments/
 - 계정 로그인: accounts/login/
 - 계정 로그아웃: accounts/logout/
 - 계정 정보 수정: accounts/user/
+- 내 프로필 생성, 조회, 수정: accounts/user/myprofile/
+- 유저 프로필 조회: accounts/user/<int:user_id>/profile/
+- 유저 좋아요: accounts/user/<int:user_id>/profile/follow/
 - 계정 생성: accounts/signup/
 - 계정 생성 이메일 재전송: accounts/signup/resend-email/
 - 계정 생성 이메일 확인: accounts/signup/verify-email/
