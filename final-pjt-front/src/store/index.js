@@ -74,6 +74,7 @@ export default new Vuex.Store({
         })
         .catch((error) => {
           console.log(error)
+          alert('사용할 수 없는 아이디입니다.')
         })
     },
     logIn(context, payload) {
@@ -156,7 +157,16 @@ export default new Vuex.Store({
         .catch((error) => {
           console.log(error)
         })
-    }
+    },
+    getUserInfo() {
+
+    },
+    // getUserReviews(context, username) {
+    //   axios({
+    //     method: 'get',
+    //     url: `${API_URL}/api/v1/user/<int:user_pk>/reviews/`
+    //   })
+    // }
   },
   modules: {
   }

@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div>
+  <div class="all-movies">
       <b-card
         v-for="movie in movies" :key="movie.id"
         :img-src="movie.poster_URL"
@@ -13,8 +12,6 @@
         scrollable
       >
       </b-card>
-    </div>
-
   </div>
 </template>
 
@@ -47,6 +44,10 @@ export default {
 
 <style lang="scss" scoped>
 
+.all-movies {
+  padding-left: 50px;
+  padding-right: 50px;
+}
 .movie-list {
   // background-color: rgba(255, 255, 255, 0.2);
   display: flex;

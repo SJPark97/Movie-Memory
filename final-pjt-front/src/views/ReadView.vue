@@ -3,29 +3,12 @@
     <header>
       <SearchBar @search-movie="searchMovie" class="search-bar" />
       <span class="sort-selector">
-        <b-form-group v-slot="{ ariaDescribedby }">
-          <b-form-radio
-            @change="sortMovies"
-            v-model="selected"
-            value="A"
-            :aria-describedby="ariaDescribedby"
-            name="some-radios"
-            >인기순</b-form-radio
-          >
-          <b-form-radio
-            @change="sortMovies"
-            v-model="selected"
-            value="B"
-            :aria-describedby="ariaDescribedby"
-            name="some-radios"
-            >최신순</b-form-radio
-          >
-        </b-form-group>
+        <button @click="selectA" :class="{'select-on': selected === 'A'}">인기</button>
+        <button @click="selectB" :class="{'select-on': selected === 'B'}">최신</button>
       </span>
     </header>
     <MovieList
       :movies="movieList"
-      class="animate__animated animate__fadeInUp"
     />
   </div>
 </template>
@@ -53,6 +36,14 @@ export default {
     },
   },
   methods: {
+    selectA() {
+      this.selected = 'A'
+      this.sortMovies()
+    },
+    selectB() {
+      this.selected = 'B'
+      this.sortMovies();
+    },
     sortMovies() {
       if (this.selected === "A") {
         if (!this.searchYes) {
@@ -110,8 +101,27 @@ header {
 .sort-selector {
   display: inline-block;
   /* text-align: center; */
-  width: 100px;
+  width: 130px;
   height: 50px;
   font-size: 1.5rem;
 }
+
+button {
+  display: inline-block;
+  font-size: 15px;
+  width: 45px;
+  height: 40px;
+  margin-right: 3px;
+  box-shadow: 1px 1px #908581;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 100px;
+  background-color: #E6E6E6;
+}
+
+.select-on { 
+  background-color: #F0E2D7;
+  font-weight: bold;
+}
+
+
 </style>

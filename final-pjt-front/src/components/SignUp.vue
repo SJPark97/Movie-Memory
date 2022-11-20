@@ -22,6 +22,8 @@
         <input type="password" id="password2" v-model="password2">
       </div>
 
+      
+
       <input type="submit" class="input-btn">
     </form>
   </div>
@@ -50,8 +52,6 @@ export default {
       this.username = null
       this.password1 = null
       this.password2 = null
-
-      this.$router.push({name: 'main'})
     },
     popExit() {
       this.$emit('pop-exit')

@@ -24,6 +24,7 @@
     "sal.js": "^0.8.5",
     "sass": "^1.56.1",
     "sass-loader": "^10.4.1",
+    "velocity-animate": "^1.5.2",
     "vue": "^2.7.14",
     "vue-infinite-loading": "^2.4.5",
     "vue-router": "^3.5.1",

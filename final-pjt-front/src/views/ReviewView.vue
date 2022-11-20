@@ -16,14 +16,25 @@
         <h4>{{ review.content }}</h4>
       </div>
     </div>
-    <p>이 영화의 다른 리뷰 보기 (시간있으면 하겠음)</p>
+    <div class="comment">
+      <h3>댓글 작성</h3>
+      <form @submit.prevent="createComment">
+        <input type="text" v-model.trim="comment">
+        <input type="submit" value="작성">
+      </form>
+    </div>
+    <!-- <p>이 영화의 다른 리뷰 보기 (시간있으면 하겠음)</p>
     <div v-for="review in otherReview" :key="review.id">
       {{ review.title }}
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
+const API_URL = 'http://127.0.0.1:8000'
+
 export default {
   name: 'ReviewView',
   computed: {
@@ -34,6 +45,11 @@ export default {
       return this.$store.state.movieReviews
     }
   },
+  data() {
+    return {
+      comment: null,
+    }
+  },
   methods: {
     getOneReview(reviewId) {
       this.$store.dispatch("getOneReview", reviewId)
@@ -41,6 +57,29 @@ export default {
     getMovieReview(movie_id) {
       this.$store.dispatch("getMovieReview", movie_id)
     },
+    // createComment() {
+    //   if (!content) {
+    //     alert('내용을 입력하세요')
+    //     return
+    //   }
+    //   const content = this.comment
+    //   const reviewPk = this.$route.params.review_id
+
+    //   axios({
+    //     method: 'post',
+    //     url: `${API_URL}/api/v1/reviews/${reviewPk}/comments/`,
+    //     headers: {
+    //       'Authorization' : `Token ${this.token}`
+    //     },
+    //     data: {content},
+    //   })
+    //     .then((response) => {
+    //       console.log(response)
+    //     })
+    //     .catch((error) => {
+    //       console.log(error)
+    //     })
+    // }
   },
   created() {
     this.getOneReview(this.$route.params.review_id)
