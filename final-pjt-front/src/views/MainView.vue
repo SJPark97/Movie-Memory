@@ -28,4 +28,19 @@ export default {
 </script>
 
 <style>
+
+.slide-up {
+  transition: all 0.25s;
+}
+.slide-up-enter-active {
+  transition: all 0.25s ease;
+}
+.slide-up-leave-active {
+  transition: all 0.25s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-up-enter,
+.slide-up-leave-active {
+  opacity: 0;
+  transform: translateY(100%);
+}
 </style>

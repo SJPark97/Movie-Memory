@@ -1,12 +1,14 @@
 <template>
   <div class="movie-card">
-    <h1>{{ movie?.title }}</h1>
     <img :src="movie?.poster_URL" alt="">
-    <p>{{ movie?.overview }}</p>
-    <div v-for="(genre, index) in movie?.genres" :key="index">
-      <span>{{ genre.name }}</span>
+    <div class="content">
+      <h1>{{ movie?.title }}</h1>
+      <p>{{ movie?.overview }}</p>
+      <div v-for="(genre, index) in movie?.genres" :key="index">
+        <span>{{ genre.name }}</span>
+      </div>
+      <p>{{ movie?.popularity }}</p>
     </div>
-    <p>{{ movie?.popularity }}</p>
   </div>
 </template>
 
@@ -21,8 +23,22 @@ export default {
 }
 </script>
 
-<style>
-img {
-  width: 300px;
+<style scoped>
+.movie-card {
+  display: inline-block;
+  text-align: left;
+  width: 80%;
+  vertical-align: top;
+}
+
+
+.movie-card > img {
+  display: inline-block;
+  width: 30%;
+}
+
+.content {
+  display: inline-block;
+  width: 50%;
 }
 </style>

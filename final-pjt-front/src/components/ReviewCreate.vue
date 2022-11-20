@@ -1,5 +1,11 @@
 <template>
   <div class="review-create">
+    <font-awesome-icon 
+    icon="fa-solid fa-xmark" 
+    class="x-mark" 
+    @click="popExit"
+    />
+    <h2>리뷰 작성</h2>
     <form @submit.prevent="createReview">
       <label for="review-title">제목</label>
       <input type="text" id="review-title" v-model.trim="reviewTitle">
@@ -34,6 +40,9 @@ export default {
     }
   },
   methods: {
+    popExit() {
+      this.$emit('pop-exit')
+    },
     uploadImg() {
       this.reviewImg = this.$refs.reviewImg.files
       console.log(this.reviewImg)
@@ -56,12 +65,12 @@ export default {
         data: formData,
       })
         .then((response) => {
-          console.log(response)
+          this.$router.push({name: 'review_detail', params: {review_id: response.data.id}})
         })
         .catch((error) => {
           console.log(error)
+          alert('리뷰를 작성할 수 없습니다')
         })
-      this.$router.go()
     } 
   }
 }
@@ -83,5 +92,14 @@ export default {
   box-shadow: 5px 5px 10px 3px rgb(136, 136, 136);
   z-index: 999;
   background-color: rgb(218, 210, 210);
+}
+
+.x-mark {
+  position: absolute;
+  top: 20px;
+  left: 750px;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
 }
 </style>

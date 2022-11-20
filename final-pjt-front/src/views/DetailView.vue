@@ -2,7 +2,7 @@
   <div>
     <MovieCard/>
     <p @click="popReview">리뷰 등록</p>
-    <ReviewCreate v-show="popAva"/>
+    <ReviewCreate v-show="popAva" @pop-exit="popExit"/>
     <ReviewList/>
   </div>
 </template>
@@ -38,6 +38,9 @@ export default {
     },
     popReview() {
       this.popAva = true
+    },
+    popExit() {
+      this.popAva = false
     }
   },
   created() {
@@ -51,11 +54,6 @@ export default {
 body {
   display: flex;
   justify-content: center;
-}
-
-.movie-card {
-  display: inline-block;
-  width: 80%;
 }
 
 .review-create {

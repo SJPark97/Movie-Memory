@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    각각의 피드
+  </div>
 </template>
 
 <script>

@@ -7,10 +7,12 @@
       <transition-group name="fade">
 
         <div v-show="showLink" key="1"><h4>Hi,{{ username }}</h4></div>
-        <div v-show="showLink" key="2"><router-link to="/main">Home</router-link></div>
-        <div v-show="showLink" key="3"><router-link to="/movies">Movies</router-link></div>
-        <div v-show="showLink" key="4"><router-link to="/">#</router-link></div>
-        <div v-show="showLink" key="5"><button @click="logOut">LOGOUT</button></div>
+        <div v-show="showLink" key="2"><input type="text" class="search">검색</div>
+        <div v-show="showLink" key="3"><router-link to="/main">Home</router-link></div>
+        <div v-show="showLink" key="4"><router-link to="/movies">Movies</router-link></div>
+        <div v-show="showLink" key="5"><router-link :to="`/${username}`">Profile</router-link></div>
+        <div v-show="showLink" key="6">알림</div>
+        <div v-show="showLink && this.$store.state.token" key="7"><button @click="logOut" class="logout">LOGOUT</button></div>
 
       </transition-group>
     </div>
@@ -20,15 +22,16 @@
 
 <script>
   export default {
-    data: () => {
-      return {
-        showSidebar: false,
-        showLink: false
-      }
-    },
+    name: 'SideBar',
     computed: {
       username() {
         return this.$store.state.username
+      }
+    },
+    data: () => {
+      return {
+        showSidebar: false,
+        showLink: false,
       }
     },
     methods: {
@@ -57,7 +60,10 @@
 </script>
 
 <style lang="scss" scoped>
-
+// router-link는 a태그로 인식됨
+a {
+  text-decoration: none;
+}
   .container {
     position: fixed;
     top: 0;
@@ -66,9 +72,10 @@
     height: 100vh;
     padding: 0px;
     min-height: calc(100vh - 20px);
-    background-color: rgba($color: rgb(200, 195, 191), $alpha: .8);
-    border: solid #fff;
-    border-width: 0 1px 0 0;
+    background-color: rgba($color: #E6E6E6, $alpha: .8);
+    // border: solid #fff;
+    // border-width: 0 1px 0 0;
+    box-shadow: 0 3px #908581;
     z-index: 999;
     transition: all .5s ease-in-out;
     .control {
@@ -79,7 +86,8 @@
       margin-bottom: 10px;
       i {
         color: beige;
-        font-size: 2rem;
+        font-size: 2.5rem;
+        margin-left: 10px;
         cursor: pointer;
         transition: all .5s ease-in-out;
       }
@@ -119,9 +127,18 @@
     }
   }
   .fade-enter-active, .fade-leave-active {
-    @include nav-childs(1,2,3,4,5);
+    @include nav-childs(1,2,3,4,5,6,7);
   }
   .fade-enter, .fade-leave-to {
     transform: scale(0);
   }
+
+
+.search {
+  width: 140px;
+}
+.logout {
+  border: none;
+  background-color: rgb(200, 195, 191);
+}
 </style>

@@ -1,36 +1,21 @@
 <template>
   <div class="home">
-    <!-- <div 
-      data-aos="slide-up" 
-      data-aos-easing="ease-out-sine" 
-      data-aos-offset="100"  
-      data-aos-delay="1000" 
-      data-aos-duration="3000"
-      data-aos-anchor-placement="bottom-center" 
-      data-aos-once="false"> -->
-
     <div>
       <h1>MOVIE</h1>
     </div>  
-    <!-- <div class="ball" @click="logIn">
-    </div> -->
     <div class="box">
       <img src="https://i.pinimg.com/564x/83/33/9d/83339d35fe78f3560079301346164b42.jpg" alt="">
       <div class="loader" @animationend="popDiv"></div>
-      <LogIn class="login-pop animate__animated animate__fadeIn"/>
+      <LogIn class="login-pop animate__animated animate__fadeIn" v-show="!this.$store.state.username"/>
     </div>
-
+    <!-- <div  @click="goToHome" class="move animate__animated animate__fadeIn">
+      <p>move</p>
+    </div> -->
   </div>
 </template>
 
 
-<script src="bower_components/aos/dist/aos.js"></script>
 <script>
-import AOS from "aos";
-import "aos/dist/aos.css";
-// var AOS = require('aos');
-AOS.init();
-
 import LogIn from "@/components/LogIn";
 
 export default {
@@ -47,6 +32,9 @@ export default {
     popDiv() {
       this.popLogin = true;
     },
+    goToHome() {
+      this.$router.push({ name : 'main'})
+    }
   },
 };
 </script>
@@ -64,21 +52,28 @@ export default {
   vertical-align: center;
 }
 
-.box {
+/* .box {
   display: inline-block;
   position: relative;
   margin-top: 60px;
   height: 90vh;
   width: 800px;
+} */
+.box {
+  display: inline-block;
+  /* position: absolute; */
+  /* justify-content: center; */
+  width: 80%;
+  margin-top: 60px;
 }
 
 img {
   padding: 0;
-  width: 800px;
+  width: 80%;
 }
 
 .home > div > h1 {
-  font-size: 8rem;
+  font-size: 10vw;
   z-index: 3;
   position: absolute;
   font-family: Harmond;
@@ -91,10 +86,9 @@ img {
 }
 .loader{
   position: absolute;
-  width: 800px;
+  width: 64%;
   height: 30px;
-
-  left: 0;
+  left: 18%;
   background-color: rgba(255,255,255,0.2);
 }
 
@@ -160,15 +154,16 @@ img {
 .login-pop {
   /* animation-delay: 6.7s; */
 }
-.ball {
-  position: relative;
-  left: 200px;
-  top: 0;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: rgb(228, 212, 212);
-  animation: ball 1s ease-in Infinite Alternate;
+.move {
+  font-size: 3vw;
+  z-index: 3;
+  position: absolute;
+  margin: 0;
+  top: 25%;
+  width: 16%;
+  left: 42%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 100%;
+  text-align: center;
 }
-
 </style>

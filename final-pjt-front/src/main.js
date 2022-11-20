@@ -11,6 +11,11 @@ import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faClapperboard } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import 'animate.css';
 
 import Paginate from 'vuejs-paginate'
@@ -23,6 +28,11 @@ library.add(faBell)
 library.add(faHouse)
 library.add(faBars)
 library.add(faXmark)
+library.add(faPen)
+library.add(faClapperboard)
+library.add(faHeart)
+library.add(faChevronLeft)
+library.add(faChevronRight)
 
 Vue.config.productionTip = false
 
