@@ -188,3 +188,12 @@ def like_comments(request, movie_pk):
         'like_users_count': comment.like_users.count(),
     }
     return Response(context, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def genres_movies(request, genres_pk):
+    movies = Movie.objects.filter(genres = genres_pk)
+    movies = movies.order_by('-popularity')
+    serializer = MovieListSerializer(movies, many=True)
+    return Response(serializer.data)
