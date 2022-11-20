@@ -22,9 +22,7 @@
         <input type="password" id="password2" v-model="password2">
       </div>
 
-      
-
-      <input type="submit" class="input-btn">
+      <input type="submit" class="input-btn" value="다음" @submit.prevent="print">
     </form>
   </div>
 </template>
@@ -49,9 +47,6 @@ export default {
         username, password1, password2
       }
       this.$store.dispatch('SignUp', payload)
-      this.username = null
-      this.password1 = null
-      this.password2 = null
     },
     popExit() {
       this.$emit('pop-exit')
@@ -64,7 +59,7 @@ export default {
 .signup-div {
   display: inline-block;
   width: 550px;
-  height: 310px;
+  height: 330px;
   position: absolute;
   /* object-fit: contain; */
   top: -10px;

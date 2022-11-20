@@ -16,6 +16,7 @@ import { faClapperboard } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartNone } from "@fortawesome/free-regular-svg-icons";
 import 'animate.css';
 
 import Paginate from 'vuejs-paginate'
@@ -33,6 +34,7 @@ library.add(faClapperboard)
 library.add(faHeart)
 library.add(faChevronLeft)
 library.add(faChevronRight)
+library.add(faHeartNone)
 
 Vue.config.productionTip = false
 

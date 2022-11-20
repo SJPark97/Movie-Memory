@@ -18,13 +18,17 @@ export default new Vuex.Store({
     movie: null,
     reviews: [],
     movieReviews: [],
+    reviewComments: [],
     review: null,
     username: null,
   },
   getters: {
   },
   mutations: {
-    SAVE_TOKEN(state, token) {
+    SIGNUP_SAVE_TOKEN(state, token) {
+      state.token = token
+    },
+    LOGIN_SAVE_TOKEN(state, token) {
       state.token = token
       router.push({ name: 'main' })
     },
@@ -46,6 +50,9 @@ export default new Vuex.Store({
     },
     GET_ONE_REVIEW(state, review) {
       state.review = review
+    },
+    GET_REVIEW_COMMENTS(state, comments) {
+      state.reviewComments = comments
     },
     LogIn(state, username) {
       state.username = username
@@ -69,7 +76,7 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
-          context.commit('SAVE_TOKEN', response.data.key)
+          context.commit('SIGNUP_SAVE_TOKEN', response.data.key)
           context.commit('LogIn', username)
         })
         .catch((error) => {
@@ -89,7 +96,7 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
-          context.commit('SAVE_TOKEN', response.data.key)
+          context.commit('LOGIN_SAVE_TOKEN', response.data.key)
           context.commit('LogIn', username)
         })
         .catch((error) => {
@@ -146,6 +153,21 @@ export default new Vuex.Store({
           context.commit('GET_MOVIE_REVIEWS', "error")
         })
     },
+    // getMovieLike(context, movieId) {
+    //   axios({
+    //     method: 'post',
+    //     url: `${API_URL}/api/v1/movies/${movieId}/likes/`,
+    //     headers: {
+    //       'Authorization': `Token ${this.token}`
+    //     },
+    //   })
+    //     .then((response) => [
+    //       context.commit('GET_MOVIE_LIKE', response.data)
+    //     ])
+    //     .catch((error) => {
+    //       console.log(error)
+    //     })
+    // },
     getOneReview(context, reviewId) {
       axios({
         method: 'get',
@@ -158,8 +180,29 @@ export default new Vuex.Store({
           console.log(error)
         })
     },
-    getUserInfo() {
-
+    getReviewComment(context, reviewId) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/reviews/${reviewId}/comments/`,
+      })
+        .then((response) => {
+          context.commit('GET_REVIEW_COMMENTS', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getUserInfo(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/myprofile/`,
+      })
+        .then((response) => [
+          console.log(response)
+        ])
+        .catch((error) => {
+          console.log(error)
+        })
     },
     // getUserReviews(context, username) {
     //   axios({

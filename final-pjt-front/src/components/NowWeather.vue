@@ -34,36 +34,45 @@ export default {
         method: 'get',
         url: 'https://api.openweathermap.org/data/2.5/weather',
         params: {
-          q: 'Seoul,kor',
+          q: 'Daejeon,kor',
           APPID: API_KEY,
         }
       })
         .then((response) => {
-          this.weather = response.data.weather[0].description
+          const weather = response.data.weather[0].description
+          if (weather ===  'clear sky') {
+            this.weather = 'sunny'
+          } else if (['few clouds', 'scattered clouds', 'broken clouds'].includes(weather)) {
+            this.weather = 'cloudy'
+          } else if (['shower rain','rain', 'thunderstorm', 'mist'].includes(weather)) {
+            this.weather = 'rainy'
+          } else if (weather === 'snow') {
+            this.weather = 'snow'
+          }
         })
     },
     weatherMovies() {
-      if (this.weather === 'clear sky') {
-        const sunny = this.movies.filter((movie) => {
-          return movie.weather === 1
-        })
-        this.weatherMovieList = sunny
-      } else if (this.weather in ['few clouds', 'scattered clouds', 'broken clouds']) {
-        const cloudy = this.movies.filter((movie) => {
-          return movie.weather === 2
-        })
-        this.weatherMovieList = cloudy
-      } else if (this.weather in  ['shower rain','rain', 'thunderstorm', 'mist']) {
-        const rainy = this.movies.filter((movie) => {
-          return movie.weather === 3
-        })
-        this.weatherMovieList = rainy
-      } else if (this.weather === 'snow') {
-        const snow = this.movies.filter((movie) => {
-          return movie.weather === 4
-        })
-        this.weatherMovieList = snow
-      }
+      // if (this.weather === 'clear sky') {
+      //   const sunny = this.movies.filter((movie) => {
+      //     return movie.weather === 1
+      //   })
+      //   this.weatherMovieList = sunny
+      // } else if (this.weather in ['few clouds', 'scattered clouds', 'broken clouds']) {
+      //   const cloudy = this.movies.filter((movie) => {
+      //     return movie.weather === 2
+      //   })
+      //   this.weatherMovieList = cloudy
+      // } else if (this.weather in  ['shower rain','rain', 'thunderstorm', 'mist']) {
+      //   const rainy = this.movies.filter((movie) => {
+      //     return movie.weather === 3
+      //   })
+      //   this.weatherMovieList = rainy
+      // } else if (this.weather === 'snow') {
+      //   const snow = this.movies.filter((movie) => {
+      //     return movie.weather === 4
+      //   })
+      //   this.weatherMovieList = snow
+      // }
     }
   },
   created() {

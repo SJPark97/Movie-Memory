@@ -11,17 +11,20 @@
     <!-- <div  @click="goToHome" class="move animate__animated animate__fadeIn">
       <p>move</p>
     </div> -->
+    <SetProfile v-show="this.$store.state.token"/>
   </div>
 </template>
 
 
 <script>
 import LogIn from "@/components/LogIn";
+import SetProfile from "@/components/SetProfile";
 
 export default {
   name: "HomeView",
   components: {
     LogIn,
+    SetProfile,
   },
   data() {
     return {
@@ -166,4 +169,47 @@ img {
   border-radius: 100%;
   text-align: center;
 }
+
+.signup-div {
+  display: inline-block;
+  width: 550px;
+  height: 500px;
+  position: absolute;
+  /* object-fit: contain; */
+  top: 100px;
+  left: 200px;
+  padding-top: 40px;
+  padding-left: 60px;
+  padding-right: 60px;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 10px 3px rgb(136, 136, 136);
+  z-index: 999;
+  background-color: rgb(218, 210, 210);
+}
+.signup-div > h2 {
+  margin-bottom: 20px;
+}
+
+.signup-input { 
+  display: inline-block;
+  position: relative;
+  width: 430px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+
+.signup-input > input {
+  width: 300px;
+  height: 33px;
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+.input-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 </style>

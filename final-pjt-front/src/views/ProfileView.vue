@@ -57,12 +57,15 @@ export default {
   },
   methods: {
     getUserInfo() {
-      this.$store.dispatch('getUserInfo', this.$store.state.username)
+      this.$store.dispatch('getUserInfo')
     },
     getUserReviews() {
       this.$store.dispatch('getUserReviews', this.$store.state.username)
     }
   },
+  // created() {
+  //   this.getUserInfo()
+  // }
 }
 </script>
 

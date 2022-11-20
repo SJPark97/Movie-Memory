@@ -45,14 +45,12 @@ export default {
     },
     uploadImg() {
       this.reviewImg = this.$refs.reviewImg.files
-      console.log(this.reviewImg)
     },
     createReview() {
       const formData = new FormData()
       formData.append('title', this.reviewTitle)
       formData.append('content', this.reviewContent)
       formData.append('img', this.$refs.reviewImg.files[0])
-      console.log(formData)
       const moviePk = this.$route.params.movie_id
 
       axios({
