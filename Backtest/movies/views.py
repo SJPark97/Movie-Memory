@@ -256,3 +256,21 @@ def like_reviews(request, user_pk):
     reviews = reviews.order_by('-created_at')
     serializer = ReviewListSerializer(reviews, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def season(request, season):
+    movies = Movie.objects.filter(season = season)
+    movies = movies.order_by('?')[:5]
+    serializer = MovieListSerializer(movies, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def weather(request, weather):
+    movies = Movie.objects.filter(weather = weather)
+    movies = movies.order_by('?')[:5]
+    serializer = MovieListSerializer(movies, many=True)
+    return Response(serializer.data)
