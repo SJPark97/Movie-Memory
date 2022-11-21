@@ -38,7 +38,7 @@ const routes = [
     component: ReviewView,
   },
   {
-    path: '/:userName',
+    path: '/:userId',
     name: 'profile',
     component: ProfileView,
   },

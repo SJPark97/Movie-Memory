@@ -22,7 +22,9 @@ export default new Vuex.Store({
     review: null,
     comment: null,
     username: null,
-    userId: null
+    user: [],     // 프로필에 사용 -> 유저 아이디마다 바뀌어야 함
+    userId: null,
+    myReviews: [],
   },
   getters: {
   },
@@ -60,9 +62,9 @@ export default new Vuex.Store({
     NO_COMMENTS(state) {
       state.reviewComments = null
     },
-    GET_ONE_COMMENT(state, comment) {
-      console.log(comment)
-    },
+    // GET_ONE_COMMENT(state, comment) {
+    //   console.log(comment)
+    // },
     LogIn(state, username) {
       state.username = username
     },
@@ -74,11 +76,12 @@ export default new Vuex.Store({
     GET_USER_INFO(state, data) {
       state.userId = data.id
     },
-    // CHANGE_MOVIE_LIKE(state, payload) {
-    //   state.movie.is_liked = payload.is_liked
-    //   state.movie.like_users = payload.like_users
-    //   state.commit('GET_ONE_MOVIE')
-    // }
+    MY_REVIEWS(state, reviews) {
+      state.myReviews = reviews
+    },
+    GET_PROFILE(state, user) {
+      state.user = user
+    }
   },
   actions: {
     SignUp(context, payload) {
@@ -225,12 +228,37 @@ export default new Vuex.Store({
           console.log(error)
         })
     },
-    // getUserReviews(context, username) {
-    //   axios({
-    //     method: 'get',
-    //     url: `${API_URL}/api/v1/user/<int:user_pk>/reviews/`
-    //   })
-    // }
+    MyReviews(context, userId) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/user/${userId}/reviews/`,
+        headers: {
+          'Authorization' : `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.commit('MY_REVIEWS', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getProfile(context, userId) {
+      console.log(userId)
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/${userId}/profile/`,
+        headers: {
+          'Authorization' : `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.commit('GET_PROFILE', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   },
   modules: {
   }

@@ -10,7 +10,7 @@
         <div v-show="showLink" key="2"><input type="text" class="search">검색</div>
         <div v-show="showLink" key="3"><router-link to="/main">Home</router-link></div>
         <div v-show="showLink" key="4"><router-link to="/movies">Movies</router-link></div>
-        <div v-show="showLink" key="5"><router-link :to="`/${username}`">Profile</router-link></div>
+        <div v-show="showLink" key="5"><router-link :to="`/${userId}`">Profile</router-link></div>
         <div v-show="showLink" key="6">알림</div>
         <div v-show="showLink && this.$store.state.token" key="7"><button @click="logOut" class="logout">LOGOUT</button></div>
 
@@ -26,6 +26,9 @@
     computed: {
       username() {
         return this.$store.state.username
+      },
+      userId() {
+        return this.$store.state.userId
       }
     },
     data: () => {

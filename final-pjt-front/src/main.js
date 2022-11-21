@@ -16,6 +16,7 @@ import { faClapperboard } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartNone } from "@fortawesome/free-regular-svg-icons";
 import 'animate.css';
 
@@ -35,6 +36,7 @@ library.add(faHeart)
 library.add(faChevronLeft)
 library.add(faChevronRight)
 library.add(faHeartNone)
+library.add(faEllipsisVertical)
 
 Vue.config.productionTip = false
 

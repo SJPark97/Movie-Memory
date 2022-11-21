@@ -4,19 +4,30 @@
       <h5> REVIEW </h5>
     </div>
     <div class="review">
-
-
-
       <div class="title">
         <h1>{{ review.title }}</h1>
+
+
         <span @click="likeUnlike">
           <font-awesome-icon icon="fa-solid fa-heart" v-show="is_liked"/>
           <font-awesome-icon icon="fa-regular fa-heart"  v-show="!is_liked"/>
         </span>
         {{ like_users_count }}
-        <p>작성자: {{ review.username }}</p>
+        <p><router-link :to="`/${review.user}`">작성자: {{ review.username }}</router-link></p>
         <span>작성일시 : {{ review?.created_at.substr(0, 10) }}</span>
         <span>수정일시 : {{ review?.updated_at.substr(0, 10) }}</span>
+
+        <!-- 버튼 리뷰 작성자에게만 보임 -->
+        <button 
+          v-show="this.$store.state.userId === review.user" 
+          @click="popAlert"
+        >리뷰 삭제</button><br>
+        <div v-show="alert" class="alert alert-danger" role="alert">
+          정말 삭제하시겠습니까?<br>
+          <button @click="noDelete" class="no">아니요</button>
+          <button @click="DeleteReview(review.id, review.movie)">네</button>
+        </div>
+
         <hr>
       </div>
       <div class="content">
@@ -72,6 +83,7 @@ export default {
   data() {
     return {
       comment: null,
+      alert: false,
     }
   },
   methods: {
@@ -130,6 +142,27 @@ export default {
     likeUnlike() {
       this.getReviewLike(this.$route.params.review_id)
     },
+    popAlert() {
+      this.alert = true
+    },
+    noDelete() {
+      this.alert = false
+    },
+    DeleteReview(review_id, movie_id) {
+      axios({
+        method: 'delete',
+        url: `${API_URL}/api/v1/reviews/${review_id}`,
+        headers: {
+          'Authorization': `Token ${this.$store.state.token}`
+        },
+      })
+        .then((response) => {
+          this.$router.push({name: 'movie_detail', params: {movie_id: movie_id}})
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   },
   created() {
     this.getOneReview(this.$route.params.review_id)
@@ -162,10 +195,29 @@ h5 {
   padding: 20px;
 }
 span {
-  font-size: 10px;
+  font-size: 15px;
   /* margin-left: 5px; */
   margin-right: 10px;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+button {
+  border: 0px;
+  background-color: transparent;
+  color: red;
+  padding: 0;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.no {
+  color: blue
+}
+
 .title {
   display: inline-block;
   height: 100px;
@@ -181,11 +233,13 @@ span {
 }
 
 .title > p {
-  margin: 0
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .content {
   display: inline-block;
-  width: 80%;
+  width: 70%;
   margin-left: 30px;
   margin-right: 30px;
 

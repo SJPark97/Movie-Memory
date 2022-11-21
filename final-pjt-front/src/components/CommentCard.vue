@@ -1,13 +1,21 @@
 <template>
   <div>
-    <p>{{ comment.content }}</p>
-    <span>{{ comment.username }}</span>
-    <span>{{ comment.created_at.substr(0, 10) }}</span>
-    <span @click="likeUnlike">
-      <font-awesome-icon icon="fa-solid fa-heart" v-show="is_liked"/>
-      <font-awesome-icon icon="fa-regular fa-heart"  v-show="!is_liked"/>
-    </span>
-    {{ like_users_count }}
+    <div class="content">
+      <p>{{ comment.content }}</p>
+      <span>{{ comment.username }}</span>
+      <span>{{ comment.created_at.substr(0, 10) }}</span>
+      <span @click="likeUnlike">
+        <font-awesome-icon icon="fa-solid fa-heart" v-show="is_liked"/>
+        <font-awesome-icon icon="fa-regular fa-heart"  v-show="!is_liked"/>
+      </span>
+      {{ like_users_count }}
+    </div>
+
+    
+    <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover"></button> -->
+    <div class="dot" @click="popSelector" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
+      <font-awesome-icon icon="fa-solid fa-ellipsis-vertical"/>
+    </div>
   </div>
 </template>
 
@@ -33,12 +41,11 @@ export default {
       return this.comment.like_users.length
     },
   },
-  // data() {
-  //   return {
-  //     is_liked: null,
-  //     like_users_count: 0,
-  //   }
-  // },
+  data() {
+    return {
+      selector: false,
+    }
+  },
   methods: {
     getCommentLike(comment_id) {
       axios({
@@ -60,6 +67,9 @@ export default {
     likeUnlike() {
       this.getCommentLike(this.comment.id)
     },
+    popSelector() {
+      this.selector = true
+    }
   },
 }
 </script>
@@ -68,6 +78,8 @@ export default {
 div {
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 p {
@@ -78,5 +90,15 @@ p {
 
 span {
   margin-left:8px;
+}
+
+.content {
+  display: inline-block;
+}
+
+.dot {
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 20px;
 }
 </style>

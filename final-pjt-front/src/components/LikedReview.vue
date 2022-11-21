@@ -1,12 +1,10 @@
 <template>
-  <div>
-    각각의 피드
-  </div>
+  <div>좋아한 리뷰</div>
 </template>
 
 <script>
 export default {
-  name: 'MyStorage',
+  name: 'LikedReview',
 }
 </script>
 
