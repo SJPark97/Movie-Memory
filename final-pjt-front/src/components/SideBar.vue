@@ -6,14 +6,17 @@
     <div class="navigation-links">
       <transition-group name="fade">
 
-        <div v-show="showLink" key="1"><h4>Hi,{{ username }}</h4></div>
-        <div v-show="showLink" key="2"><input type="text" class="search">검색</div>
+        <div @click="goToMy" v-show="showLink" key="1"><router-link :to="`/${userId}`"><img :src="`http://127.0.0.1:8000${this.$store.state.userImg}`" alt="#"></router-link></div>
+        <div v-show="showLink" key="2"><h4>{{ this.$store.state.nickname }}</h4></div>
         <div v-show="showLink" key="3"><router-link to="/main">Home</router-link></div>
         <div v-show="showLink" key="4"><router-link to="/movies">Movies</router-link></div>
         <div @click="goToMy" v-show="showLink" key="5"><router-link :to="`/${userId}`">Profile</router-link></div>
-        <div v-show="showLink" key="6">알림</div>
+        <div v-show="showLink" key="6">
+          <p @click="popReview" key="7">알림</p>
+          <!-- newNotice가 true면 새로운 알림이 있음 false면 없음 -->
+          <Notice v-show="popAva" @pop-exit="popExit"/>
+        </div>
         <div v-show="showLink && this.$store.state.token" key="7"><button @click="logOut" class="logout">LOGOUT</button></div>
-
       </transition-group>
     </div>
     <!-- <i class="fas fa-music"></i> -->
@@ -21,23 +24,49 @@
 </template>
 
 <script>
+import Notice from '@/components/Notice'
+
   export default {
     name: 'SideBar',
+    components: {
+      Notice,
+    },
     computed: {
+      notice() {
+        const notices = this.$store.state.notices
+        this.newNotice = true
+        for (const notice of notices) {
+          if (notice.is_checked === False) {
+            this.newNotice = true
+            break
+          }
+        }
+      },
       username() {
         return this.$store.state.username
       },
       userId() {
         return this.$store.state.userId
+      },
+      user() {
+        return this.$store.state.user
       }
     },
     data: () => {
       return {
         showSidebar: false,
         showLink: false,
+        newNotice: false,
+        popAva: false,
       }
     },
     methods: {
+      popReview() {
+        this.popAva = true
+      },
+      popExit() {
+        this.popAva = false
+      },
       showNav() {
         if(this.showSidebar) {
           this.showLink = false;
@@ -69,6 +98,19 @@
 // router-link는 a태그로 인식됨
 a {
   text-decoration: none;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border: 2px solid #E6E6E6;
+  // box-shadow: 1px 1px gray;
+  border-radius: 100%;
+}
+
+h4 {
+  margin-bottom: 15px;
 }
   .container {
     position: fixed;

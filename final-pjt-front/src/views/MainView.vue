@@ -24,13 +24,14 @@ export default {
     GenreRecommend,
     NowWeather,
   },
-  methods: {
-    getUserInfo() {
-      this.$store.dispatch("getUserInfo")
-    }
-  },
+  // methods: {
+  //   getUserInfo() {
+  //     this.$store.dispatch("getUserInfo")
+  //   }
+  // },
   created() {
-    this.getUserInfo()
+    this.$store.dispatch("getUserInfo")
+    this.$store.dispatch("getMyGenreMovie")
   }
 }
 </script>

@@ -75,14 +75,17 @@ export default {
 </script>
 
 <style scoped>
+div {
+  position: relative;
+}
 .review-create {
   display: inline-block;
   width: 800px;
   height: 500px;
   position: absolute;
   /* object-fit: contain; */
-  top: 60px;
-  left: 150px;
+  top: 100px;
+  left: 180px;
   padding-top: 40px;
   padding-left: 60px;
   padding-right: 60px;

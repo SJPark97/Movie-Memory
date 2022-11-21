@@ -1,7 +1,7 @@
 <template>
   <div>
     <MovieCard/>
-    <p @click="popReview">리뷰 등록</p>
+    <a href="#app" @click="popReview" class="btn-review">리뷰 작성</a>
     <ReviewCreate v-show="popAva" @pop-exit="popExit"/>
     <ReviewList/>
   </div>
@@ -54,6 +54,19 @@ export default {
 body {
   display: flex;
   justify-content: center;
+}
+
+.btn-review {
+  color: black;
+  /* border: 1px solid pink; */
+  box-shadow: 1px 1px 1px 0px #908581;
+  border-radius: 100%;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  background-color: rgb(218, 210, 210);
 }
 
 .review-create {

@@ -35,12 +35,16 @@ div {
   text-align: left;
   position: relative;
 }
+
 .feed {
   display: inline-block;
   width: 30%;
   margin: 2px;
+  padding-left: 5%;
 }
-img {
-  width: 100%;
+.feed > img {
+  width: 20vw;
+  height: 20vw;
+  object-fit: cover;
 }
 </style>

@@ -55,7 +55,7 @@ export default {
 }
 </script>
 
-<style scoped >
+<style scoped>
 .signup-div {
   display: inline-block;
   width: 550px;

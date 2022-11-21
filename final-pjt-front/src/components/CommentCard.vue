@@ -7,8 +7,8 @@
       <span @click="likeUnlike">
         <font-awesome-icon icon="fa-solid fa-heart" v-show="is_liked"/>
         <font-awesome-icon icon="fa-regular fa-heart"  v-show="!is_liked"/>
+        {{ like_users_count }}
       </span>
-      {{ like_users_count }}
     </div>
 
       <div @click="popSelector" class="dot">
@@ -117,12 +117,18 @@ p {
 
 span {
   margin-left:8px;
+  margin-right: 15px;
 }
 
 .content {
   display: inline-block;
 }
 
+.content > p {
+  font-size: 20px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
 .dot {
   display: inline-block;
   margin-right: 15px;
@@ -147,8 +153,8 @@ span {
   z-index: 999;
   background-color: rgb(218, 210, 210);
   border-radius: 10px;
-  top: 25px;
-  left: -20px;
+  top: 8px;
+  left: -50px;
   width: 50px;
   text-align: center;
 }

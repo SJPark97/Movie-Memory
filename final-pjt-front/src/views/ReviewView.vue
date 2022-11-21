@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h5> REVIEW </h5>
+      <h2> REVIEW </h2>
     </div>
     <div class="review">
       <div class="title">
@@ -173,11 +173,11 @@ export default {
 
 <style scoped>
 
-h5 {
+h2 {
   display: inline-block;
   position: relative;
   text-align: center;
-  width: 150px;
+  width: 200px;
   border-right: 1px solid black;
   border-left: 1px solid black;
 }
@@ -266,5 +266,29 @@ button {
   margin-right: 30px;
   margin-bottom: 20px;
   margin-top: 30px;
+}
+
+.comment-create > form > input[type='text'] {
+  width: 30vw;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  box-shadow: 1px 1px 1px 0px #908581;
+  padding-left: 1vw;
+}
+
+.comment-create > form > input[type='submit'] {
+  color: black;
+  border: 1px solid gray;
+  box-shadow: 1px 1px 1px 0px #908581;
+  border-radius: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 50px;
+  margin-left: 10px;
+  text-decoration: none;
+  background-color: rgb(218, 210, 210);
 }
 </style>

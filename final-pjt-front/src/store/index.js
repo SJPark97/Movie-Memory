@@ -24,7 +24,13 @@ export default new Vuex.Store({
     username: null,
     user: [],     // 프로필에 사용 -> 유저 아이디마다 바뀌어야 함
     userId: null,
+    userImg: null,
+    nickname: null,
     myReviews: [],
+    likedReviews: [],
+    likedMovies: [],
+    notices: null,
+    myGenreMovies: [],
   },
   getters: {
   },
@@ -74,13 +80,28 @@ export default new Vuex.Store({
       state.userId = null
     },
     GET_USER_INFO(state, data) {
+      console.log(data)
       state.userId = data.user
+      state.userImg = data.img
+      state.nickname = data.nick_name
     },
     MY_REVIEWS(state, reviews) {
       state.myReviews = reviews
     },
     GET_PROFILE(state, user) {
       state.user = user
+    },
+    USER_LIKED_MOVIE(state, movies) {
+      state.likedMovies = movies
+    },
+    USER_LIKED_REVIEW(state, reviews) {
+      state.likedReviews = reviews
+    },
+    GET_NOTICE(state, notices) {
+      state.notices = notices
+    },
+    GET_MY_GENRE_MOVIE(state, movies) {
+      state.myGenreMovies = movies
     }
   },
   actions: {
@@ -217,7 +238,7 @@ export default new Vuex.Store({
         method: 'get',
         url: `${API_URL}/accounts/user/myprofile/`,
         headers: {
-          'Authorization' : `Token ${context.state.token}`
+          'Authorization': `Token ${context.state.token}`
         }
       })
         .then((response) => {
@@ -225,7 +246,7 @@ export default new Vuex.Store({
           context.commit('GET_USER_INFO', response.data)
         })
         .catch((error) => {
-          console.log( error)
+          console.log(error)
         })
     },
     MyReviews(context, userId) {
@@ -233,7 +254,7 @@ export default new Vuex.Store({
         method: 'get',
         url: `${API_URL}/api/v1/user/${userId}/reviews/`,
         headers: {
-          'Authorization' : `Token ${context.state.token}`
+          'Authorization': `Token ${context.state.token}`
         }
       })
         .then((response) => {
@@ -248,11 +269,73 @@ export default new Vuex.Store({
         method: 'get',
         url: `${API_URL}/accounts/user/${userId}/profile/`,
         headers: {
-          'Authorization' : `Token ${context.state.token}`
+          'Authorization': `Token ${context.state.token}`
         }
       })
         .then((response) => {
           context.commit('GET_PROFILE', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    userLikedMovie(context, userId) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/${userId}/like_movies/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          console.log('좋아하는 영화', response.data)
+          context.commit('USER_LIKED_MOVIE', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    userLikedReview(context, userId) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/reviews/${userId}/like_reviews/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          console.log('좋아하는 리뷰', response.data)
+          context.commit('USER_LIKED_REVIEW', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getNotice(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/my_notice/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.commit('GET_NOTICE', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getMyGenreMovie(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/genres_movies/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.commit('GET_MY_GENRE_MOVIE', response.data)
         })
         .catch((error) => {
           console.log(error)
