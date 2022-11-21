@@ -11,15 +11,15 @@ from rest_framework.permissions import IsAuthenticated
 
 from rest_framework import status
 from django.shortcuts import get_object_or_404
-from .serializers import ProfileSerializer
-from .models import Profile
+from .serializers import ProfileSerializer, NoticeSerializer
+from .models import Profile, Notice
+from movies.models import Review
 
 # Create your views here.
 @api_view(['GET', 'PUT', 'POST'])
 def my_profile(request):
     if request.method == 'POST':
         serializer = ProfileSerializer(data=request.data)
-        print(request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -87,3 +87,19 @@ def genres_movies(request):
     }
     best_genre = sorted(genres.items(), key=lambda x: -x[1])[0][0]
     return redirect('movies:genre_recommend', best_genre)
+
+
+@api_view(['GET'])
+def my_notice(request):
+    notices = Notice.objects.filter(user = request.user)
+    serializer = NoticeSerializer(notices, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['PUT'])
+def change_notice(request, notice_id):
+    notice = get_object_or_404(Notice, id = notice_id)
+    notice.is_checked = True
+    notice.save()
+    return Response(status=status.HTTP_200_OK)
+

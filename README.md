@@ -18,15 +18,20 @@ URL 정리
 - 영화 상세: api/v1/movies/<int:movie_pk>/
 - 영화 리뷰 조회: api/v1/movies/<int:movie_pk>/reviews/
 - 영화 좋아요: api/v1/movies/<int:movie_pk>/likes/
+- 내가 리뷰 많이 쓴 장르 영화 조회: accounts/user/genres_movies/
+- 내 알람 조회: accounts/user/my_notice/
+- 내 알람 조회시 방문처리: accounts/user/<int:notice_id>/change_notice/
+- 좋아요 한 영화 조회: api/v1/movies/<int:user_pk>/like_movies/
 - 리뷰 조회: api/v1/reviews/
 - 리뷰 상세: api/v1/reviews/<int:review_pk>/
 - 리뷰 만들기: api/v1/movies/<int:movie_pk>/reviews/
-- 리뷰 좋아요: api/v1/reviews/<int:movie_pk>/likes/
+- 리뷰 좋아요: api/v1/reviews/<int:review_pk>/likes/
+- 좋아요 한 리뷰 조회: api/v1/reviews/<int:user_pk>/like_reviews/
 - 유저 리뷰 조회: : api/v1/user/<int:user_pk>/reviews/
 - 댓글 조회: api/v1/comments/
 - 댓글 상세: api/v1/comments/<int:comment_pk>/
 - 댓글 만들기: api/v1/reviews/<int:review_pk>/comments/
-- 댓글 좋아요: api/v1/comments/<int:movie_pk>/likes/
+- 댓글 좋아요: api/v1/comments/<int:comment_pk>/likes/
 - 유저 댓글 조회: : api/v1/user/<int:user_pk>/comments/
 - 리뷰 댓글 조회: api/v1/reviews/<int:review_pk>/comments/
 - 계정 로그인: accounts/login/
