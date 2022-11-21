@@ -160,7 +160,6 @@ def comment_create(request, review_pk):
             serializer = NoticeSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save(review=review, user=review.user, content=review.title + '에 댓글이 달렸습니다.')
-                return Response(status=status.HTTP_201_CREATED)
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(review=review, user=request.user)

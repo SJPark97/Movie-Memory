@@ -11,7 +11,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    self_introduction = models.TextField()
+    self_introduction = models.TextField(blank=True)
     age = models.IntegerField(default=0)
     gender = models.CharField(max_length=50)
     nick_name = models.CharField(max_length=100)
