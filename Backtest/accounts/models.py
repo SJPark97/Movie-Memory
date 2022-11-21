@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-
+from movies.models import Review
 
 # Create your models here.
 class User(AbstractUser):
@@ -11,6 +11,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    self_introduction = models.TextField()
     age = models.IntegerField(default=0)
     gender = models.CharField(max_length=50)
     nick_name = models.CharField(max_length=100)
@@ -36,6 +37,11 @@ class Profile(models.Model):
     war = models.IntegerField(default=0)
     western = models.IntegerField(default=0)
 
+class Notice(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    content = models.CharField(max_length=100, blank=True)
+    is_checked = models.BooleanField(default=False)
 
 #  @receiver(post_save, sender=User)
 #  def create_user_profile(sender, instance, created, **kwargs):
