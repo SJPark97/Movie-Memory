@@ -195,8 +195,8 @@ def like_movies(request, movie_pk):
 
 
 @api_view(['POST'])
-def like_reviews(request, movie_pk):
-    review = get_object_or_404(Review, pk=movie_pk)
+def like_reviews(request, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
     if review.like_users.filter(pk=request.user.pk).exists():
         review.like_users.remove(request.user)
         is_liked = False
@@ -211,8 +211,8 @@ def like_reviews(request, movie_pk):
 
 
 @api_view(['POST'])
-def like_comments(request, movie_pk):
-    comment = get_object_or_404(Comment, pk=movie_pk)
+def like_comments(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
     if comment.like_users.filter(pk=request.user.pk).exists():
         comment.like_users.remove(request.user)
         is_liked = False
