@@ -20,6 +20,7 @@ export default new Vuex.Store({
     movieReviews: [],
     reviewComments: [],
     review: null,
+    comment: null,
     username: null,
     userId: null
   },
@@ -51,9 +52,16 @@ export default new Vuex.Store({
     },
     GET_ONE_REVIEW(state, review) {
       state.review = review
+      // state.reviewComments = null
     },
     GET_REVIEW_COMMENTS(state, comments) {
       state.reviewComments = comments
+    },
+    NO_COMMENTS(state) {
+      state.reviewComments = null
+    },
+    GET_ONE_COMMENT(state, comment) {
+      console.log(comment)
     },
     LogIn(state, username) {
       state.username = username
@@ -183,6 +191,19 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('GET_REVIEW_COMMENTS', response.data)
+        })
+        .catch((error) => {
+          context.commit('NO_COMMENTS')
+          console.log(error)
+        })
+    },
+    getOneComment(context, commentId) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/comments/${commentId}`,
+      })
+        .then((response) => {
+          context.commit('GET_ONE_COMMENT', response.data)
         })
         .catch((error) => {
           console.log(error)

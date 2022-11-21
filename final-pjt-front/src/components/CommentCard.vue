@@ -21,12 +21,24 @@ export default {
   props: {
     comment: Object,
   },
-  data() {
-    return {
-      is_liked: null,
-      like_users_count: 0,
-    }
+  computed: {
+    is_liked() {
+      if (this.comment.like_users.indexOf(this.$store.state.userId) === -1) {
+        return false
+      } else {
+        return true
+      }
+    },
+    like_users_count() {
+      return this.comment.like_users.length
+    },
   },
+  // data() {
+  //   return {
+  //     is_liked: null,
+  //     like_users_count: 0,
+  //   }
+  // },
   methods: {
     getCommentLike(comment_id) {
       axios({
@@ -39,6 +51,7 @@ export default {
         .then((response) => {
           this.is_liked = response.data.is_liked
           this.like_users_count = response.data.like_users_count
+          this.$emit('change-comments')
         })
         .catch((error) => {
           console.log(error)
@@ -46,11 +59,8 @@ export default {
       },
     likeUnlike() {
       this.getCommentLike(this.comment.id)
-    }
+    },
   },
-  created() {
-    this.getCommentLike(this.comment.id)
-  }
 }
 </script>
 
