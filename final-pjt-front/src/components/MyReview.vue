@@ -24,9 +24,6 @@ export default {
       this.$router.push({name: 'review_detail', params: {review_id: reviewId}})
     }
   },
-  created() {
-    this.$store.dispatch('MyReviews', this.$store.state.userId)
-  }
 }
 </script>
 

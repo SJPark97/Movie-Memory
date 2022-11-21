@@ -96,6 +96,7 @@ export default {
   },
   created() {
     this.$store.dispatch('getProfile', this.$route.params.userId)
+    this.$store.dispatch('MyReviews', this.$route.params.userId)
     this.$store.dispatch('userLikedMovie', this.$route.params.userId)
     this.$store.dispatch('userLikedReview', this.$route.params.userId)
   },

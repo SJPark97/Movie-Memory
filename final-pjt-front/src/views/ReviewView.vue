@@ -17,6 +17,9 @@
         <span>수정일시 : {{ review?.updated_at.substr(0, 10) }}</span>
 
         <!-- 버튼 리뷰 작성자에게만 보임 -->
+        <button @click="updateReview">리뷰 수정</button>
+
+
         <button 
           v-show="this.$store.state.userId === review.user" 
           @click="popAlert"
@@ -161,6 +164,9 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    updateReview() {
+
     }
   },
   created() {

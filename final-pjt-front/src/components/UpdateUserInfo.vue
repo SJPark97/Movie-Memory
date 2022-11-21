@@ -1,8 +1,8 @@
 <template>
   <div class="update-div">
-    <!-- <form @submit.prevent="setUserInfo">
+    <form @submit.prevent="setUserInfo">
 
-      <p>선호하는 장르 선택</p>
+      <!-- <p>선호하는 장르 선택</p>
       <div>
         <input type="checkbox" v-model="genres" value="action">액션
         <input type="checkbox" v-model="genres" value="adventure">모험
@@ -23,8 +23,8 @@
         <input type="checkbox" v-model="genres" value="thriller">스릴러
         <input type="checkbox" v-model="genres" value="war">전쟁
         <input type="checkbox" v-model="genres" value="western">서부
-      </div>
-      
+      </div> -->
+
       <div>
         <label for="nickname">닉네임</label>
         <input type="text" id="nickname" v-model="nickname">
@@ -54,7 +54,7 @@
         <textarea name="intro" id="intro" cols="30" rows="3" v-model="intro"></textarea>
       </div>
       <input type="submit" class="input-btn">
-    </form> -->
+    </form>
   </div>
 </template>
 
@@ -70,16 +70,16 @@ export default {
       return this.$store.state.user
     }
   },
-  // data() {
-  //   return {
-  //     nickname: this.user.nick_name,
-  //     image: this.user.img,
-  //     age: this.user.age,
-  //     gender: this.user.gender,
-  //     genres: this.user.genres,
-  //     intro: this.user.intro,
-  //   }
-  // },
+  data() {
+    return {
+      nickname: this.user.nick_name,
+      image: this.user.img,
+      age: this.user.age,
+      gender: this.user.gender,
+      genres: this.user.genres,
+      intro: this.user.intro,
+    }
+  },
   methods: {
     setUserInfo() {
       const formData = new FormData()
