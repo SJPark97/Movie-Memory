@@ -15,7 +15,11 @@
 
 URL 정리
 - 영화 조회: api/v1/movies/
+- 계절별 영화 조회: api/v1/season/<int:season>/    (1: 봄, 2: 여름, 3: 가을, 4: 겨울)
+
+- 날씨별 영화 조회: api/v1/weather/<int:weather>/    (1: 화창, 2: 흐림, 3: 비, 4:눈)
 - 영화 상세: api/v1/movies/<int:movie_pk>/
+
 - 영화 리뷰 조회: api/v1/movies/<int:movie_pk>/reviews/
 - 영화 좋아요: api/v1/movies/<int:movie_pk>/likes/
 - 내가 리뷰 많이 쓴 장르 영화 조회: accounts/user/genres_movies/
@@ -46,7 +50,7 @@ URL 정리
 - 계정 비밀번호 체인지: accounts/password/change/
 - 계정 비밀번호 리셋: accounts/password/reset/
 - 계정 비밀번호 리셋 확인: accounts/password/reset/confirm/
-  
+
 
 [TMDB API](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id)
 
