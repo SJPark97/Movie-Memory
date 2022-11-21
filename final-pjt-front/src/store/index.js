@@ -21,6 +21,7 @@ export default new Vuex.Store({
     reviewComments: [],
     review: null,
     username: null,
+    userId: null
   },
   getters: {
   },
@@ -60,7 +61,16 @@ export default new Vuex.Store({
     LOGOUT(state) {
       state.token = null
       state.username = null
-    }
+      state.userId = null
+    },
+    GET_USER_INFO(state, data) {
+      state.userId = data.id
+    },
+    // CHANGE_MOVIE_LIKE(state, payload) {
+    //   state.movie.is_liked = payload.is_liked
+    //   state.movie.like_users = payload.like_users
+    //   state.commit('GET_ONE_MOVIE')
+    // }
   },
   actions: {
     SignUp(context, payload) {
@@ -96,6 +106,7 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
+          console.log(response)
           context.commit('LOGIN_SAVE_TOKEN', response.data.key)
           context.commit('LogIn', username)
         })
@@ -153,21 +164,6 @@ export default new Vuex.Store({
           context.commit('GET_MOVIE_REVIEWS', "error")
         })
     },
-    // getMovieLike(context, movieId) {
-    //   axios({
-    //     method: 'post',
-    //     url: `${API_URL}/api/v1/movies/${movieId}/likes/`,
-    //     headers: {
-    //       'Authorization': `Token ${this.token}`
-    //     },
-    //   })
-    //     .then((response) => [
-    //       context.commit('GET_MOVIE_LIKE', response.data)
-    //     ])
-    //     .catch((error) => {
-    //       console.log(error)
-    //     })
-    // },
     getOneReview(context, reviewId) {
       axios({
         method: 'get',
@@ -196,10 +192,14 @@ export default new Vuex.Store({
       axios({
         method: 'get',
         url: `${API_URL}/accounts/user/myprofile/`,
+        headers: {
+          'Authorization' : `Token ${context.state.token}`
+        }
       })
-        .then((response) => [
-          console.log(response)
-        ])
+        .then((response) => {
+          // console.log(response)
+          context.commit('GET_USER_INFO', response.data)
+        })
         .catch((error) => {
           console.log(error)
         })

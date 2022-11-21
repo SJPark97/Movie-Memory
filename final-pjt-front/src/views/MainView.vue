@@ -24,6 +24,14 @@ export default {
     GenreRecommend,
     NowWeather,
   },
+  methods: {
+    getUserInfo() {
+      this.$store.dispatch("getUserInfo")
+    }
+  },
+  created() {
+    this.getUserInfo()
+  }
 }
 </script>
 

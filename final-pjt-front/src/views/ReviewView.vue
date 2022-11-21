@@ -11,6 +11,7 @@
           <font-awesome-icon icon="fa-regular fa-heart"  v-show="!is_liked"/>
         </span>
         {{ like_users_count }}
+        {{ is_liked }}
         <p>작성자: {{ review.username }}</p>
         <span>작성일시 : {{ review?.created_at.substr(0, 10) }}</span>
         <span>수정일시 : {{ review?.updated_at.substr(0, 10) }}</span>
@@ -59,8 +60,8 @@ export default {
   data() {
     return {
       comment: null,
-      is_liked: null,
-      like_users_count: 0,
+      is_liked: false,
+      like_users_count: null,
     }
   },
   methods: {
@@ -122,7 +123,16 @@ export default {
   created() {
     this.getOneReview(this.$route.params.review_id)
     this.getMovieReview(this.review.movie)
-    this.getReviewLike(this.$route.params.review_id)
+    while (true) {
+      this.like_users = this.$store.state.review.like_users
+      if (this.like_users.includes(this.$store.state.userId)) {
+        return this.is_liked = true
+      }
+      this.like_users_count = this.$store.state.review.like_users.length
+      if (this.like_users_count != null) {
+        return
+      }
+    }
   }
 }
 </script>
