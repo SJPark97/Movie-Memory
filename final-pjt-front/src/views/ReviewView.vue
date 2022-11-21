@@ -4,6 +4,9 @@
       <h5> REVIEW </h5>
     </div>
     <div class="review">
+
+
+
       <div class="title">
         <h1>{{ review.title }}</h1>
         <span @click="likeUnlike">
@@ -11,7 +14,6 @@
           <font-awesome-icon icon="fa-regular fa-heart"  v-show="!is_liked"/>
         </span>
         {{ like_users_count }}
-        {{ is_liked }}
         <p>작성자: {{ review.username }}</p>
         <span>작성일시 : {{ review?.created_at.substr(0, 10) }}</span>
         <span>수정일시 : {{ review?.updated_at.substr(0, 10) }}</span>
@@ -56,12 +58,20 @@ export default {
     otherReview() {
       return this.$store.state.movieReviews
     },
+    is_liked() {
+      if (this.$store.state.review.like_users.indexOf(this.$store.state.userId) === -1) {
+        return false
+      } else {
+        return true
+      }
+    },
+    like_users_count() {
+      return this.$store.state.review.like_users.length
+    },
   },
   data() {
     return {
       comment: null,
-      is_liked: false,
-      like_users_count: null,
     }
   },
   methods: {
@@ -111,6 +121,7 @@ export default {
         .then((response) => {
           this.is_liked = response.data.is_liked
           this.like_users_count = response.data.like_users_count
+          this.$store.dispatch('getOneReview', this.$route.params.review_id)
         })
         .catch((error) => {
           console.log(error)
@@ -123,16 +134,7 @@ export default {
   created() {
     this.getOneReview(this.$route.params.review_id)
     this.getMovieReview(this.review.movie)
-    while (true) {
-      this.like_users = this.$store.state.review.like_users
-      if (this.like_users.includes(this.$store.state.userId)) {
-        return this.is_liked = true
-      }
-      this.like_users_count = this.$store.state.review.like_users.length
-      if (this.like_users_count != null) {
-        return
-      }
-    }
+    this.$store.dispatch('getReviewComment', this.$route.params.review_id)
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <span>
     <div class="comment-list" v-for="comment in comments" :key="comment.id">
-      <CommentCard :comment="comment"/>
+      <CommentCard :comment="comment" @change-comments="changeComments" @active="getOneComment()"/>
     </div>
   </span>
 </template>
@@ -18,7 +18,12 @@ export default {
     comments() {
       return this.$store.state.reviewComments
     }
-  }
+  },
+  methods: {
+    changeComments() {
+      this.$store.dispatch('getReviewComment', this.$route.params.review_id)
+    }
+  },
 }
 </script>
 
