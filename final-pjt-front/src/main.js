@@ -19,12 +19,17 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartNone } from "@fortawesome/free-regular-svg-icons";
 import 'animate.css';
+import Popover from 'vue-js-popover'
+import VPopover from 'vue-js-popover'
+
 
 import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
 
 
 Vue.use(BootstrapVue)
+Vue.use(Popover)
+Vue.use(VPopover, { tooltip: true })
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add(faBell)
 library.add(faHouse)

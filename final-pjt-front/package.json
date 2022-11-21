@@ -27,6 +27,7 @@
     "velocity-animate": "^1.5.2",
     "vue": "^2.7.14",
     "vue-infinite-loading": "^2.4.5",
+    "vue-js-popover": "^1.2.1",
     "vue-router": "^3.5.1",
     "vuejs-paginate": "^2.1.0",
     "vuex": "^3.6.2",

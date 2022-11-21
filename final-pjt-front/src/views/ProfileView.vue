@@ -6,7 +6,7 @@
       </div>
       <p>아이디 : {{ user.username }}</p>
       <p>닉네임 : {{ user.nick_name }}</p>
-      <p>자기소개 : </p>
+      <p>자기소개 : {{ user.self_introduction }}</p>
       팔로우
       <UpdateUserInfo/>
     </section>
@@ -85,7 +85,10 @@ export default {
   },
   created() {
     this.$store.dispatch('getProfile', this.$route.params.userId)
-  }
+  },
+  // updated() {
+  //   this.$store.dispatch('getProfile', this.$route.params.userId)
+  // }
 }
 </script>
 

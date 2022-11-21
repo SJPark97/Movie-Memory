@@ -7,7 +7,6 @@
       <div class="title">
         <h1>{{ review.title }}</h1>
 
-
         <span @click="likeUnlike">
           <font-awesome-icon icon="fa-solid fa-heart" v-show="is_liked"/>
           <font-awesome-icon icon="fa-regular fa-heart"  v-show="!is_liked"/>

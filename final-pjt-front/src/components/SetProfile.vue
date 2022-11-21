@@ -47,6 +47,11 @@
         <label for="img">프로필 사진</label>
         <input id="img" ref="image" type="file" accept="image/*">
       </div>
+      
+      <div>
+        <label for="intro">자기소개</label>
+        <textarea name="intro" id="intro" cols="30" rows="3" v-model="intro"></textarea>
+      </div>
       <input type="submit" class="input-btn">
     </form>
   </div>
@@ -66,6 +71,7 @@ export default {
       age: null,
       gender: null,
       genres: [],
+      intro: null,
     }
   },
   methods: {
@@ -75,6 +81,7 @@ export default {
       formData.append('gender', this.gender)
       formData.append('nick_name', this.nickname)
       formData.append('img', this.$refs.image.files[0])
+      formData.append('self_introduction', this.intro)
 
       for(const genre of this.genres) {
         formData.append(`${genre}`, 1)

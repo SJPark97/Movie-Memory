@@ -11,13 +11,18 @@
       {{ like_users_count }}
     </div>
 
-    
-    <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover"></button> -->
-    <div class="dot" @click="popSelector" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
-      <font-awesome-icon icon="fa-solid fa-ellipsis-vertical"/>
-    </div>
+      <div @click="popSelector" class="dot">
+        <font-awesome-icon icon="fa-solid fa-ellipsis-vertical"/>
+        <div v-show="selector" class="pop">
+          <p @click="changeComment">수정</p>
+          <p @click="deleteComment(comment.id)">삭제</p>
+        </div>
+      </div>
+
   </div>
 </template>
+
+
 
 <script>
 import axios from 'axios'
@@ -68,7 +73,29 @@ export default {
       this.getCommentLike(this.comment.id)
     },
     popSelector() {
-      this.selector = true
+      if (! this.selector) {
+        this.selector = true
+      } else { 
+        this.selector = false
+      }
+    },
+    deleteComment(comment_id) {
+      axios({
+        method: 'delete',
+        url: `${API_URL}/api/v1/comments/${comment_id}/`,
+        headers: {
+          'Authorization': `Token ${this.$store.state.token}`
+        },
+      })
+        .then((response) => {
+          this.$emit('change-comments')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    changeComment() {
+
     }
   },
 }
@@ -100,5 +127,34 @@ span {
   display: inline-block;
   margin-right: 15px;
   font-size: 20px;
+  background-color: transparent;
+  border: none;
+  color: black;
+  position: relative;
+}
+
+.dot:hover {
+  background-color: transparent;
+}
+
+/* .dot {
+  background-color: transparent;
+} */
+
+.pop {
+  display: inline-block;
+  position: absolute;
+  z-index: 999;
+  background-color: rgb(218, 210, 210);
+  border-radius: 10px;
+  top: 25px;
+  left: -20px;
+  width: 50px;
+  text-align: center;
+}
+
+.pop > p {
+  margin: 0;
+  padding: 0;
 }
 </style>

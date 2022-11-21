@@ -74,7 +74,7 @@ export default new Vuex.Store({
       state.userId = null
     },
     GET_USER_INFO(state, data) {
-      state.userId = data.id
+      state.userId = data.user
     },
     MY_REVIEWS(state, reviews) {
       state.myReviews = reviews
@@ -225,7 +225,7 @@ export default new Vuex.Store({
           context.commit('GET_USER_INFO', response.data)
         })
         .catch((error) => {
-          console.log(error)
+          console.log( error)
         })
     },
     MyReviews(context, userId) {
@@ -244,7 +244,6 @@ export default new Vuex.Store({
         })
     },
     getProfile(context, userId) {
-      console.log(userId)
       axios({
         method: 'get',
         url: `${API_URL}/accounts/user/${userId}/profile/`,
