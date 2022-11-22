@@ -99,12 +99,11 @@ export default {
         url: `${API_URL}/accounts/user/myprofile/`,
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Token ${this.$store.state.token}`,
+          "Authorization": `Token ${this.$store.state.token}`,
         },
         data: formData,
       })
         .then((response) => {
-          console.log(response);
           this.$router.push({ name: "main" });
         })
         .catch((error) => {

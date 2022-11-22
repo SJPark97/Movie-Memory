@@ -4,13 +4,13 @@
       <i class="fas fa-angle-double-right" @click="showNav"></i>
     </div>
     <div class="navigation-links">
-      <transition-group name="fade">
-
-        <div @click="goToMy" v-show="showLink" key="1"><router-link :to="`/${userId}`"><img :src="`http://127.0.0.1:8000${this.$store.state.userImg}`" alt="#"></router-link></div>
-        <div v-show="showLink" key="2"><h4>{{ this.$store.state.nickname }}</h4></div>
-        <div v-show="showLink" key="3"><router-link to="/main">Home</router-link></div>
-        <div v-show="showLink" key="4"><router-link to="/movies">Movies</router-link></div>
-        <div @click="goToMy" v-show="showLink" key="5"><router-link :to="`/${userId}`">Profile</router-link></div>
+      <!-- 유저 로그인 시 -->
+      <transition-group name="fade" v-if="this.$store.state.username">
+          <div @click="goToMy" v-show="showLink" key="1"><router-link :to="`/${userId}`"><img :src="`http://127.0.0.1:8000${this.$store.state.userImg}`" alt="#"></router-link></div>
+          <div v-show="showLink" key="2"><h4>{{ this.$store.state.nickname }}</h4></div>
+          <div v-show="showLink" key="3"><router-link to="/main">Home</router-link></div>
+          <div v-show="showLink" key="4"><router-link to="/movies">Movies</router-link></div>
+          <div @click="goToMy" v-show="showLink" key="5"><router-link :to="`/${userId}`">Profile</router-link></div>
         <div v-show="showLink" key="6">
           <p @click="popReview">
             <!-- newNotice가 true면 새로운 알림이 있음 false면 없음 -->
@@ -20,6 +20,11 @@
           <Notice v-show="popAva" @pop-exit="popExit" @close-notice="closeNotice"/>
         </div>
         <div v-show="showLink && this.$store.state.token" key="7"><button @click="logOut" class="logout">LOGOUT</button></div>
+      </transition-group>
+
+      <!-- 로그인 안 했을 때 -->
+      <transition-group v-else>
+        <div v-show="showLink" key="1" class="alert-message"> 로그인이 필요한 서비스입니다. </div>
       </transition-group>
     </div>
     <!-- <i class="fas fa-music"></i> -->
@@ -126,74 +131,79 @@ img {
 h4 {
   margin-bottom: 15px;
 }
-  .container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0px;
+
+.alert-message {
+  font-size: 20px;
+  margin-top: 50px;
+}
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 100vh;
+  padding: 0px;
+  min-height: calc(100vh - 20px);
+  background-color: rgba($color: #E6E6E6, $alpha: .8);
+  // border: solid #fff;
+  // border-width: 0 1px 0 0;
+  box-shadow: 0 3px #908581;
+  z-index: 999;
+  transition: all .5s ease-in-out;
+  .control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    margin-bottom: 10px;
+    i {
+      color: beige;
+      font-size: 2.5rem;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: all .5s ease-in-out;
+    }
+  }
+  &.show {
+    width: 180px;
     height: 100vh;
-    padding: 0px;
-    min-height: calc(100vh - 20px);
-    background-color: rgba($color: #E6E6E6, $alpha: .8);
-    // border: solid #fff;
-    // border-width: 0 1px 0 0;
-    box-shadow: 0 3px #908581;
-    z-index: 999;
-    transition: all .5s ease-in-out;
-    .control {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 50px;
-      margin-bottom: 10px;
-      i {
-        color: beige;
-        font-size: 2.5rem;
-        margin-left: 10px;
-        cursor: pointer;
-        transition: all .5s ease-in-out;
-      }
+    padding: 20px;
+    .control > i {
+      color: #fff;
+      transform: rotateZ(-180deg);
     }
-    &.show {
-      width: 180px;
-      height: 100vh;
-      padding: 20px;
-      .control > i {
-        color: #fff;
-        transform: rotateZ(-180deg);
-      }
-      .navigation-icons {
+    .navigation-icons {
+      color: #fff;
+    }
+  }
+  .navigation-links {
+    padding-top: 14px;
+    float: left;
+    div a {
+      color: black;
+      font-size: 2rem;
+      padding-left: 10px;
+      margin-bottom: 30px;
+      cursor: pointer;
+      &:hover {
         color: #fff;
       }
     }
-    .navigation-links {
-      padding-top: 14px;
-      float: left;
-      div a {
-        color: black;
-        font-size: 2rem;
-        padding-left: 10px;
-        margin-bottom: 30px;
-        cursor: pointer;
-        &:hover {
-          color: #fff;
-        }
-      }
+  }
+}
+@mixin nav-childs($values...) {
+  @each $var in $values {
+    &:nth-child(#{$var}) {
+      transition: transform linear calc(.05s * #{$var}), display .5s;
     }
   }
-  @mixin nav-childs($values...) {
-    @each $var in $values {
-      &:nth-child(#{$var}) {
-        transition: transform linear calc(.05s * #{$var}), display .5s;
-      }
-    }
-  }
-  .fade-enter-active, .fade-leave-active {
-    @include nav-childs(1,2,3,4,5,6,7);
-  }
-  .fade-enter, .fade-leave-to {
-    transform: scale(0);
-  }
+}
+.fade-enter-active, .fade-leave-active {
+  @include nav-childs(1,2,3,4,5,6,7);
+}
+.fade-enter, .fade-leave-to {
+  transform: scale(0);
+}
 
 
 .search {

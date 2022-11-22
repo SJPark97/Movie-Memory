@@ -75,8 +75,8 @@ h2 {
   height: 300px;
   position: absolute;
   /* object-fit: contain; */
-  top: 60px;
-  left: 150px;
+  top: 70px;
+  left: 200px;
   padding-top: 40px;
   padding-left: 60px;
   padding-right: 60px;

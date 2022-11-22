@@ -2,8 +2,7 @@
   <div class="home">
     
     <!-- 영화 명언 -->
-    <h4>나는 매 순간을 꽉 차게 느끼며 살아갈 거야.</h4>
-    <p> - Soul -</p>
+    <h5>{{ famousLine }}</h5>
 
     <div>
       <h1>MOVIE</h1>
@@ -16,7 +15,7 @@
     <!-- <div  @click="goToHome" class="move animate__animated animate__fadeIn">
       <p>move</p>
     </div> -->
-    <SetProfile v-show="this.$store.state.token"/>
+    <SetProfile v-show="this.$store.state.token && !this.$store.state.userId"/>
   </div>
 </template>
 
@@ -24,6 +23,21 @@
 <script>
 import LogIn from "@/components/LogIn";
 import SetProfile from "@/components/SetProfile";
+import _ from 'lodash'
+
+const famousLines = [
+  "나는 매 순간을 꽉 차게 느끼며 살아갈 거야", 
+  "치열하기 살던가, 죽기만을 기다리던가",
+  "자신의 존재는 잊어도 인생이 준 최고의 선물은 잊지 마",
+  "우리 모두 어둠을 밝히려는 길 잃은 별들이 아닐까요?",
+  "인생은 미로 같고 사랑은 수수께끼 같죠",
+  "내 인생은 비극인 줄 알았는데 코미디였어",
+  "잊히지 않을 것 같은 무더운 여름 뒤엔 가을도 온다 분명히",
+  "내일은 내일의 해가 뜬다",
+  "우리가 두려워할 것은 두려움뿐이죠",
+  "꿈은 도망가지 않아, 도망가는 것은 언제나 나 자신이야",
+  "난 가고 싶은 곳에 가기 위해 뛰었는데 그게 삶의 기회가 될 줄은 몰랐어요"
+]
 
 export default {
   name: "HomeView",
@@ -35,6 +49,11 @@ export default {
     return {
       popLogin: false,
     };
+  },
+  computed: {
+    famousLine() {
+      return _.sample(famousLines)
+    }
   },
   methods: {
     popDiv() {
@@ -53,7 +72,7 @@ export default {
 @import url(https://fonts.googleapis.com/css?family=Lato:300);
 @import url('https://webfontworld.github.io/Rebecca/Rebecca.css');
 
-p, h4 {
+h5 {
   font-family: 'Rebecca';
   color: #58504e;
   text-shadow: 1px 1px  #F0E2D7;

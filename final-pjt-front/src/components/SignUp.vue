@@ -22,7 +22,7 @@
         <input type="password" id="password2" v-model="password2">
       </div>
 
-      <input type="submit" class="input-btn" value="다음" @submit.prevent="print">
+      <input type="submit" class="input-btn" value="다음">
     </form>
   </div>
 </template>

@@ -16,9 +16,10 @@
         @sliding-end="onSlideEnd"
       >
         <b-carousel-slide
-          caption="겨울이다...춥다..."
+          caption="겨울이당"
           img-src="https://picsum.photos/1024/480/?image=10"
-        ></b-carousel-slide>
+          ></b-carousel-slide>
+          <!-- :img-src="`${weatherMovie.poster_URL}`" -->
         <b-carousel-slide
           caption="오늘 날씨가 참 좋네요"
           img-src="https://picsum.photos/1024/480/?image=12"
