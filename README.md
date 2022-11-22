@@ -16,13 +16,12 @@
 URL 정리
 - 영화 조회: api/v1/movies/
 - 계절별 영화 조회: api/v1/season/<int:season>/    (1: 봄, 2: 여름, 3: 가을, 4: 겨울)
-
 - 날씨별 영화 조회: api/v1/weather/<int:weather>/    (1: 화창, 2: 흐림, 3: 비, 4:눈)
 - 영화 상세: api/v1/movies/<int:movie_pk>/
-
 - 영화 리뷰 조회: api/v1/movies/<int:movie_pk>/reviews/
 - 영화 좋아요: api/v1/movies/<int:movie_pk>/likes/
 - 내가 리뷰 많이 쓴 장르 영화 조회: accounts/user/genres_movies/
+- 내가 평소 즐기지 않는 색다른 영화 조회: accounts/user/new_kind_movies/
 - 내 알람 조회: accounts/user/my_notice/
 - 내 알람 조회시 방문처리: accounts/user/<int:notice_id>/change_notice/
 - 좋아요 한 영화 조회: api/v1/movies/<int:user_pk>/like_movies/
