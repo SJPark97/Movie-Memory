@@ -41,17 +41,29 @@ def user_profile(request, user_id):
     return Response(serializer.data)
 
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def follow(request, user_id):
     person = get_object_or_404(get_user_model(), pk=user_id)
     user = request.user
-    if person != user:
+    if request.method == 'POST':
+        if person != user:
+            if person.followers.filter(pk=user.pk).exists():
+                person.followers.remove(user)
+                is_followed = False
+            else:
+                person.followers.add(user)
+                is_followed = True
+            context = {
+                'is_followed': is_followed,
+                'followers_count': person.followers.count(),
+                'followings_count': person.followings.count(),
+            }
+            return Response(context, status=status.HTTP_200_OK)
+    elif request.method == 'GET':
         if person.followers.filter(pk=user.pk).exists():
-            person.followers.remove(user)
-            is_followed = False
-        else:
-            person.followers.add(user)
             is_followed = True
+        else:
+            is_followed = False
         context = {
             'is_followed': is_followed,
             'followers_count': person.followers.count(),
