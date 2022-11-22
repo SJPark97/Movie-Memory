@@ -236,7 +236,7 @@ def comments_like(request, comment_pk):
 # @permission_classes([IsAuthenticated])
 def genres_movies(request, genres_pk):
     movies = Movie.objects.filter(genres = genres_pk)
-    movies = movies.order_by('-popularity')[:20]
+    movies = movies.order_by('?')[:20]
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
 
@@ -262,7 +262,7 @@ def like_reviews(request, user_pk):
 # @permission_classes([IsAuthenticated])
 def season(request, season):
     movies = Movie.objects.filter(season = season)
-    movies = movies.order_by('?')[:5]
+    movies = movies.order_by('?')[:10]
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
 
@@ -271,6 +271,6 @@ def season(request, season):
 # @permission_classes([IsAuthenticated])
 def weather(request, weather):
     movies = Movie.objects.filter(weather = weather)
-    movies = movies.order_by('?')[:5]
+    movies = movies.order_by('?')[:10]
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)

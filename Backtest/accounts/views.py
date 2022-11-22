@@ -115,3 +115,30 @@ def change_notice(request, notice_id):
     notice.save()
     return Response(status=status.HTTP_200_OK)
 
+
+@api_view(['GET'])
+def new_kind_movies(request):
+    profile = get_object_or_404(Profile, user=request.user.id)
+    genres = {
+    28: profile.action,
+    12: profile.adventure,
+    16: profile.animation,
+    35: profile.comedy,
+    80: profile.crime,
+    99: profile.documentary,
+    18: profile.drama,
+    10751: profile.family,
+    14: profile.fantasy,
+    36: profile.history,
+    27: profile.horror,
+    10402: profile.music,
+    9648: profile.mystery,
+    10749: profile.romance,
+    878: profile.science,
+    10770: profile.tv,
+    53: profile.thriller,
+    10752: profile.war,
+    37: profile.western,
+    }
+    new_genre = sorted(genres.items(), key=lambda x: x[1])[0][0]
+    return redirect('movies:genre_recommend', new_genre)
