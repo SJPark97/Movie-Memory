@@ -173,6 +173,7 @@ export default {
     this.getOneReview(this.$route.params.review_id)
     this.getMovieReview(this.review.movie)
     this.$store.dispatch('getReviewComment', this.$route.params.review_id)
+    this.$store.dispatch('FirstFollow', this.$route.params.userId)
   }
 }
 </script>

@@ -53,9 +53,6 @@ export default {
     follow() {
       this.$store.dispatch('follow', this.$route.params.userId)
     }
-  },
-  created() {
-    this.$store.dispatch('FirstFollow', this.$route.params.userId)
   }
 }
 </script>
