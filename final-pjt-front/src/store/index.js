@@ -31,6 +31,9 @@ export default new Vuex.Store({
     likedMovies: [],
     notices: null,
     myGenreMovies: [],
+    is_followed: false,
+    followers: 0,
+    followings: 0,
   },
   getters: {
   },
@@ -78,6 +81,8 @@ export default new Vuex.Store({
       state.token = null
       state.username = null
       state.userId = null
+      state.userImg = null
+      state.nickname = null
     },
     GET_USER_INFO(state, data) {
       console.log(data)
@@ -102,6 +107,16 @@ export default new Vuex.Store({
     },
     GET_MY_GENRE_MOVIE(state, movies) {
       state.myGenreMovies = movies
+    },
+    FIRST_FOLLOW(state, data) {
+      state.is_followed = data.is_followed
+      state.followers = data.followers_count
+      state.followings = data.followings_count
+    },
+    FOLLOW(state, data) {
+      state.is_followed = data.is_followed
+      state.followers = data.followers_count
+      state.followings = data.followings_count
     }
   },
   actions: {
@@ -288,7 +303,6 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
-          console.log('좋아하는 영화', response.data)
           context.commit('USER_LIKED_MOVIE', response.data)
         })
         .catch((error) => {
@@ -304,7 +318,6 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
-          console.log('좋아하는 리뷰', response.data)
           context.commit('USER_LIKED_REVIEW', response.data)
         })
         .catch((error) => {
@@ -336,6 +349,36 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('GET_MY_GENRE_MOVIE', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    FirstFollow(context, userId) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/${userId}/profile/follow/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.commit('FIRST_FOLLOW', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    follow(context, userId) {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/user/${userId}/profile/follow/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.commit('FOLLOW', response.data)
         })
         .catch((error) => {
           console.log(error)

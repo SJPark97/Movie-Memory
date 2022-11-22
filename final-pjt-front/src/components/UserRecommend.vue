@@ -1,17 +1,20 @@
 <template>
   <div>
+
     <div class="movie-text">  
       <h3>{{ this.$store.state.username }}님이 선호하는 장르의 영화</h3>
     </div>
+
     <div class="all-movie">
       <button @click="toBefore"><font-awesome-icon icon="fa-solid fa-chevron-left" /></button>
-      <transition-group name="fade" class="movie-size" >
+      <transition-group name="fade">
         <div class="movie" v-for="movie in myGenreMovies" :key="movie.id">
           <img :src="movie.poster_URL" alt="" class="animate__animated animate__fadeIn">
         </div>
       </transition-group>
       <button @click="toNext"><font-awesome-icon icon="fa-solid fa-chevron-right" /></button>
     </div>
+    
   </div>
 </template>
 
@@ -39,7 +42,9 @@ export default {
       }
     },
     toNext() {
-      this.num = this.num + 1
+      if (this.num < 15) {
+        this.num = this.num + 1
+      }
     }
   }
 }
@@ -47,23 +52,11 @@ export default {
 
 <style scoped>
 
-div {
-  width: 100%;
-}
+
 h3 {
-  text-align: left;
+  /* text-align: left; */
 }
-img {
-  width: 100%;
-  height: 100%;
-  /* height: auto; */
-  /* position: absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0; */
-  object-fit: cover;
-}
+
 
 button {
   border: none;
@@ -71,7 +64,7 @@ button {
 }
 
 svg {
-  font-size: 40px;
+  font-size: 50px;
   opacity: 0.8;
   text-decoration: none;
   color: white;
@@ -79,47 +72,42 @@ svg {
 }
 
 .movie-text {
-  display: inline-block;
+  /* display: inline-block;
   width: 1200px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.4); */
 }
 
-.all-movie {
-  display: flex;
-  justify-content: center;
-}
 
-.movie-size {
-  display: inline-block;
-}
 .movie {
-  /* position: relative; */
-  /* padding-top: 100%; */
-  /* overflow: hidden; */
-  /* display: inline-block; */
-  /* width: 15%; */
   display: inline-block;
-  flex: 1 1 1 30%;
+  width: 15%;
+  position: relative;
+  text-align: left;
   padding: 0;
-  height: 21rem;
-  width: 14rem;
-  font-size: 5px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 2px;
+}
+
+.movie:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.movie>img {
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  border: 2px solid  #E6E6E6;
+  border-radius: 10px;
+  object-fit: cover;
   box-shadow: 2px 2px 5px 0px rgb(44, 44, 44);
   transition: transform .4s;
-  cursor: pointer;
 }
 
-/* .movie:hover {
+.movie>img:hover {
   cursor: pointer;
-  transform: scale(1.2);
+  transform: scale(1.1);
   z-index: 1 !important;
-} */
-.movie>img {
-  height: 100%;
 }
 
 </style>

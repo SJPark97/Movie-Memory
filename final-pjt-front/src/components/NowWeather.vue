@@ -34,7 +34,7 @@ export default {
         method: 'get',
         url: 'https://api.openweathermap.org/data/2.5/weather',
         params: {
-          q: 'Daejeon,kor',
+          q: 'seoul,kor',
           APPID: API_KEY,
         }
       })

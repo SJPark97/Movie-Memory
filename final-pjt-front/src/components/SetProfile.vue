@@ -102,6 +102,7 @@ export default {
         })
         .catch((error) => {
           console.log(error)
+          alert('다른 이미지를 선택해주세요.')
         })
     },
   }

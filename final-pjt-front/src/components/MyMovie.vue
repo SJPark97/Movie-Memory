@@ -31,6 +31,7 @@ export default {
 div {
   text-align: left;
   position: relative;
+  margin-left: 4%;
 }
 
 
@@ -38,11 +39,19 @@ div {
   display: inline-block;
   width: 30%;
   margin: 2px;
-  padding-left: 5%;
+  margin: 5px;
 }
+
+.feed:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
 .feed > img {
-  width: 19vw;
-  height: 19vw;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 </style>
