@@ -9,8 +9,8 @@
         <h1>{{ user.username }}</h1>
         <h4>{{ user.nick_name }}</h4>
         <p> {{ user.self_introduction }}</p>
-        <!-- <button v-show="this.$store.state.userId === user.id" @click="updateInfo">회원 정보 수정</button> -->
-        <UpdateUserInfo v-show="updataAva"/>
+        <button @click="updateInfo">회원 정보 수정</button>
+        <UpdateUserInfo :user="user" v-show="updateAva"/>
       </div>
 
       <div class="follow-count">
@@ -49,9 +49,17 @@ export default {
       return this.$store.state.followings
     }
   },
+  data(){
+    return {
+      updateAva: false,
+    }
+  },
   methods: {
     follow() {
       this.$store.dispatch('follow', this.$route.params.userId)
+    },
+    updateInfo() {
+      this.updateAva = !this.updateAva
     }
   },
   created() {

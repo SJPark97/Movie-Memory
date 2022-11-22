@@ -81,6 +81,14 @@ import Notice from '@/components/Notice'
       logOut() {
         this.$store.commit('LOGOUT')
         window.localStorage.clear()
+        this.$router.push({name: 'home'})
+        
+        this.showLink = false;
+        setTimeout(() => {
+          this.showSidebar = false;
+        }, 50);
+        this.$emit('open-side-bar', this.showLink)
+        this.popAva = false
       },
       goToMy() {
         this.$store.dispatch('getProfile', this.userId)
