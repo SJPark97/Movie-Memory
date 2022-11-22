@@ -5,8 +5,8 @@
     class="x-mark" 
     @click="popExit"
     />
-    <h2>리뷰 작성</h2>
-    <form @submit.prevent="createReview">
+    <h2>리뷰 수정</h2>
+    <form @submit.prevent="updateReview">
       <label for="review-title">제목</label>
       <input type="text" id="review-title" v-model.trim="reviewTitle">
       <br>
@@ -15,7 +15,7 @@
       <br>
       <input @change="uploadImg" ref="reviewImg" type="file" accept="image/*">
       <br>
-      <input type="submit" value="작성">
+      <input type="submit" value="수정">
     </form>
   </div>
 </template>
@@ -26,17 +26,20 @@ import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
-  name: 'ReviewCreate',
-  data() {
-    return {
-      reviewTitle: null,
-      reviewContent: null,
-      reviewImg: null,
-    }
+  name: 'ReviewUpdate',
+  props: {
+    review: Object,
   },
   computed: {
     token() {
       return this.$store.state.token
+    },
+  },
+  data() {
+    return {
+      reviewTitle: this.review.title,
+      reviewContent: this.review.content,
+      reviewImg: this.review.img,
     }
   },
   methods: {
@@ -46,29 +49,31 @@ export default {
     uploadImg() {
       this.reviewImg = this.$refs.reviewImg.files
     },
-    createReview() {
+    updateReview() {
       const formData = new FormData()
       formData.append('title', this.reviewTitle)
       formData.append('content', this.reviewContent)
       formData.append('img', this.$refs.reviewImg.files[0])
-      const moviePk = this.$route.params.movie_id
+      const reviewId = this.$route.params.review_id
+
       axios({
-        method: 'post',
-        url: `${API_URL}/api/v1/movies/${moviePk}/reviews/`,
+        method: 'put',
+        url: `${API_URL}/api/v1/reviews/${reviewId}/`,
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization' : `Token ${this.token}`
+          'Authorization': `Token ${this.$store.state.token}`
         },
         data: formData,
       })
         .then((response) => {
-          this.$router.push({name: 'review_detail', params: {review_id: response.data.id}})
+          this.$store.dispatch("getOneReview", reviewId)
+          this.popExit()
         })
         .catch((error) => {
           console.log(error)
-          alert('리뷰를 작성할 수 없습니다')
+          alert('리뷰를 수정할 수 없습니다.')
         })
-    } 
+    },
   }
 }
 </script>
@@ -93,6 +98,7 @@ div {
   z-index: 999;
   background-color: rgb(218, 210, 210);
 }
+
 .x-mark {
   position: absolute;
   top: 20px;

@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <p>나의 모든 영화 정보</p>
     <div>
       <h1>MOVIE</h1>
     </div>  
@@ -46,6 +47,11 @@ export default {
 
 <style scoped>
 @import url(https://fonts.googleapis.com/css?family=Lato:300);
+@import url('https://webfontworld.github.io/Rebecca/Rebecca.css');
+
+p {
+  font-family: 'Rebecca';
+}
 
 .home {
   position: relative;

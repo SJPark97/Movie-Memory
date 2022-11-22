@@ -7,20 +7,20 @@
       </div>
       <div class="profile-text">
         <h1>{{ user.username }}</h1>
-        <h3>{{ user.nick_name }}</h3>
+        <h4>{{ user.nick_name }}</h4>
         <p> {{ user.self_introduction }}</p>
-        <button v-show="this.$store.state.userId === user.id" @click="updateInfo">회원 정보 수정</button>
+        <!-- <button v-show="this.$store.state.userId === user.id" @click="updateInfo">회원 정보 수정</button> -->
         <UpdateUserInfo v-show="updataAva"/>
       </div>
 
       <div class="follow-count">
         <div>
-          <h3>팔로우</h3>
-          <h3>{{ followers }}</h3>
+          <h4>팔로우</h4>
+          <h2>{{ followers }}</h2>
         </div>
         <div>
-          <h3>팔로잉</h3>
-          <h3>{{ followings }}</h3>
+          <h4>팔로잉</h4>
+          <h2>{{ followings }}</h2>
         </div>
       </div>
 
@@ -53,6 +53,9 @@ export default {
     follow() {
       this.$store.dispatch('follow', this.$route.params.userId)
     }
+  },
+  created() {
+    this.$store.dispatch('FirstFollow', this.$route.params.userId)
   }
 }
 </script>
@@ -63,6 +66,7 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 70vw;
+  height: 220px;
   margin-top: 5%;
   margin-left: 15%;
   margin-right: 15%
@@ -75,7 +79,7 @@ export default {
   display: inline-block;
   height: 15vw;
   width: 15vw;
-  margin-left: 10%;
+  margin-left: 5%;
   // padding: 1px;
   // border: 1px solid gray;
   // position: relative;
@@ -92,20 +96,37 @@ export default {
   border-radius: 100%;
 }
 
+.profile-img > button {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.follow {
+  background-color: rgb(219, 227, 230);
+
+}
+
+.following {
+  color: green;
+  background-color: rgb(194, 219, 211);
+
+}
+
 .profile-text {
   display: inline-block;
   text-align: left;
   width: 25vw;
-  margin-right: 10%;
+  margin-left: 5%;
 }
 
 .profile-text > h1 {
   font-size: 4vw;
-  margin-bottom: 1vw;
+  margin-bottom: 2vw;
 }
 
-.profile-text > h3 {
-  font-size: 3vw;
+.profile-text > h4 {
+  font-size: 2.5vw;
   margin-bottom: 1vw;
   // font-weight: bold;
 }
@@ -133,23 +154,21 @@ button {
 //   }
 // }
 
-.follow {
-  background-color: skyblue;
-  font-weight: bold;
-}
-
-.following {
-  color: green;
-  font-weight: bold;
-}
 
 .follow-count {
   display: inline-block;
-  width: 20vw;
+  width: 25vw;
 }
 
 .follow-count > div {
   display: inline-block;
   width: 9vw;
+  margin-top: 20px;
+  // border: 1px solid gray;
+  background-color: #ebd8d5;
+  border-radius: 20%;
+  margin-left: 5px;
+  padding: 5px;
+  box-shadow: 1px 1px gray;
 }
 </style>

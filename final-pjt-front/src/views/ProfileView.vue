@@ -12,7 +12,7 @@
       >
         <b-tab avtive>
           <template v-slot:title>
-            <span>
+            <span>게시물
             <font-awesome-icon icon="fa-solid fa-pen"/>
             </span>
           </template>
@@ -32,7 +32,7 @@
         </b-tab>
         <b-tab >
           <template v-slot:title>
-            <span>
+            <span>좋아요
             <font-awesome-icon icon="fa-solid fa-heart" />
             </span>
           </template>
@@ -118,6 +118,8 @@ svg:focus-within {
 
 span {
   font-size: 130%;
+  color: black;
 }
+
 
 </style>

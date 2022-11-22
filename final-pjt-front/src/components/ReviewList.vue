@@ -2,6 +2,8 @@
   <div class="review-list">
     <hr>
     <h1>REVIEWS</h1>
+    <p v-if="reviews">{{ reviews.length }}개의 리뷰가 있습니다. </p>
+    <p v-else>리뷰가 아직 없습니다.</p>
     <div 
       v-for="review in reviews" 
       :key="review.id" 

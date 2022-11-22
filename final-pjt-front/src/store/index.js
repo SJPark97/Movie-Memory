@@ -36,6 +36,8 @@ export default new Vuex.Store({
     is_followed: false,
     followers: 0,
     followings: 0,
+    newNotices: [],
+    oldNotices: [],
   },
   getters: {
   },
@@ -52,6 +54,7 @@ export default new Vuex.Store({
     },
     GET_ONE_MOVIE(state, movie) {
       state.movie = movie
+      state.review = null
     },
     GET_REVIEWS(state, reviews) {
       state.reviews = reviews

@@ -9,7 +9,12 @@
       <button @click="toBefore"><font-awesome-icon icon="fa-solid fa-chevron-left" /></button>
       <transition-group name="fade">
         <div class="movie" v-for="movie in myGenreMovies" :key="movie.id">
-          <img :src="movie.poster_URL" alt="" class="animate__animated animate__fadeIn">
+          <img 
+            @click="goToDetail(movie.id)" 
+            :src="movie.poster_URL" 
+            alt="" 
+            class="animate__animated animate__fadeIn"
+          >
         </div>
       </transition-group>
       <button @click="toNext"><font-awesome-icon icon="fa-solid fa-chevron-right" /></button>
@@ -45,9 +50,14 @@ export default {
       if (this.num < 15) {
         this.num = this.num + 1
       }
+    },
+    goToDetail(id) {
+      this.$router.push({ name: 'movie_detail', params: {movie_id: id}})
     }
   }
 }
+
+
 </script>
 
 <style scoped>
@@ -108,6 +118,18 @@ svg {
   cursor: pointer;
   transform: scale(1.1);
   z-index: 1 !important;
+}
+
+.actions {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.animate__fadeIn {
+  /* animation-delay: 0.2s; */
+  animation-duration: 1s;
 }
 
 </style>

@@ -13,12 +13,22 @@
         </span>
         {{ like_users_count }}
         <p><router-link :to="`/${review.user}`">작성자: {{ review.username }}</router-link></p>
-        <span>작성일시 : {{ review?.created_at.substr(0, 10) }}</span>
-        <span>수정일시 : {{ review?.updated_at.substr(0, 10) }}</span>
+        <div class="back-to-movie">
+          <div>
+            <span>작성일시 : {{ review?.created_at.substr(0, 10) }}</span>
+            <span>수정일시 : {{ review?.updated_at.substr(0, 10) }}</span>
+          </div>
+          <router-link :to="`/movies/${review.movie}`">목록</router-link>
+        </div>
+        <br>
 
         <!-- 버튼 리뷰 작성자에게만 보임 -->
-        <button @click="updateReview">리뷰 수정</button>
-
+        <button 
+          v-show="this.$store.state.userId === review.user" 
+          @click="updateReview"
+          class="update"
+        >리뷰 수정</button>
+        <ReviewUpdate v-show="popAva" @pop-exit="popExit" :review="review"/>
 
         <button 
           v-show="this.$store.state.userId === review.user" 
@@ -39,6 +49,8 @@
       <div class="comment-create">
         <hr>
         <h4>댓글 쓰기</h4>
+        <p v-if="this.$store.state.reviewComments">{{ this.$store.state.reviewComments.length }}개의 댓글이 있습니다.</p>
+        <p v-else>댓글이 아직 없습니다.</p>
         <form @submit.prevent="createComment">
           <input type="text" v-model.trim="comment">
           <input type="submit" value="작성">
@@ -55,6 +67,7 @@
 
 <script>
 import CommentList from '@/components/CommentList.vue'
+import ReviewUpdate from '@/components/ReviewUpdate.vue'
 import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:8000'
@@ -63,6 +76,7 @@ export default {
   name: 'ReviewView',
   components: {
     CommentList,
+    ReviewUpdate,
   },
   computed: {
     review() {
@@ -86,6 +100,7 @@ export default {
     return {
       comment: null,
       alert: false,
+      popAva: false,
     }
   },
   methods: {
@@ -166,12 +181,16 @@ export default {
         })
     },
     updateReview() {
-
+      this.popAva = true
+    },
+    popExit() {
+      this.popAva = false
     }
   },
   created() {
     this.getOneReview(this.$route.params.review_id)
     this.getMovieReview(this.review.movie)
+    this.getReviewComment(this.$route.params.review_id)
     this.$store.dispatch('getReviewComment', this.$route.params.review_id)
     this.$store.dispatch('FirstFollow', this.$route.params.userId)
   }
@@ -179,6 +198,7 @@ export default {
 </script>
 
 <style scoped>
+
 
 h2 {
   display: inline-block;
@@ -216,10 +236,31 @@ button {
   background-color: transparent;
   color: red;
   padding: 0;
-  margin-right: 10px;
+  margin-right: 20px;
   margin-bottom: 5px;
+  /* font-weight: bold; */
 }
 
+.update {
+  color: rgb(58, 58, 248);
+}
+
+.back-to-movie {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+
+.back-to-movie > a {
+  background-color: #E6E6E6;
+  /* border: 1px solid gray; */
+  border-radius: 10px;
+  padding: 10px;
+}
+.back-to-movie > a:hover {
+  color: black;
+  font-weight: bold;
+}
 .no {
   color: blue
 }
@@ -261,7 +302,7 @@ button {
   margin-left: 30px;
   margin-right: 30px;
   margin-top: 20px;
-  
+
 }
 
 
@@ -275,9 +316,20 @@ button {
   margin-top: 30px;
 }
 
+.comment-create > h4 {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  width: 150px;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 .comment-create > form > input[type='text'] {
   width: 30vw;
-  height: 40px;
+  height: 45px;
   border-radius: 10px;
   border: 1px solid gray;
   box-shadow: 1px 1px 1px 0px #908581;
@@ -288,9 +340,7 @@ button {
   color: black;
   border: 1px solid gray;
   box-shadow: 1px 1px 1px 0px #908581;
-  border-radius: 100%;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  border-radius: 40%;
   padding-left: 10px;
   padding-right: 10px;
   height: 50px;
