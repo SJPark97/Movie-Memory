@@ -5,6 +5,7 @@
     <NowWeather/>
     <BannerComp/>
     <UserRecommend/>
+    <RandomGenreRecommend/>
     <GenreRecommend/>
   </div>
 </template>
@@ -13,6 +14,7 @@
 import BannerComp from '@/components/BannerComp'
 import UserRecommend from '@/components/UserRecommend'
 import GenreRecommend from '@/components/GenreRecommend'
+import RandomGenreRecommend from '@/components/RandomGenreRecommend'
 import NowWeather from '@/components/NowWeather'
 
 
@@ -22,6 +24,7 @@ export default {
     BannerComp,
     UserRecommend,
     GenreRecommend,
+    RandomGenreRecommend,
     NowWeather,
   },
   // methods: {
@@ -32,11 +35,16 @@ export default {
   created() {
     this.$store.dispatch("getUserInfo")
     this.$store.dispatch("getMyGenreMovie")
+    this.$store.dispatch("getRandomGenreMovie")
   }
 }
 </script>
 
 <style>
+.recommend {
+  /* padding-bottom: 50%; */
+  /* margin-bottom: ; */
+}
 
 .slide-up {
   transition: all 0.25s;

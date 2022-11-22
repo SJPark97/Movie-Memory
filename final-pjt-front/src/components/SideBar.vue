@@ -14,7 +14,7 @@
         <div v-show="showLink" key="6">
           <p @click="popReview" key="7">알림</p>
           <!-- newNotice가 true면 새로운 알림이 있음 false면 없음 -->
-          <Notice v-show="popAva" @pop-exit="popExit"/>
+          <Notice v-show="popAva" @pop-exit="popExit" @close-notice="closeNotice"/>
         </div>
         <div v-show="showLink && this.$store.state.token" key="7"><button @click="logOut" class="logout">LOGOUT</button></div>
       </transition-group>
@@ -32,16 +32,6 @@ import Notice from '@/components/Notice'
       Notice,
     },
     computed: {
-      notice() {
-        const notices = this.$store.state.notices
-        this.newNotice = true
-        for (const notice of notices) {
-          if (notice.is_checked === False) {
-            this.newNotice = true
-            break
-          }
-        }
-      },
       username() {
         return this.$store.state.username
       },
@@ -50,7 +40,10 @@ import Notice from '@/components/Notice'
       },
       user() {
         return this.$store.state.user
-      }
+      },
+      noti() {
+        return this.$store.state.noti
+      },
     },
     data: () => {
       return {
@@ -74,6 +67,7 @@ import Notice from '@/components/Notice'
             this.showSidebar = false;
           }, 50);
           this.$emit('open-side-bar', this.showLink)
+          this.popAva = false
         }
         else {
           this.showSidebar = true;
@@ -81,6 +75,7 @@ import Notice from '@/components/Notice'
             this.showLink = true;
           }, 500);
           this.$emit('open-side-bar', this.showSidebar)
+          this.$store.dispatch('getNotice')
         }
       },
       logOut() {
@@ -89,6 +84,10 @@ import Notice from '@/components/Notice'
       },
       goToMy() {
         this.$store.dispatch('getProfile', this.userId)
+      },
+      closeNotice() {
+        this.popAva = false
+        console.log(this.popAva)
       }
     }
   }

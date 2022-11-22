@@ -16,7 +16,7 @@
             </span>
           </template>
           <b-card-text>
-            <NoticeNew @newNotice="newNotice"/>
+            <NoticeNew @close-notice="closeNotice"/>
           </b-card-text>
         </b-tab>
         <b-tab >
@@ -26,7 +26,7 @@
             </span>
           </template>
           <b-card-text>
-            <NoticeOld @oldNotice="oldNotice"/>
+            <NoticeOld @close-notice="closeNotice"/>
           </b-card-text>
         </b-tab>
       </b-tabs>
@@ -40,12 +40,6 @@ import NoticeOld from '@/components/NoticeOld'
 
 export default {
   name: 'Notice',
-  data() {
-    return {
-      newNotice: null,
-      oldNotice: null,
-    }
-  },
   components: {
     NoticeNew,
     NoticeOld,
@@ -56,25 +50,13 @@ export default {
     }
   },
   methods: {
-    notice() {
-      const notices = this.$store.state.notices
-      const newNotice = []
-      const oldNotice = []
-      for (const notice of notices) {
-        if (notice.is_checked === False) {
-          newNotice.push(notice)
-        } else {
-          oldNotice.push(notice)
-        }
-      }
-    },
     popExit() {
       this.$emit('pop-exit')
     },
+    closeNotice() {
+      this.$emit('close-notice')
+    }
   },
-  created() {
-    this.notice()
-  }
 }
 </script>
 

@@ -29,8 +29,10 @@ export default new Vuex.Store({
     myReviews: [],
     likedReviews: [],
     likedMovies: [],
-    notices: null,
+    noti: false,
     myGenreMovies: [],
+    randomGenreMovies: [],
+    randomGenre: null,
     is_followed: false,
     followers: 0,
     followings: 0,
@@ -102,8 +104,14 @@ export default new Vuex.Store({
     USER_LIKED_REVIEW(state, reviews) {
       state.likedReviews = reviews
     },
-    GET_NOTICE(state, notices) {
-      state.notices = notices
+    GET_NOTICE(state, payload) {
+      state.newNotices = payload.newNotice
+      state.oldNotices = payload.oldNotice
+      if (payload.newNotice === []) {
+        state.noti = false
+      } else {
+        state.noti = true
+      }
     },
     GET_MY_GENRE_MOVIE(state, movies) {
       state.myGenreMovies = movies
@@ -117,6 +125,12 @@ export default new Vuex.Store({
       state.is_followed = data.is_followed
       state.followers = data.followers_count
       state.followings = data.followings_count
+    },
+    GET_RANDOM_GENRE_MOVIE(state, movies) {
+      state.randomGenreMovies = movies
+    },
+    RANDOM_MOVIE_GENRE(state, genre) {
+      state.randomGenre = genre
     }
   },
   actions: {
@@ -333,10 +347,35 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
-          context.commit('GET_NOTICE', response.data)
+          const newNotice = []
+          const oldNotice = []
+          for (const notice of response.data) {
+            if (notice.is_checked === false) {
+              newNotice.push(notice)
+            } else {
+              oldNotice.push(notice)
+            }
+          }
+          const payload = {
+            newNotice,
+            oldNotice,
+          }
+          context.commit('GET_NOTICE', payload)
         })
         .catch((error) => {
           console.log(error)
+        })
+    },
+    visitNoti(context, id) {
+      axios({
+        method: 'put',
+        url: `${API_URL}/accounts/user/${id}/change_notice/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.dispatch('getNotice')
         })
     },
     getMyGenreMovie(context) {
@@ -349,6 +388,26 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('GET_MY_GENRE_MOVIE', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getRandomGenreMovie(context) {
+      const genres = {28: '액션', 12: '모험', 16: '애니메이션', 35: '코미디', 80: '범죄', 99: '다큐멘터리', 18: '드라마', 10751: '가족', 14: '판타지', 36: '역사', 27: '공포', 10402: '음악', 9648: '미스터리', 10749: '로맨스', 878: '공상과학', 10770: 'TV영화', 53: '스릴러', 10752: '전쟁', 37: '서부'}
+      const index = [28, 12, 16, 35, 80, 99, 18, 10751, 14, 36, 27, 10402, 9648, 10749, 878, 10770, 53, 10752, 37]
+      const num = Math.floor(Math.random()*19);
+      const genre = genres[index[num]]
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/genres/${index[num]}/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.commit('GET_RANDOM_GENRE_MOVIE', response.data)
+          context.commit('RANDOM_MOVIE_GENRE', genre)
         })
         .catch((error) => {
           console.log(error)
