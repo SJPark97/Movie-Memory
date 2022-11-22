@@ -161,7 +161,7 @@ img {
 }
 
 .login-pop {
-  /* animation-delay: 6.7s; */
+  animation-delay: 6.7s;
 }
 .move {
   font-size: 3vw;

@@ -32,7 +32,7 @@ export default {
 
 .comment-list {
   display: inline-block;
-  width: 80%;
+  width: 90%;
   text-align: left;
   margin-left: 30px;
   margin-right: 30px;

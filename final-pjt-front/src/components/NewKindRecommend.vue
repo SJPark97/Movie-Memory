@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="recommend">
     <div class="movie-text">
       <h3>{{ this.$store.state.username }}님 이런 색다른 영화는 어떠세요?</h3>
     </div>

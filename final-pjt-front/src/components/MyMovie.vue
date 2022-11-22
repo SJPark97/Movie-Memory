@@ -2,7 +2,7 @@
   <div>
     <div 
       class="feed"
-      v-for="movie in movies" 
+      v-for="movie in movies.slice().reverse()" 
       :key="movie.id"
       @click="moveToMovie(movie.id)"
     >

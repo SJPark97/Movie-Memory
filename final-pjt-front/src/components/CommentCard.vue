@@ -6,8 +6,8 @@
       <span>{{ comment.username }}</span>
       <span>{{ comment.created_at.substr(0, 10) }}</span>
       <span @click="likeUnlike">
-        <font-awesome-icon icon="fa-solid fa-heart" v-show="is_liked"/>
-        <font-awesome-icon icon="fa-regular fa-heart"  v-show="!is_liked"/>
+        <font-awesome-icon icon="fa-solid fa-heart" class="heart" v-show="is_liked"/>
+        <font-awesome-icon icon="fa-regular fa-heart" class="heart" v-show="!is_liked"/>
         {{ like_users_count }}
       </span>
     </div>
@@ -22,8 +22,9 @@
       <div @click="popSelector" class="dot">
         <font-awesome-icon icon="fa-solid fa-ellipsis-vertical"/>
         <div v-show="selector" class="pop">
-          <p @click="changeInput">수정</p>
-          <p @click="deleteComment(comment.id)">삭제</p>
+          <p @click="changeInput" class="pop-name">수정</p>
+          <hr>
+          <p @click="deleteComment(comment.id)" class="pop-name">삭제</p>
         </div>
       </div>
 
@@ -159,6 +160,7 @@ span {
 
 hr {
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 .content {
@@ -172,7 +174,7 @@ hr {
 }
 .dot {
   display: inline-block;
-  margin-right: 15px;
+  margin-right: 17px;
   font-size: 20px;
   background-color: transparent;
   border: none;
@@ -200,12 +202,19 @@ hr {
   text-align: center;
 }
 
-.pop > p {
+.pop-name {
+  font-size: 13px;
   margin: 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
   padding: 0;
 }
 
 
+.pop-name:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
 
 .comment-create {
   display: inline-block;
@@ -238,6 +247,9 @@ hr {
   margin-left: 10px;
   text-decoration: none;
   background-color: rgb(218, 210, 210);
+}
+.heart {
+  color: rgb(208, 93, 93);
 }
 
 </style>

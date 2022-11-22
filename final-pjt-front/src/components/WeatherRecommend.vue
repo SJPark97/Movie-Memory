@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="recommend">
     <div class="movie-text">
       <h3>{{ weatherGenre }} 날씨에 어울리는 영화</h3>
     </div>

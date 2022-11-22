@@ -1,5 +1,5 @@
 <template>
-  <div class="review-list">
+  <div>
     <hr>
     <h1>REVIEWS</h1>
     <p v-if="reviews">{{ reviews.length }}개의 리뷰가 있습니다. </p>
@@ -40,6 +40,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 img {
   object-fit: cover;
   width: 130px;
@@ -47,6 +49,10 @@ img {
 }
 
 h1 {
+  font-family: Harmond;
+  color: black;
+  text-shadow: 1px 1px #908581;
+
   text-align: left;
   margin-top: 30px;
   margin-bottom: 30px;

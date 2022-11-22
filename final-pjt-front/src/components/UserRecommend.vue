@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="recommend">
     <div class="movie-text">
-      <h3>{{ this.$store.state.username }}님이 선호하는 장르의 영화</h3>
+      <h3>{{ this.$store.state.nickname }}님이 선호하는 장르의 영화</h3>
     </div>
 
     <div class="all-movie">

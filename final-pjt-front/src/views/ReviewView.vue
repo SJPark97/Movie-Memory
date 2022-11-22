@@ -8,18 +8,23 @@
         <h1>{{ review.title }}</h1>
 
         <span @click="likeUnlike">
-          <font-awesome-icon icon="fa-solid fa-heart" v-show="is_liked"/>
-          <font-awesome-icon icon="fa-regular fa-heart"  v-show="!is_liked"/>
+          <font-awesome-icon icon="fa-solid fa-heart" class="heart" v-show="is_liked"/>
+          <font-awesome-icon icon="fa-regular fa-heart" class="heart" v-show="!is_liked"/>
         </span>
-        {{ like_users_count }}
-        <p><router-link :to="`/${review.user}`">작성자: {{ review.username }}</router-link></p>
+        겨우 {{ like_users_count }} 명이 좋아함
+
         <div class="back-to-movie">
           <div>
-            <span>작성일시 : {{ review?.created_at.substr(0, 10) }}</span>
-            <span>수정일시 : {{ review?.updated_at.substr(0, 10) }}</span>
+            <p><span class="name">작성자</span> |
+              <router-link :to="`/${review.user}`" class="value">{{ review.username }}</router-link>
+            </p>
           </div>
           <router-link :to="`/movies/${review.movie}`">목록</router-link>
         </div>
+
+        <span class="day-name">작성일</span><span class="day">{{ review?.created_at.substr(0, 10) }}</span>
+        <span class="day-name">수정일</span><span class="day">{{ review?.updated_at.substr(0, 10) }}</span>
+        
         <br>
 
         <!-- 버튼 리뷰 작성자에게만 보임 -->
@@ -48,7 +53,7 @@
       </div>
       <div class="comment-create">
         <hr>
-        <h4>댓글 쓰기</h4>
+        <h4>COMMENT</h4>
         <p v-if="this.$store.state.reviewComments">{{ this.$store.state.reviewComments.length }}개의 댓글이 있습니다.</p>
         <p v-else>댓글이 아직 없습니다.</p>
         <form @submit.prevent="createComment">
@@ -199,8 +204,19 @@ export default {
 
 <style scoped>
 
+body {
+  display: flex;
+  justify-content: center;
+}
 
+hr {
+  margin-top: 0; 
+}
 h2 {
+  font-family: Harmond;
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px #908581;
+
   display: inline-block;
   position: relative;
   text-align: center;
@@ -210,9 +226,9 @@ h2 {
 }
 .review {
   display: inline-block;
-  position: relative;
+  /* position: relative; */
   text-align: left;
-  width: 70%;
+  width: 80%;
   height: auto;
   /* border: 2px solid rgb(203, 120, 134); */
   /* border-top-left-radius: 30px; */
@@ -236,8 +252,10 @@ button {
   background-color: transparent;
   color: red;
   padding: 0;
-  margin-right: 20px;
+  font-size: 13px;
+  margin-top: 10px;
   margin-bottom: 5px;
+  margin-right: 20px;
   /* font-weight: bold; */
 }
 
@@ -245,21 +263,35 @@ button {
   color: rgb(58, 58, 248);
 }
 
+.heart {
+  color: rgb(208, 93, 93);
+  font-size: 2.5vw;
+}
+
 .back-to-movie {
   display: flex;
   justify-content: space-between;
   vertical-align: middle;
+  margin: 0;
 }
 
 .back-to-movie > a {
+  display: inline-block;
+  height: 42px;
   background-color: #E6E6E6;
   /* border: 1px solid gray; */
   border-radius: 10px;
   padding: 10px;
+  font-size: 15px;
 }
 .back-to-movie > a:hover {
   color: black;
   font-weight: bold;
+}
+
+.back-to-movie > div > p {
+  font-size: 20px;
+  margin: 0;
 }
 .no {
   color: blue
@@ -268,7 +300,7 @@ button {
 .title {
   display: inline-block;
   height: 100px;
-  width: 80%;
+  width: 90%;
   text-align: left;
   margin-left: 30px;
   margin-right: 30px;
@@ -281,12 +313,13 @@ button {
 
 .title > p {
   font-size: 20px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  /* margin-top: 5px;
+  margin-bottom: 5px; */
+  margin: 0;
 }
 .content {
   display: inline-block;
-  width: 70%;
+  width: 90%;
   margin-left: 30px;
   margin-right: 30px;
 
@@ -308,7 +341,7 @@ button {
 
 .comment-create {
   display: inline-block;
-  width: 80%;
+  width: 90%;
   text-align: left;
   margin-left: 30px;
   margin-right: 30px;
@@ -317,10 +350,14 @@ button {
 }
 
 .comment-create > h4 {
+  font-family: Harmond;
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px #908581;
+
   display: inline-block;
   position: relative;
   text-align: center;
-  width: 150px;
+  width: 200px;
   border-right: 1px solid black;
   border-left: 1px solid black;
   margin-top: 10px;
@@ -328,7 +365,7 @@ button {
 }
 
 .comment-create > form > input[type='text'] {
-  width: 30vw;
+  width: 40vw;
   height: 45px;
   border-radius: 10px;
   border: 1px solid gray;
@@ -347,5 +384,30 @@ button {
   margin-left: 10px;
   text-decoration: none;
   background-color: rgb(218, 210, 210);
+}
+
+.name {
+  display: inline-block;
+  width: 50px;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.value {
+  margin-left: 10px;
+}
+
+.day-name {
+  display: inline-block;
+  width: 37px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.day {
+  font-size: 13px;
+  margin-right: 50px;
 }
 </style>

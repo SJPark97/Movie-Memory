@@ -1,8 +1,9 @@
 <template>
   <div>
+    <!-- 최신 리뷰가 가장 위에 뜨도록 =>  .slice().reverse() -->
     <div 
       class="feed"
-      v-for="review in reviews" 
+      v-for="review in reviews.slice().reverse()" 
       :key="review.id"
       @click="moveToReview(review.id)"
     >

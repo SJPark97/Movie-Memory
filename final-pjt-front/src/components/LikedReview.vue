@@ -2,7 +2,7 @@
   <div>
     <div 
       class="feed"
-      v-for="review in reviews" 
+      v-for="review in reviews.slice().reverse()" 
       :key="review.id"
       @click="moveToReview(review.id)"
     >

@@ -52,10 +52,23 @@ export default {
 </script>
 
 <style>
+
+
 .recommend {
-  /* padding-bottom: 50%; */
-  /* margin-bottom: ; */
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  text-align: left;
+  padding: 0;
+  margin: 2px;
 }
+
+.recommend:after {
+  content: "";
+  display: block;
+  padding-bottom: 10%;
+}
+
 
 .slide-up {
   transition: all 0.25s;
