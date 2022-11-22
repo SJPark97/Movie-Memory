@@ -82,7 +82,7 @@ export default {
 .profile-info {
   display: flex;
   justify-content: space-between;
-  width: 70vw;
+  width: 70%;
   height: 220px;
   margin-top: 5%;
   margin-left: 15%;
@@ -134,7 +134,7 @@ export default {
 .profile-text {
   display: inline-block;
   text-align: left;
-  width: 25vw;
+  width: 30%;
   margin-left: 5%;
 }
 
@@ -181,21 +181,21 @@ button {
 
 .follow-count {
   display: inline-block;
-  width: 25vw;
+  width: 30%;
 }
 
 .follow-count > div {
   display: inline-block;
-  width: 10vw;
-  height: 10vw;
+  width: 40%;
+  height: auto;
   text-align: center;
   vertical-align: middle;
-  margin-top: 20px;
+  margin-top: 10px;
   // border: 1px solid gray;
-  background-color: #ebd8d5;
-  border-radius: 20%;
+  background-color: #E6E6E6;
+  border-radius: 10px;
   margin-left: 5px;
-  padding: 5px;
+  padding: 0px;
   box-shadow: 1px 1px gray;
 }
 

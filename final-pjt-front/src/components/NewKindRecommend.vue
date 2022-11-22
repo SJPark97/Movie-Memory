@@ -1,7 +1,7 @@
 <template>
   <div class="recommend">
     <div class="movie-text">
-      <h3>{{ this.$store.state.username }}님 이런 색다른 영화는 어떠세요?</h3>
+      <h3>{{ this.$store.state.nickname }}님 이런 색다른 영화는 어떠세요?</h3>
     </div>
 
     <div class="all-movie">
@@ -60,9 +60,6 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  /* text-align: left; */
-}
 
 button {
   border: none;
@@ -77,11 +74,6 @@ svg {
   text-shadow: 2px 2px gray;
 }
 
-.movie-text {
-  /* display: inline-block;
-  width: 1200px;
-  background-color: rgba(255, 255, 255, 0.4); */
-}
 
 .movie {
   display: inline-block;

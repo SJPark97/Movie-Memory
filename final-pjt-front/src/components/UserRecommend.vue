@@ -60,9 +60,6 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  /* text-align: left; */
-}
 
 button {
   border: none;
@@ -75,12 +72,6 @@ svg {
   text-decoration: none;
   color: white;
   text-shadow: 2px 2px gray;
-}
-
-.movie-text {
-  /* display: inline-block;
-  width: 1200px;
-  background-color: rgba(255, 255, 255, 0.4); */
 }
 
 .movie {
@@ -108,7 +99,6 @@ svg {
   box-shadow: 2px 2px 5px 0px rgb(44, 44, 44);
   transition: transform 0.4s;
 }
-
 .movie > img:hover {
   cursor: pointer;
   transform: scale(1.1);

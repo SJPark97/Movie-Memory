@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Hello,{{ $store.state.username }}</h1>
-    <h1 class="animate__animated animate__fadeInUp">An animated element</h1>
+    <h1>하이~! {{ $store.state.username }}님</h1>
+    <!-- <h1 class="animate__animated animate__fadeInUp">An animated element</h1> -->
     <NowWeather />
     <BannerComp />
     <UserRecommend />
@@ -53,12 +53,11 @@ export default {
 
 <style>
 
-
 .recommend {
   display: inline-block;
   width: 100%;
   position: relative;
-  text-align: left;
+  text-align: center;
   padding: 0;
   margin: 2px;
 }
@@ -66,7 +65,20 @@ export default {
 .recommend:after {
   content: "";
   display: block;
-  padding-bottom: 10%;
+  padding-bottom: 12%;
+}
+
+.recommend > div {
+  text-align: center;
+}
+.recommend > div > h3 {
+  display: inline-block;
+  font-family: 'Rebecca';
+  width: 70%;
+  background-color: rgb(144, 133, 129, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 3vw;
 }
 
 

@@ -1,6 +1,8 @@
 <template>
   <div>
     <UserInfo/>
+
+
     <!-- https://bootstrap-vue.org/docs/components/tabs -->
     <b-card no-body class="storage">
       <b-tabs 

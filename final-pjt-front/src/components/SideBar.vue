@@ -12,8 +12,11 @@
         <div v-show="showLink" key="4"><router-link to="/movies">Movies</router-link></div>
         <div @click="goToMy" v-show="showLink" key="5"><router-link :to="`/${userId}`">Profile</router-link></div>
         <div v-show="showLink" key="6">
-          <p @click="popReview" key="7">알림</p>
-          <!-- newNotice가 true면 새로운 알림이 있음 false면 없음 -->
+          <p @click="popReview">
+            <!-- newNotice가 true면 새로운 알림이 있음 false면 없음 -->
+            <font-awesome-icon icon="fa-solid fa-bell" v-if="newNotice"/>
+            <font-awesome-icon icon="fa-regular fa-bell" v-else/>
+          </p>
           <Notice v-show="popAva" @pop-exit="popExit" @close-notice="closeNotice"/>
         </div>
         <div v-show="showLink && this.$store.state.token" key="7"><button @click="logOut" class="logout">LOGOUT</button></div>
@@ -105,6 +108,10 @@ import Notice from '@/components/Notice'
 // router-link는 a태그로 인식됨
 a {
   text-decoration: none;
+}
+
+button {
+  border-radius: 5px;
 }
 
 img {

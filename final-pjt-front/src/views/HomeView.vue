@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <p>나의 모든 영화 정보</p>
+    
+    <!-- 영화 명언 -->
+    <h4>나는 매 순간을 꽉 차게 느끼며 살아갈 거야.</h4>
+    <p> - Soul -</p>
+
     <div>
       <h1>MOVIE</h1>
     </div>  
@@ -49,8 +53,10 @@ export default {
 @import url(https://fonts.googleapis.com/css?family=Lato:300);
 @import url('https://webfontworld.github.io/Rebecca/Rebecca.css');
 
-p {
+p, h4 {
   font-family: 'Rebecca';
+  color: #58504e;
+  text-shadow: 1px 1px  #F0E2D7;
 }
 
 .home {
@@ -59,6 +65,7 @@ p {
   width: 100vw;
   height: 100vh;
   vertical-align: center;
+  padding-top: 20px;
 }
 
 /* .box {
@@ -73,7 +80,7 @@ p {
   /* position: absolute; */
   /* justify-content: center; */
   width: 80%;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 
 img {
@@ -87,7 +94,7 @@ img {
   position: absolute;
   font-family: Harmond;
   margin: 0;
-  top: 80px;
+  top: 110px;
   color: #E6C628;
   text-shadow: 3px 3px #764E03;
   /* background-color: black; */

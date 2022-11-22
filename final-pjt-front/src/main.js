@@ -8,6 +8,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faBell } from "@fortawesome/free-regular-svg-icons";
+import { faBell as faBellSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -33,6 +34,7 @@ Vue.use(Popover)
 Vue.use(VPopover, { tooltip: true })
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add(faBell)
+library.add(faBellSolid)
 library.add(faHouse)
 library.add(faBars)
 library.add(faXmark)

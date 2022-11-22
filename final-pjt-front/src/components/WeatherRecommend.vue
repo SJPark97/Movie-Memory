@@ -63,10 +63,6 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  /* text-align: left; */
-}
-
 button {
   border: none;
   background-color: transparent;
@@ -78,12 +74,6 @@ svg {
   text-decoration: none;
   color: white;
   text-shadow: 2px 2px gray;
-}
-
-.movie-text {
-  /* display: inline-block;
-  width: 1200px;
-  background-color: rgba(255, 255, 255, 0.4); */
 }
 
 .movie {

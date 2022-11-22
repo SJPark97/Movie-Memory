@@ -19,7 +19,7 @@
       </form>
     </div>
 
-      <div @click="popSelector" class="dot">
+      <div @click="popSelector" class="dot" v-show="comment.username === this.$store.state.username">
         <font-awesome-icon icon="fa-solid fa-ellipsis-vertical"/>
         <div v-show="selector" class="pop">
           <p @click="changeInput" class="pop-name">수정</p>
