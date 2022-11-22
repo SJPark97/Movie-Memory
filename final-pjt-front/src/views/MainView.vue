@@ -2,29 +2,37 @@
   <div>
     <h1>Hello,{{ $store.state.username }}</h1>
     <h1 class="animate__animated animate__fadeInUp">An animated element</h1>
-    <NowWeather/>
-    <BannerComp/>
-    <UserRecommend/>
-    <RandomGenreRecommend/>
-    <GenreRecommend/>
+    <NowWeather />
+    <BannerComp />
+    <UserRecommend />
+    <RandomGenreRecommend />
+    <NewKindRecommend />
+    <WeatherRecommend />
+    <SeasonRecommend />
+    <GenreRecommend />
   </div>
 </template>
 
 <script>
-import BannerComp from '@/components/BannerComp'
-import UserRecommend from '@/components/UserRecommend'
-import GenreRecommend from '@/components/GenreRecommend'
-import RandomGenreRecommend from '@/components/RandomGenreRecommend'
-import NowWeather from '@/components/NowWeather'
-
+import BannerComp from "@/components/BannerComp";
+import UserRecommend from "@/components/UserRecommend";
+import GenreRecommend from "@/components/GenreRecommend";
+import RandomGenreRecommend from "@/components/RandomGenreRecommend";
+import NewKindRecommend from "@/components/NewKindRecommend";
+import WeatherRecommend from "@/components/WeatherRecommend";
+import SeasonRecommend from "@/components/SeasonRecommend";
+import NowWeather from "@/components/NowWeather";
 
 export default {
-  name: 'MainView',
+  name: "MainView",
   components: {
     BannerComp,
     UserRecommend,
     GenreRecommend,
     RandomGenreRecommend,
+    NewKindRecommend,
+    WeatherRecommend,
+    SeasonRecommend,
     NowWeather,
   },
   // methods: {
@@ -33,11 +41,14 @@ export default {
   //   }
   // },
   created() {
-    this.$store.dispatch("getUserInfo")
-    this.$store.dispatch("getMyGenreMovie")
-    this.$store.dispatch("getRandomGenreMovie")
-  }
-}
+    this.$store.dispatch("getUserInfo");
+    this.$store.dispatch("getMyGenreMovie");
+    this.$store.dispatch("getRandomGenreMovie");
+    this.$store.dispatch("getNewKindGenreMovie");
+    this.$store.dispatch("getWeatherGenreMovie");
+    this.$store.dispatch("getSeasonGenreMovie");
+  },
+};
 </script>
 
 <style>

@@ -33,6 +33,11 @@ export default new Vuex.Store({
     myGenreMovies: [],
     randomGenreMovies: [],
     randomGenre: null,
+    newKindGenreMovies: [],
+    weatherMovies: [],
+    weatherGenre: null,
+    seasonMovies: [],
+    seasonGenre: null,
     is_followed: false,
     followers: 0,
     followings: 0,
@@ -134,7 +139,22 @@ export default new Vuex.Store({
     },
     RANDOM_MOVIE_GENRE(state, genre) {
       state.randomGenre = genre
-    }
+    },
+    GET_NEW_KIND_GENRE_MOVIE(state, movies) {
+      state.newKindGenreMovies = movies
+    },
+    GET_WEATHER_MOVIE(state, movies) {
+      state.weatherMovies = movies
+    },
+    WEATHER_MOVIE_GENRE(state, genre) {
+      state.weatherGenre = genre
+    },
+    GET_SEASON_MOVIE(state, movies) {
+      state.seasonMovies = movies
+    },
+    SEASON_MOVIE_GENRE(state, genre) {
+      state.seasonGenre = genre
+    },
   },
   actions: {
     SignUp(context, payload) {
@@ -397,9 +417,9 @@ export default new Vuex.Store({
         })
     },
     getRandomGenreMovie(context) {
-      const genres = {28: '액션', 12: '모험', 16: '애니메이션', 35: '코미디', 80: '범죄', 99: '다큐멘터리', 18: '드라마', 10751: '가족', 14: '판타지', 36: '역사', 27: '공포', 10402: '음악', 9648: '미스터리', 10749: '로맨스', 878: '공상과학', 10770: 'TV영화', 53: '스릴러', 10752: '전쟁', 37: '서부'}
+      const genres = { 28: '액션', 12: '모험', 16: '애니메이션', 35: '코미디', 80: '범죄', 99: '다큐멘터리', 18: '드라마', 10751: '가족', 14: '판타지', 36: '역사', 27: '공포', 10402: '음악', 9648: '미스터리', 10749: '로맨스', 878: '공상과학', 10770: 'TV영화', 53: '스릴러', 10752: '전쟁', 37: '서부' }
       const index = [28, 12, 16, 35, 80, 99, 18, 10751, 14, 36, 27, 10402, 9648, 10749, 878, 10770, 53, 10752, 37]
-      const num = Math.floor(Math.random()*19);
+      const num = Math.floor(Math.random() * 19);
       const genre = genres[index[num]]
       axios({
         method: 'get',
@@ -411,6 +431,59 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_RANDOM_GENRE_MOVIE', response.data)
           context.commit('RANDOM_MOVIE_GENRE', genre)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getNewKindGenreMovie(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/new_kind_movies/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.commit('GET_NEW_KIND_GENRE_MOVIE', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getWeatherGenreMovie(context) {
+      const weather = { 1: '화창한', 2: '흐린', 3: '비오는', 4: '눈오는' }
+      const num = Math.ceil(Math.random() * 4);
+      const weather_info = weather[num]
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/weather/${num}/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.commit('GET_WEATHER_MOVIE', response.data)
+          context.commit('WEATHER_MOVIE_GENRE', weather_info)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getSeasonGenreMovie(context) {
+      const season = { 1: '봄', 2: '여름', 3: '가을', 4: '겨울' }
+      const num = Math.ceil(Math.random() * 4);
+      const season_info = season[num]
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/season/${num}/`,
+        headers: {
+          'Authorization': `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          context.commit('GET_SEASON_MOVIE', response.data)
+          context.commit('SEASON_MOVIE_GENRE', season_info)
         })
         .catch((error) => {
           console.log(error)

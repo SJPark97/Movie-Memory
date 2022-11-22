@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="movie-text">
-      <h3>{{ this.$store.state.username }}님이 선호하는 장르의 영화</h3>
+      <h3>{{ weatherGenre }} 날씨에 어울리는 영화</h3>
     </div>
 
     <div class="all-movie">
@@ -9,7 +9,7 @@
         <font-awesome-icon icon="fa-solid fa-chevron-left" />
       </button>
       <transition-group name="fade">
-        <div class="movie" v-for="movie in myGenreMovies" :key="movie.id">
+        <div class="movie" v-for="movie in weatherMovies" :key="movie.id">
           <img
             @click="goToDetail(movie.id)"
             :src="movie.poster_URL"
@@ -29,10 +29,13 @@
 
 <script>
 export default {
-  name: "UserRecommend",
+  name: "WeatherRecommend",
   computed: {
-    myGenreMovies() {
-      return this.$store.state.myGenreMovies.slice(this.num, this.num + 5);
+    weatherMovies() {
+      return this.$store.state.weatherMovies.slice(this.num, this.num + 5);
+    },
+    weatherGenre() {
+      return this.$store.state.weatherGenre;
     },
   },
   data() {
