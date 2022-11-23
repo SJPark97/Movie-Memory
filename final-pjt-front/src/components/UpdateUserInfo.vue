@@ -1,5 +1,10 @@
 <template>
   <div class="update-div">
+    <font-awesome-icon 
+      icon="fa-solid fa-xmark" 
+      class="x-mark" 
+      @click="popExit"
+    />
     <form @submit.prevent="setUserInfo">
 
       <!-- <p>선호하는 장르 선택</p>
@@ -104,6 +109,9 @@ export default {
     }
   },
   methods: {
+    popExit() {
+      this.$emit('pop-exit')
+    },
     setUserInfo() {
       const formData = new FormData()
       formData.append('age', this.age)
@@ -148,7 +156,8 @@ export default {
         data: formData,
       })
         .then((response) => {
-          console.log(response)
+          this.$store.dispatch('getProfile', this.$route.params.userId)
+          this.popExit()
         })
         .catch((error) => {
           console.log(error)

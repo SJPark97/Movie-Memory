@@ -5,16 +5,16 @@
 
               <!-- 회원 정보 수정은 나만 가능 -->
         <div v-show="user.username === this.$store.state.username">
-          <button @click="updateInfo">회원 정보 수정</button>
-          <UpdateUserInfo :user="user" v-show="updateAva"/>
+          <button @click="updateInfo" >회원 정보 수정</button>
+          <UpdateUserInfo :user="user" v-show="updateAva" @pop-exit="popExit"/>
         </div>
 
 
       </div>
       <div class="profile-text">
-        <h1>{{ user.username }}</h1>
-        <h4>{{ user.nick_name }}</h4>
-        <p> {{ user.self_introduction }}</p>
+        <h1>{{ user?.username }}</h1>
+        <h4>{{ user?.nick_name }}</h4>
+        <p v-if="user.self_introduction !== 'null'"> {{ user?.self_introduction }}</p>
       </div>
 
       <div class="follow-count">
@@ -57,7 +57,7 @@ export default {
     },
     followings() {
       return this.$store.state.followings
-    }
+    },
   },
   data(){
     return {
@@ -70,6 +70,9 @@ export default {
     },
     updateInfo() {
       this.updateAva = !this.updateAva
+    },
+    popExit() {
+      this.updateAva = false
     }
   },
   created() {

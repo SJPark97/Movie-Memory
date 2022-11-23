@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p v-show="movies == false">좋아하는 영화를 저장해보세요</p>
     <div 
       class="feed"
       v-for="movie in movies.slice().reverse()" 
@@ -32,6 +33,13 @@ div {
   text-align: left;
   position: relative;
   margin-left: 4%;
+}
+
+
+p {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
 }
 
 
