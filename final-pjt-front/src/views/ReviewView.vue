@@ -1,7 +1,8 @@
 <template>
   <div>
     <div>
-      <h2> REVIEW </h2>
+      <!-- <h2> REVIEW </h2> -->
+      <h2>{{ this.$store.state.movie.title }}</h2>
     </div>
     <div class="review">
       <div class="title">
@@ -11,11 +12,11 @@
           <font-awesome-icon icon="fa-solid fa-heart" class="heart" v-show="is_liked"/>
           <font-awesome-icon icon="fa-regular fa-heart" class="heart" v-show="!is_liked"/>
         </span>
-        겨우 {{ like_users_count }} 명이 좋아함
+        <span>{{ like_users_count }} 명이 좋아합니다</span>
 
         <div class="back-to-movie">
           <div>
-            <p><span class="name">작성자</span> |
+            <p><span class="name">작성자</span>
               <router-link :to="`/${review.user}`" class="value">{{ review.username }}</router-link>
             </p>
           </div>
@@ -51,9 +52,11 @@
         <img :src="`http://127.0.0.1:8000${review?.img}`" alt="">
         <h4>{{ review.content }}</h4>
       </div>
+
+
       <div class="comment-create">
         <hr>
-        <h4>COMMENT</h4>
+        <h4>COMMENTS</h4>
         <p v-if="this.$store.state.reviewComments">{{ this.$store.state.reviewComments.length }}개의 댓글이 있습니다.</p>
         <p v-else>댓글이 아직 없습니다.</p>
         <form @submit.prevent="createComment">
@@ -195,8 +198,8 @@ export default {
   created() {
     this.getOneReview(this.$route.params.review_id)
     this.getMovieReview(this.review.movie)
-    this.getReviewComment(this.$route.params.review_id)
-    this.$store.dispatch('getReviewComment', this.$route.params.review_id)
+    // this.getReviewComment(this.$route.params.review_id)
+    // this.$store.dispatch('getReviewComment', this.$route.params.review_id)
     this.$store.dispatch('FirstFollow', this.$route.params.userId)
   }
 }
@@ -213,7 +216,7 @@ hr {
   margin-top: 0; 
 }
 h2 {
-  font-family: Harmond;
+  /* font-family: Harmond; */
   color: rgb(0, 0, 0);
   text-shadow: 1px 1px #908581;
 
@@ -221,9 +224,14 @@ h2 {
   position: relative;
   text-align: center;
   width: 200px;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+  /* border-right: 1px solid black;
+  border-left: 1px solid black; */
+
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
 }
+
 .review {
   display: inline-block;
   /* position: relative; */
@@ -236,10 +244,12 @@ h2 {
   /* box-shadow: 1px 1px 3px 3px rgb(136, 136, 136); */
   padding: 20px;
 }
+
 span {
   font-size: 15px;
   /* margin-left: 5px; */
   margin-right: 10px;
+  font-size: 1.5vw;
 }
 
 a {
@@ -252,7 +262,7 @@ button {
   background-color: transparent;
   color: red;
   padding: 0;
-  font-size: 13px;
+  font-size: 1.1vw;
   margin-top: 10px;
   margin-bottom: 5px;
   margin-right: 20px;
@@ -277,12 +287,12 @@ button {
 
 .back-to-movie > a {
   display: inline-block;
-  height: 42px;
+  height: 3vw;
   background-color: #E6E6E6;
   /* border: 1px solid gray; */
   border-radius: 10px;
   padding: 10px;
-  font-size: 15px;
+  font-size: 1.2vw;
 }
 .back-to-movie > a:hover {
   color: black;
@@ -309,6 +319,9 @@ button {
 
 .title > h1 {
   margin-bottom: 15px;
+  /* margin-bottom: 30px; */
+  font-size: 3vw;
+  font-family: 'Rebecca';
 }
 
 .title > p {
@@ -326,7 +339,10 @@ button {
 }
 
 .content > img {
-  width: 300px; 
+  max-width: 65vw;
+  max-height: 40vh; 
+  margin-left: 2vw;
+
 }
 
 .content > h4 {
@@ -335,7 +351,7 @@ button {
   margin-left: 30px;
   margin-right: 30px;
   margin-top: 20px;
-
+  font-size: 1.5vw;
 }
 
 
@@ -358,14 +374,19 @@ button {
   position: relative;
   text-align: center;
   width: 200px;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+  /* border-right: 1px solid black;
+  border-left: 1px solid black; */
   margin-top: 10px;
   margin-bottom: 20px;
+  font-size: 2.7vw;
+}
+
+.comment-create > p {
+  font-size: 1.3vw;
 }
 
 .comment-create > form > input[type='text'] {
-  width: 40vw;
+  width: 50vw;
   height: 45px;
   border-radius: 10px;
   border: 1px solid gray;
@@ -380,7 +401,8 @@ button {
   border-radius: 40%;
   padding-left: 10px;
   padding-right: 10px;
-  height: 50px;
+  width: 50px;
+  height: 45px;
   margin-left: 10px;
   text-decoration: none;
   background-color: rgb(218, 210, 210);
@@ -388,26 +410,36 @@ button {
 
 .name {
   display: inline-block;
-  width: 50px;
+  width: 4.2vw;
   text-align: left;
   font-weight: 600;
   margin-bottom: 20px;
 }
 
 .value {
-  margin-left: 10px;
+  margin-left: 1vw;
+  font-size: 1.5vw;
+  background-color: #27100d3e;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.value:hover {
+  color: rgb(73, 44, 44);
+  font-weight: bold;
 }
 
 .day-name {
   display: inline-block;
-  width: 37px;
+  width: 3vw;
   text-align: left;
-  font-size: 13px;
+  font-size: 1vw;
   font-weight: 600;
 }
 
 .day {
-  font-size: 13px;
   margin-right: 50px;
+  font-size: 1vw;
 }
 </style>

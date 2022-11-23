@@ -76,9 +76,9 @@ export default {
   font-family: 'Rebecca';
   width: 70%;
   background-color: rgb(144, 133, 129, 0.5);
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 3vw;
+  padding: 11px;
+  border-radius: 30px;
+  font-size: 2.7vw;
 }
 
 

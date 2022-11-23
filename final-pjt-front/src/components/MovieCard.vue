@@ -5,9 +5,9 @@
     <div class="content">
       <h1>{{ movie?.title }}</h1>
       <!-- 좋아요 수 -->
-      <h3 @click="likeUnlike">
-        <font-awesome-icon icon="fa-solid fa-heart" v-show="is_liked"/>
-        <font-awesome-icon icon="fa-regular fa-heart"  v-show="!is_liked"/>
+      <h3>
+        <font-awesome-icon @click="likeUnlike" icon="fa-solid fa-heart" v-show="is_liked"/>
+        <font-awesome-icon @click="likeUnlike" icon="fa-regular fa-heart"  v-show="!is_liked"/>
       </h3>
       <p>{{ like_users_count }}명이 좋아합니다</p>
       <hr>
@@ -96,40 +96,46 @@ export default {
 
 .movie-card > img {
   display: inline-block;
-  width: 40%;
-  margin-right: 5%;
+  width: 42%;
+  margin-right: 3%;
   margin-left: 5%;
   vertical-align: middle;
 }
 .content {
   display: inline-block;
-  width: 40%;
+  width: 42%;
   margin-right: 5%;
-  margin-left: 5%;
+  margin-left: 3%;
   vertical-align: top;
 
 }
 .content > p{
   margin-bottom: 10px;
+  font-size: 1.5vw;
 }
 
 .content > h1 {
   margin-bottom: 30px;
+  font-size: 3.2vw;
+  /* font-size: 150%; */
+  font-family: 'Rebecca';
 }
 
 .name {
   display: inline-block;
-  width: 50px;
+  width: 6vw;;
   text-align: center;
   font-weight: 600;
 }
 
 .value {
-  margin-left: 5px;
+  margin-left: 1.5vw;
 }
+
 
 svg {
   color: rgb(208, 93, 93);
+  font-size: 2.5vw;
 }
 
 .overview {
@@ -140,5 +146,9 @@ svg {
   border: 3px dashed #E6E6E6;
   border-radius: 30px;
   background-color: rgb(230, 230, 230, 0.5);
+}
+
+.overview > p {
+  font-size: 1.3vw;
 }
 </style>

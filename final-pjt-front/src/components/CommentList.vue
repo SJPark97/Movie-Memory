@@ -23,6 +23,9 @@ export default {
     changeComments() {
       this.$store.dispatch('getReviewComment', this.$route.params.review_id)
     }
+  },
+  created() {
+    this.$store.dispatch('getReviewComment', this.$route.params.review_id)
   }
 }
 </script>

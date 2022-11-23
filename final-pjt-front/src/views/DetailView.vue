@@ -94,6 +94,7 @@ body {
   width: 100%;
   /* margin-right: 5%; */
   /* margin-left: 5%; */
+  font-size: 1.5vw;
 }
 
 .btn-review:hover {

@@ -93,6 +93,23 @@ export default new Vuex.Store({
       state.userId = null
       state.userImg = null
       state.nickname = null
+      state.myReviews = []
+      state.likedReviews = []
+      state.likedMovies = []
+      state.noti = false
+      state.myGenreMovies = []
+      state.randomGenreMovies = []
+      state.randomGenre = null
+      state.newKindGenreMovies = []
+      state.weatherMovies = []
+      state.weatherGenre = null
+      state.seasonMovies = []
+      state.seasonGenre = null
+      state.is_followed = false
+      state.followers = 0
+      state.followings = 0
+      state.newNotices = []
+      state.oldNotices = []
     },
     GET_USER_INFO(state, data) {
       console.log(data)
@@ -115,7 +132,7 @@ export default new Vuex.Store({
     GET_NOTICE(state, payload) {
       state.newNotices = payload.newNotice
       state.oldNotices = payload.oldNotice
-      if (payload.newNotice === []) {
+      if (payload.newNotice == false) {
         state.noti = false
       } else {
         state.noti = true

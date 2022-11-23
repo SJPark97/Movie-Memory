@@ -42,46 +42,58 @@ export default {
 <style scoped>
 
 
-img {
-  object-fit: cover;
-  width: 130px;
-  height: 100px;
-}
-
 h1 {
   font-family: Harmond;
   color: black;
   text-shadow: 1px 1px #908581;
+  font-size: 3vw;
 
   text-align: left;
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
+p {
+  font-size: 1.3vw;
+}
+
 .review-div {
   display: flex;
   justify-content: left;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  height: 10vw;
 }
 
 .review-img {
   display: inline-block;
-  width: 130px;
-  height: 100px;
+  width: 11vw;
+  height: 8vw;
   margin-right: 30px;
 }
+
+
+img {
+  object-fit: cover;
+  width: 11vw;
+  height: 8vw;
+}
+
 .review-overview {
-  height: 100px;
+  height: 8vw;
   text-align: left;
+  white-space: nowrap;
   text-overflow: ellipsis;
+  padding-right: 5%;
   overflow: hidden;
 }
 .title {
-  font-size: 18px;
+  padding-top: 0.5vh;
+  display: inline-block;
+  font-size: 1.7vw;
   font-weight: bold;
 }
 
 .content {
-  font-size: 15px;
+  font-size: 1.3vw;
 }
 </style>

@@ -13,9 +13,8 @@
           <div @click="goToMy" v-show="showLink" key="5"><router-link :to="`/${userId}`">Profile</router-link></div>
         <div v-show="showLink" key="6">
           <p @click="popReview">
-            <!-- newNotice가 true면 새로운 알림이 있음 false면 없음 -->
-            <font-awesome-icon icon="fa-solid fa-bell" v-if="newNotice"/>
-            <font-awesome-icon icon="fa-regular fa-bell" v-else/>
+            <font-awesome-icon icon="fa-solid fa-bell" v-if="noti" class="bell"/>
+            <font-awesome-icon icon="fa-regular fa-bell" v-else class="bell"/>
           </p>
           <Notice v-show="popAva" @pop-exit="popExit" @close-notice="closeNotice"/>
         </div>
@@ -57,16 +56,17 @@ import Notice from '@/components/Notice'
       return {
         showSidebar: false,
         showLink: false,
-        newNotice: false,
         popAva: false,
       }
     },
     methods: {
       popReview() {
         this.popAva = true
+        this.$store.dispatch('getNotice')
       },
       popExit() {
         this.popAva = false
+        this.$store.dispatch('getNotice')
       },
       showNav() {
         if(this.showSidebar) {
@@ -103,7 +103,6 @@ import Notice from '@/components/Notice'
       },
       closeNotice() {
         this.popAva = false
-        console.log(this.popAva)
       }
     }
   }
@@ -113,6 +112,7 @@ import Notice from '@/components/Notice'
 // router-link는 a태그로 인식됨
 a {
   text-decoration: none;
+  margin-left: 0;
 }
 
 button {
@@ -120,8 +120,8 @@ button {
 }
 
 img {
-  height: 50px;
-  width: 50px;
+  height: 65px;
+  width: 65px;
   object-fit: cover;
   border: 2px solid #E6E6E6;
   // box-shadow: 1px 1px gray;
@@ -129,7 +129,19 @@ img {
 }
 
 h4 {
-  margin-bottom: 15px;
+  display: inline-block;
+  margin-bottom: 30px;
+  width: 160px;
+  white-space: wrap;
+  font-size: 120%;
+}
+
+.bell {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: rgb(254, 181, 68, 0.6);
+  font-size: 40px;
+  cursor: pointer;
 }
 
 .alert-message {
@@ -167,7 +179,7 @@ h4 {
   &.show {
     width: 180px;
     height: 100vh;
-    padding: 20px;
+    padding: 10px;
     .control > i {
       color: #fff;
       transform: rotateZ(-180deg);
@@ -182,7 +194,7 @@ h4 {
     div a {
       color: black;
       font-size: 2rem;
-      padding-left: 10px;
+      // padding-left: 10px;
       margin-bottom: 30px;
       cursor: pointer;
       &:hover {
@@ -206,9 +218,6 @@ h4 {
 }
 
 
-.search {
-  width: 140px;
-}
 .logout {
   border: none;
   background-color: rgb(200, 195, 191);

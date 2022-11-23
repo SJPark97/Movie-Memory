@@ -147,15 +147,17 @@ div {
 }
 
 p {
-  font-size: medium;
   margin-bottom: 3px;
   margin-left:8px;
+  font-size: 1.7vw;
+  font-weight: bold;
 }
 
 span {
   margin-top: 0;
   margin-left:8px;
   margin-right: 15px;
+  font-size: 1.3vw;
 }
 
 hr {
@@ -203,7 +205,7 @@ hr {
 }
 
 .pop-name {
-  font-size: 13px;
+  font-size: 15px;
   margin: 0;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -227,8 +229,8 @@ hr {
 }
 
 .comment-create > form > input[type='text'] {
-  width: 35vw;
-  height: 50px;
+  width: 50vw;
+  height: 45px;
   border-radius: 10px;
   border: 1px solid gray;
   box-shadow: 1px 1px 1px 0px #908581;
@@ -241,10 +243,12 @@ hr {
   border: 1px solid gray;
   box-shadow: 1px 1px 1px 0px #908581;
   border-radius: 40%;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 50px;
   height: 45px;
   margin-left: 10px;
+  font-size: 15px;
   text-decoration: none;
   background-color: rgb(218, 210, 210);
 }
