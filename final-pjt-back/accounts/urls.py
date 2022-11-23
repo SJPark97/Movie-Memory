@@ -7,6 +7,7 @@ urlpatterns = [
     path('genres_movies/', views.genres_movies),
     path('new_kind_movies/', views.new_kind_movies),
     path('my_notice/', views.my_notice),
+    path('delete_checked_notice/', views.delete_checked_notice),
     path('<int:notice_id>/change_notice/', views.change_notice),
     path('<int:user_id>/profile/', views.user_profile),
     path('<int:user_id>/profile/follow/', views.follow),

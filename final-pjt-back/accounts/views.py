@@ -104,6 +104,7 @@ def genres_movies(request):
 @api_view(['GET'])
 def my_notice(request):
     notices = Notice.objects.filter(user = request.user)
+    notices = notices.order_by('-id')
     serializer = NoticeSerializer(notices, many=True)
     return Response(serializer.data)
 
@@ -142,3 +143,10 @@ def new_kind_movies(request):
     }
     new_genre = sorted(genres.items(), key=lambda x: x[1])[0][0]
     return redirect('movies:genre_recommend', new_genre)
+
+
+@api_view(['DELETE'])
+def delete_checked_notice(request):
+    notices = Notice.objects.filter(user = request.user, is_checked = True)
+    notices.delete()
+    return Response(status=status.HTTP_200_OK)

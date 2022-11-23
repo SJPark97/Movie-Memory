@@ -20,7 +20,7 @@ from .serializers import (
 from accounts.serializers import NoticeSerializer
 from .models import Movie, Review, Comment
 # from accounts.serializers import ProfileSerializer
-from accounts.models import Profile
+from accounts.models import Profile, Notice
 
 all_genres = {
     28: 'action',
@@ -48,7 +48,7 @@ all_genres = {
 # @permission_classes([IsAuthenticated])
 def movie_list(request):
     movies = get_list_or_404(Movie)
-    movies = movies[:400]
+    movies = movies
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
 
@@ -158,6 +158,9 @@ def comment_create(request, review_pk):
         review = get_object_or_404(Review, pk=review_pk)
         if request.user != review.user:
             serializer = NoticeSerializer(data=request.data)
+            notices = Notice.objects.filter(user = review.user, review=review, is_checked = False)
+            if notices:
+                notices.delete()
             if serializer.is_valid(raise_exception=True):
                 serializer.save(review=review, user=review.user, content=review.title + '에 댓글이 달렸습니다.')
         serializer = CommentSerializer(data=request.data)
