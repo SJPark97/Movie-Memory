@@ -24,26 +24,28 @@ def my_profile(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
     elif request.method == 'GET':
-        profile = get_object_or_404(Profile, user=request.user.id)
+        profile = Profile.objects.get(user=request.user.id)
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
     elif request.method == 'PUT':
+        profile = Profile.objects.get(user=request.user.id)
+        profile.delete()
         serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
+            serializer.save(user=request.user)
             return Response(serializer.data)
 
 
 @api_view(['GET'])
 def user_profile(request, user_id):
-    profile = get_object_or_404(Profile, user=user_id)
+    profile = Profile.objects.get(user=user_id)
     serializer = ProfileSerializer(profile)
     return Response(serializer.data)
 
 
 @api_view(['POST', 'GET'])
 def follow(request, user_id):
-    person = get_object_or_404(get_user_model(), pk=user_id)
+    person = get_user_model().objects.get(pk=user_id)
     user = request.user
     if request.method == 'POST':
         if person != user:
@@ -75,7 +77,7 @@ def follow(request, user_id):
 
 @api_view(['GET'])
 def genres_movies(request):
-    profile = get_object_or_404(Profile, user=request.user.id)
+    profile = Profile.objects.get(user=request.user.id)
     genres = {
     28: profile.action,
     12: profile.adventure,
@@ -111,7 +113,7 @@ def my_notice(request):
 
 @api_view(['PUT'])
 def change_notice(request, notice_id):
-    notice = get_object_or_404(Notice, id = notice_id)
+    notice = Notice.objects.get(id = notice_id)
     notice.is_checked = True
     notice.save()
     return Response(status=status.HTTP_200_OK)
@@ -119,7 +121,7 @@ def change_notice(request, notice_id):
 
 @api_view(['GET'])
 def new_kind_movies(request):
-    profile = get_object_or_404(Profile, user=request.user.id)
+    profile = Profile.objects.get(user=request.user.id)
     genres = {
     28: profile.action,
     12: profile.adventure,
