@@ -2,7 +2,6 @@
   <div>
     <UserInfo/>
 
-
     <!-- https://bootstrap-vue.org/docs/components/tabs -->
     <b-card no-body class="storage">
       <b-tabs 
@@ -94,10 +93,10 @@ export default {
 
 .storage {
   position: relative;
-  bottom: 100px;
   display: flex;
+  // bottom: 100px;
   width: 70%;
-  margin-top: 15%;
+  margin-top: 5%;
   margin-left: 15%;
   // margin-right: 15%;
   padding-bottom: 10vh;

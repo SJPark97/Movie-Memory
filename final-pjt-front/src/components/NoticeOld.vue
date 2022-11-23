@@ -2,7 +2,7 @@
   <div>
     <p @click="deleteCheckedNotices" class="delete-all-notices">삭제</p>
     <div class="inside">
-      <p v-if="oldNotices == false" class="no-notice">새 알림이 없습니다</p>
+      <p v-if="oldNotices.length === 0" class="no-notice">새 알림이 없습니다</p>
       <div v-for="notice in oldNotices" :key="notice.id">
         <p class="button" @click="moveToReview(notice.review, notice.id)">{{ notice.content }}</p>
       </div>

@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- 최신 리뷰가 가장 위에 뜨도록 =>  .slice().reverse() -->
+    <p v-show="reviews == false">리뷰를 작성해보세요</p>
     <div 
       class="feed"
       v-for="review in reviews.slice().reverse()" 
@@ -33,6 +34,12 @@ div {
   text-align: left;
   position: relative;
   margin-left: 4%;
+}
+
+p {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
 }
 
 .feed {

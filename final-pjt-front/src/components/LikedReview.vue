@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p v-show="reviews == false">좋아하는 리뷰를 저장해보세요</p>
     <div 
       class="feed"
       v-for="review in reviews.slice().reverse()" 
@@ -35,6 +36,12 @@ div {
   margin-left: 4%;
 }
 
+
+p {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
 
 .feed {
   display: inline-block;

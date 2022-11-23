@@ -223,7 +223,7 @@ h2 {
   display: inline-block;
   position: relative;
   text-align: center;
-  width: 200px;
+  /* width: 200px; */
   /* border-right: 1px solid black;
   border-left: 1px solid black; */
 

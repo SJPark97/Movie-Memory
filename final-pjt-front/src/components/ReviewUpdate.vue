@@ -39,7 +39,7 @@ export default {
     return {
       reviewTitle: this.review.title,
       reviewContent: this.review.content,
-      reviewImg: this.review.img,
+      reviewImg: `Backtest/media/${this.review.img}`,
     }
   },
   methods: {

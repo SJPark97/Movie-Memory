@@ -35,11 +35,11 @@ export default {
     SeasonRecommend,
     NowWeather,
   },
-  // methods: {
-  //   getUserInfo() {
-  //     this.$store.dispatch("getUserInfo")
-  //   }
-  // },
+  methods: {
+    getNotice() {
+      this.$store.dispatch('getNotice')
+    }
+  },
   created() {
     this.$store.dispatch("getUserInfo");
     this.$store.dispatch("getMyGenreMovie");
@@ -47,6 +47,9 @@ export default {
     this.$store.dispatch("getNewKindGenreMovie");
     this.$store.dispatch("getWeatherGenreMovie");
     this.$store.dispatch("getSeasonGenreMovie");
+    getNoti = setInterval(() => {
+      this.getNotice()
+    }, 5000)
   },
 };
 </script>
