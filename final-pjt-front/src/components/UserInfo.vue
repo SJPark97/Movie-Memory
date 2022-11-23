@@ -3,23 +3,18 @@
       <div class="profile-img">
         <img :src="`http://127.0.0.1:8000${user.img}`" alt="#">
 
-        <!-- 내가 아닐 때만 팔로우/언팔로우 가능 -->
-        <div v-show="user.username !== this.$store.state.username">
-          <button @click="follow" class="follow" v-show="!is_followed">팔로우</button>
-          <button @click="follow" class="following" v-show="is_followed">팔로잉</button>
+              <!-- 회원 정보 수정은 나만 가능 -->
+        <div v-show="user.username === this.$store.state.username">
+          <button @click="updateInfo">회원 정보 수정</button>
+          <UpdateUserInfo :user="user" v-show="updateAva"/>
         </div>
+
 
       </div>
       <div class="profile-text">
         <h1>{{ user.username }}</h1>
         <h4>{{ user.nick_name }}</h4>
         <p> {{ user.self_introduction }}</p>
-
-        <!-- 회원 정보 수정은 나만 가능 -->
-        <div v-show="user.username === this.$store.state.username">
-          <button @click="updateInfo">회원 정보 수정</button>
-          <UpdateUserInfo :user="user" v-show="updateAva"/>
-        </div>
       </div>
 
       <div class="follow-count">
@@ -31,6 +26,12 @@
           <p>팔로잉</p>
           <h5>{{ followings }}</h5>
         </div>
+        <!-- 내가 아닐 때만 팔로우/언팔로우 가능 -->
+        <span v-show="user.username !== this.$store.state.username">
+          <button @click="follow" class="follow" v-show="!is_followed">팔로우</button>
+          <button @click="follow" class="following" v-show="is_followed">팔로잉</button>
+        </span>
+
       </div>
 
     </div>
@@ -80,11 +81,13 @@ export default {
 <style lang="scss" scoped>
 
 .profile-info {
+  position: relative;
   display: flex;
   justify-content: space-between;
   width: 70%;
-  height: 220px;
+  height: 30%;
   margin-top: 5%;
+  margin-bottom: 5%;
   margin-left: 15%;
   margin-right: 15%
 }
@@ -94,9 +97,8 @@ export default {
 }
 .profile-img {
   display: inline-block;
-  height: 15vw;
+  height: 18vw;
   width: 15vw;
-  margin-left: 5%;
   // padding: 1px;
   // border: 1px solid gray;
   // position: relative;
@@ -114,27 +116,20 @@ export default {
 }
 
 .profile-img > div> button {
-  width: 16vw;
+  width: 15vw;
   margin-top: 20px;
-  font-size: 2.5vw;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-size: 1.2vw;
   font-weight: bold;
-}
-
-.follow {
-  background-color: rgb(219, 227, 230);
-
-}
-
-.following {
-  color: green;
-  background-color: rgb(194, 219, 211);
-
 }
 
 .profile-text {
   display: inline-block;
   text-align: left;
-  width: 30%;
+  width: 50%;
   margin-left: 5%;
 }
 
@@ -201,12 +196,32 @@ button {
 
 .follow-count > div > p {
   margin-bottom: 0px;
-  font-size: 2vw;
+  font-size: 1.5vw;
   margin-top: 1vw
 }
 
 .follow-count > div > h5 {
   margin-bottom: 1vw;
-  font-size: 3vw;
+  font-size: 2vw;
+}
+
+.follow-count > span > button {
+  width: 15vw;
+  margin-top: 20px;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-size: 1.2vw;
+  font-weight: bold;
+}
+
+.follow {
+  background-color: rgb(219, 227, 230);
+}
+
+.following {
+  color: green;
+  background-color: rgb(194, 219, 211);
 }
 </style>
