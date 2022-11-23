@@ -26,7 +26,7 @@ class Review(models.Model):
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
     title = models.CharField(max_length=50)
     content = models.TextField()
-    img = models.ImageField(upload_to='%Y/%m/%d/')
+    img = models.ImageField(upload_to='%Y/%m/%d/', default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

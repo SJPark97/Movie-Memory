@@ -28,12 +28,15 @@ def my_profile(request):
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        profile = Profile.objects.get(user=request.user.id)
-        profile.delete()
         serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(user=request.user)
-            return Response(serializer.data)
+            profile = Profile.objects.get(user=request.user.id)
+            profile.nick_name = request.data.dict().get('nick_name')
+            profile.self_introduction = request.data.dict().get('self_introduction')
+            if request.data.dict().get('img'): 
+                profile.img = request.data.dict().get('img')
+            profile.save()            
+            return Response(profile)
 
 
 @api_view(['GET'])
