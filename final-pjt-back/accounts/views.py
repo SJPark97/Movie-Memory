@@ -29,11 +29,12 @@ def my_profile(request):
         return Response(serializer.data)
     elif request.method == 'PUT':
         profile = Profile.objects.get(user=request.user.id)
-        profile.delete()
-        serializer = ProfileSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(user=request.user)
-            return Response(serializer.data)
+        profile.nick_name = request.data.dict().get('nick_name')
+        profile.self_introduction = request.data.dict().get('self_introduction')
+        if request.data.dict().get('img'):
+            profile.img = request.data.dict().get('img')
+        profile.save()
+        return Response(status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -79,25 +80,25 @@ def follow(request, user_id):
 def genres_movies(request):
     profile = Profile.objects.get(user=request.user.id)
     genres = {
-    28: profile.action,
-    12: profile.adventure,
-    16: profile.animation,
-    35: profile.comedy,
-    80: profile.crime,
-    99: profile.documentary,
-    18: profile.drama,
-    10751: profile.family,
-    14: profile.fantasy,
-    36: profile.history,
-    27: profile.horror,
-    10402: profile.music,
-    9648: profile.mystery,
-    10749: profile.romance,
-    878: profile.science,
-    10770: profile.tv,
-    53: profile.thriller,
-    10752: profile.war,
-    37: profile.western,
+        28: profile.action,
+        12: profile.adventure,
+        16: profile.animation,
+        35: profile.comedy,
+        80: profile.crime,
+        99: profile.documentary,
+        18: profile.drama,
+        10751: profile.family,
+        14: profile.fantasy,
+        36: profile.history,
+        27: profile.horror,
+        10402: profile.music,
+        9648: profile.mystery,
+        10749: profile.romance,
+        878: profile.science,
+        10770: profile.tv,
+        53: profile.thriller,
+        10752: profile.war,
+        37: profile.western,
     }
     best_genre = sorted(genres.items(), key=lambda x: -x[1])[0][0]
     return redirect('movies:genre_recommend', best_genre)
@@ -105,7 +106,7 @@ def genres_movies(request):
 
 @api_view(['GET'])
 def my_notice(request):
-    notices = Notice.objects.filter(user = request.user)
+    notices = Notice.objects.filter(user=request.user)
     notices = notices.order_by('-id')
     serializer = NoticeSerializer(notices, many=True)
     return Response(serializer.data)
@@ -113,7 +114,7 @@ def my_notice(request):
 
 @api_view(['PUT'])
 def change_notice(request, notice_id):
-    notice = Notice.objects.get(id = notice_id)
+    notice = Notice.objects.get(id=notice_id)
     notice.is_checked = True
     notice.save()
     return Response(status=status.HTTP_200_OK)
@@ -123,25 +124,25 @@ def change_notice(request, notice_id):
 def new_kind_movies(request):
     profile = Profile.objects.get(user=request.user.id)
     genres = {
-    28: profile.action,
-    12: profile.adventure,
-    16: profile.animation,
-    35: profile.comedy,
-    80: profile.crime,
-    99: profile.documentary,
-    18: profile.drama,
-    10751: profile.family,
-    14: profile.fantasy,
-    36: profile.history,
-    27: profile.horror,
-    10402: profile.music,
-    9648: profile.mystery,
-    10749: profile.romance,
-    878: profile.science,
-    10770: profile.tv,
-    53: profile.thriller,
-    10752: profile.war,
-    37: profile.western,
+        28: profile.action,
+        12: profile.adventure,
+        16: profile.animation,
+        35: profile.comedy,
+        80: profile.crime,
+        99: profile.documentary,
+        18: profile.drama,
+        10751: profile.family,
+        14: profile.fantasy,
+        36: profile.history,
+        27: profile.horror,
+        10402: profile.music,
+        9648: profile.mystery,
+        10749: profile.romance,
+        878: profile.science,
+        10770: profile.tv,
+        53: profile.thriller,
+        10752: profile.war,
+        37: profile.western,
     }
     new_genre = sorted(genres.items(), key=lambda x: x[1])[0][0]
     return redirect('movies:genre_recommend', new_genre)
@@ -149,6 +150,6 @@ def new_kind_movies(request):
 
 @api_view(['DELETE'])
 def delete_checked_notice(request):
-    notices = Notice.objects.filter(user = request.user, is_checked = True)
+    notices = Notice.objects.filter(user=request.user, is_checked=True)
     notices.delete()
     return Response(status=status.HTTP_200_OK)

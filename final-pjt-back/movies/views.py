@@ -82,6 +82,10 @@ def review_detail(request, review_pk):
     elif request.method == 'PUT':
         serializer = ReviewSerializer(review, data=request.data)
         if serializer.is_valid(raise_exception=True):
+            review.title = request.data.dict().get('title')
+            review.content = request.data.dict().get('content')
+            if request.data.dict().get('img'): 
+                review.img = request.data.dict().get('img')
             serializer.save()
             return Response(serializer.data)
 
