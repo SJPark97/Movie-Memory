@@ -17,8 +17,9 @@ from .serializers import (
     CommentSerializer,
     ReviewListSerializer,
 )
+from accounts.serializers import NoticeSerializer
 from .models import Movie, Review, Comment
-from accounts.serializers import ProfileSerializer
+# from accounts.serializers import ProfileSerializer
 from accounts.models import Profile
 
 all_genres = {
@@ -47,6 +48,7 @@ all_genres = {
 # @permission_classes([IsAuthenticated])
 def movie_list(request):
     movies = get_list_or_404(Movie)
+    movies = movies[:400]
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
 
@@ -154,6 +156,10 @@ def comment_detail(request, comment_pk):
 def comment_create(request, review_pk):
     if request.method == 'POST':
         review = get_object_or_404(Review, pk=review_pk)
+        if request.user != review.user:
+            serializer = NoticeSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save(review=review, user=review.user, content=review.title + '에 댓글이 달렸습니다.')
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(review=review, user=request.user)
@@ -179,7 +185,7 @@ def user_comments(request, user_pk):
 
 
 @api_view(['POST'])
-def like_movies(request, movie_pk):
+def movies_like(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     if movie.like_users.filter(pk=request.user.pk).exists():
         movie.like_users.remove(request.user)
@@ -195,8 +201,8 @@ def like_movies(request, movie_pk):
 
 
 @api_view(['POST'])
-def like_reviews(request, movie_pk):
-    review = get_object_or_404(Review, pk=movie_pk)
+def reviews_like(request, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
     if review.like_users.filter(pk=request.user.pk).exists():
         review.like_users.remove(request.user)
         is_liked = False
@@ -211,8 +217,8 @@ def like_reviews(request, movie_pk):
 
 
 @api_view(['POST'])
-def like_comments(request, movie_pk):
-    comment = get_object_or_404(Comment, pk=movie_pk)
+def comments_like(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
     if comment.like_users.filter(pk=request.user.pk).exists():
         comment.like_users.remove(request.user)
         is_liked = False
@@ -230,6 +236,41 @@ def like_comments(request, movie_pk):
 # @permission_classes([IsAuthenticated])
 def genres_movies(request, genres_pk):
     movies = Movie.objects.filter(genres = genres_pk)
-    movies = movies.order_by('-popularity')[:20]
+    movies = movies.order_by('?')[:20]
+    serializer = MovieListSerializer(movies, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def like_movies(request, user_pk):
+    movies = Movie.objects.filter(like_users = user_pk)
+    serializer = MovieListSerializer(movies, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def like_reviews(request, user_pk):
+    reviews = Review.objects.filter(like_users = user_pk)
+    reviews = reviews.order_by('-created_at')
+    serializer = ReviewListSerializer(reviews, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def season(request, season):
+    movies = Movie.objects.filter(season = season)
+    movies = movies.order_by('?')[:10]
+    serializer = MovieListSerializer(movies, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def weather(request, weather):
+    movies = Movie.objects.filter(weather = weather)
+    movies = movies.order_by('?')[:10]
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
