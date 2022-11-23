@@ -96,17 +96,19 @@ export default {
 
 .movie-card > img {
   display: inline-block;
-  width: 42%;
+  width: 40%;
   /* max-height: 80vh; */
-  margin-right: 3%;
+  margin-right: 5%;
   margin-left: 5%;
   vertical-align: middle;
+  /* border: 3px solid #958a8a41; */
+  box-shadow: 12px 12px #958a8a7a;
 }
 .content {
   display: inline-block;
-  width: 42%;
+  width: 40%;
   margin-right: 5%;
-  margin-left: 3%;
+  margin-left: 5%;
   vertical-align: top;
 
 }
@@ -120,6 +122,7 @@ export default {
   font-size: 3.2vw;
   /* font-size: 150%; */
   font-family: 'Rebecca';
+  text-shadow: 2px 2px  #746a6a61;
 }
 
 .name {
@@ -140,7 +143,7 @@ svg {
 }
 
 .overview {
-  margin-top: 20px;
+  margin-top: 30px;
   /* margin-right: 5%;
   margin-left: 5%; */
   padding: 3%;

@@ -2,7 +2,7 @@
   <div>
     <div class="sep-div">
       <MovieCard/>
-      <a href="#app" @click="popReview" class="btn-review">리뷰 작성</a>
+      <a href="#app" @click="popReview" class="btn-review hologram-btn">리뷰 작성</a>
       <ReviewCreate v-show="popAva" @pop-exit="popExit"/>
     </div>
     <ReviewList class="sep-div"/>
@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   display: flex;
   justify-content: center;
@@ -63,8 +63,8 @@ body {
 .back {
   color: black;
   position: absolute;
-  top: 7%;
-  right: 7%;
+  top: 10%;
+  right: 10%;
   text-decoration: none;
   border: thick double #908581;
   border-radius: 100%;
@@ -80,44 +80,73 @@ body {
 }
 
 
-.btn-review {
-  display: inline-block;
-  text-align: center;
-  color: black;
-  /* border: 1px solid pink; */
-  box-shadow: 1px 1px 1px 0px #908581;
-  border-radius: 30px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  text-decoration: none;
-  background-color:  rgb(240, 226, 215, 0.7);
-  width: 100%;
-  /* margin-right: 5%; */
-  /* margin-left: 5%; */
-  font-size: 1.5vw;
-}
-
-.btn-review:hover {
-  color: black;
-  font-weight: bold;
-}
-
-
 
 .sep-div {
   display: inline-block;
   /* position: relative; */
   text-align: left;
-  width: 80%;
+  width: 70%;
   height: auto;
   padding: 20px;
+  margin-bottom: 50px;
 }
-
-.review-create {
+/* .review-create {
   display: inline-block;
   width: 60%;
+} */
+
+.btn-review {
+  display: inline-block;
+  text-align: center;
+
+  text-decoration: none;
+  background-color:  rgb(240, 226, 215, 0.7);
+  width: 90%;
+  margin-left: 5%;
 }
 
+.btn-review:hover {
+  color: #E6E6E6;
+  font-weight: bold;
+  background-color: #b2876f;
+}
 
+.hologram-btn{
+  display: inline-block;
+    padding: 1em 2.6em;
+    border-radius: 0;
+  color: #b2876f;
+    margin-top:1rem;
+    font-weight: bold;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
 
+    text-decoration: none;
+  position: relative;
+  transition: all 250ms ease;
+  &:before,
+  &:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid;
+    transition: .25s;
+  }
+  &:before{
+    transform: translateX(-.25em) translateY(.25em);
+  }
+  &:after{
+    transform: translateX(.25em) translateY(-.25em);
+  }
+  
+  &:hover{
+    &:before,
+    &:after{
+      transform: translateX(0) translateY(0);
+    }
+  }
+}
 </style>

@@ -32,6 +32,10 @@ export default {
 
 <style scoped>
 
+span {
+  display: inline-block;
+  margin-bottom: 50px;
+}
 
 .comment-list {
   display: inline-block;

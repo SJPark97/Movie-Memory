@@ -57,10 +57,11 @@ p {
   font-size: 1.3vw;
 }
 
+
 .review-div {
   display: flex;
   justify-content: left;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   height: 10vw;
 }
 

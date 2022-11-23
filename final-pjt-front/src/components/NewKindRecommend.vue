@@ -48,7 +48,7 @@ export default {
       }
     },
     toNext() {
-      if (this.num < 15) {
+      if (this.num < 5) {
         this.num = this.num + 1;
       }
     },

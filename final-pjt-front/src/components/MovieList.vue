@@ -37,8 +37,9 @@ export default {
   methods: {
     goToDetail(id) {
       this.$router.push({ name: 'movie_detail', params: {movie_id: id}})
+      .then((() =>window.scrollTo(0,0) ))
     }
-  }
+  },
 }
 </script>
 
@@ -83,7 +84,7 @@ export default {
 
 .movie-card:hover {
   cursor: pointer;
-  transform: scale(1.3);
+  transform: scale(1.2);
   z-index: 1 !important;
 
 }

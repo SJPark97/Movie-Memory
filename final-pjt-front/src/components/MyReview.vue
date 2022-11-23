@@ -1,10 +1,12 @@
 <template>
   <div>
     <!-- 최신 리뷰가 가장 위에 뜨도록 =>  .slice().reverse() -->
-    <p v-show="reviews == false">리뷰를 작성해보세요</p>
+    <!--back에서 반대로 받아옴..-->
+    <p v-if="reviews == false  && this.$route.params.userId == this.$store.state.userId">리뷰를 작성해보세요</p>
+    <p v-else-if="reviews == false && this.$route.params.userId !== this.$store.state.userId">아직 작성한 리뷰가 없습니다.</p>
     <div 
       class="feed"
-      v-for="review in reviews.slice().reverse()" 
+      v-for="review in reviews" 
       :key="review.id"
       @click="moveToReview(review.id)"
     >

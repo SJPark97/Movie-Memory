@@ -25,12 +25,6 @@ export default {
     SideBar,
   },
   methods: {
-    getMovies() {
-      this.$store.dispatch("getMovies");
-    },
-    getReviews() {
-      this.$store.dispatch("getReviews");
-    },
     OpenSideBar(open) {
       if (open === true) {
         this.pullDiv = true;
@@ -41,8 +35,8 @@ export default {
     
   },
   created() {
-    this.getMovies();
-    this.getReviews();
+    this.$store.dispatch("getMovies");
+    this.$store.dispatch("getReviews");
   },
 };
 
@@ -127,13 +121,15 @@ p {
 footer {
   display: inline-block;
   width: 100%;
-  height: 5%;
+  height: 50px;
   display: flex;
   position: fixed;
   bottom: 0;
   justify-content: center;
   background-color: rgb(202, 184, 184);
   padding-top: 15px;
+  z-index: 999 !important;
+
 }
 
 footer > p {

@@ -4,6 +4,7 @@
       <h3>{{ this.$store.state.nickname }}님이 선호하는 장르의 영화</h3>
     </div>
 
+
     <div class="all-movie">
       <button @click="toBefore">
         <font-awesome-icon icon="fa-solid fa-chevron-left" />
@@ -39,7 +40,7 @@ export default {
     return {
       showLink: true,
       num: 0,
-    };
+    }
   },
   methods: {
     toBefore() {

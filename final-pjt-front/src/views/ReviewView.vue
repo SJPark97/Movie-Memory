@@ -57,7 +57,7 @@
       <div class="comment-create">
         <hr>
         <h4>COMMENTS</h4>
-        <p v-if="this.$store.state.reviewComments">{{ this.$store.state.reviewComments.length }}개의 댓글이 있습니다.</p>
+        <p v-if="this.$store.state.reviewComments.length !== 0">{{ this.$store.state.reviewComments.length }}개의 댓글이 있습니다.</p>
         <p v-else>댓글이 아직 없습니다.</p>
         <form @submit.prevent="createComment">
           <input type="text" v-model.trim="comment">
@@ -219,6 +219,7 @@ h2 {
   /* font-family: Harmond; */
   color: rgb(0, 0, 0);
   text-shadow: 1px 1px #908581;
+  font-size: 2vw;
 
   display: inline-block;
   position: relative;
@@ -236,13 +237,14 @@ h2 {
   display: inline-block;
   /* position: relative; */
   text-align: left;
-  width: 80%;
+  width: 70%;
   height: auto;
   /* border: 2px solid rgb(203, 120, 134); */
   /* border-top-left-radius: 30px; */
   /* border-bottom-right-radius: 30px; */
   /* box-shadow: 1px 1px 3px 3px rgb(136, 136, 136); */
   padding: 20px;
+  margin-bottom: 50px;
 }
 
 span {
@@ -278,6 +280,7 @@ button {
   font-size: 2.5vw;
 }
 
+/* BACK 버튼 */
 .back-to-movie {
   display: flex;
   justify-content: space-between;
@@ -287,12 +290,12 @@ button {
 
 .back-to-movie > a {
   display: inline-block;
-  height: 3vw;
+  height: 32px;
   background-color: #E6E6E6;
   /* border: 1px solid gray; */
   border-radius: 10px;
-  padding: 10px;
-  font-size: 1.2vw;
+  padding: 5px 10px;
+  font-size: 15px;
 }
 .back-to-movie > a:hover {
   color: black;
@@ -317,11 +320,14 @@ button {
   margin-bottom: 50px;
 }
 
+
+/* 리뷰제목 */
 .title > h1 {
   margin-bottom: 15px;
   /* margin-bottom: 30px; */
   font-size: 3vw;
   font-family: 'Rebecca';
+  text-shadow: 2px 2px  #746a6a61;
 }
 
 .title > p {
@@ -442,4 +448,5 @@ button {
   margin-right: 50px;
   font-size: 1vw;
 }
+
 </style>

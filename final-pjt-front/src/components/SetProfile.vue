@@ -1,53 +1,94 @@
 <template>
-  <div class="signup-div">
+  <div class="profile-div">
     <form @submit.prevent="setUserInfo">
       <div>
-        <input type="checkbox" v-model="genres" value="action" />액션
-        <input type="checkbox" v-model="genres" value="adventure" />모험
-        <input type="checkbox" v-model="genres" value="animation" />애니메이션
-        <input type="checkbox" v-model="genres" value="comedy" />코미디
-        <input type="checkbox" v-model="genres" value="crime" />범죄
-        <input type="checkbox" v-model="genres" value="documentary" />다큐멘터리
-        <input type="checkbox" v-model="genres" value="drama" />드라마
-        <input type="checkbox" v-model="genres" value="family" />가족
-        <input type="checkbox" v-model="genres" value="fantasy" />판타지
-        <input type="checkbox" v-model="genres" value="history" />역사
-        <input type="checkbox" v-model="genres" value="horror" />공포
-        <input type="checkbox" v-model="genres" value="music" />음악
-        <input type="checkbox" v-model="genres" value="mystery" />미스터리
-        <input type="checkbox" v-model="genres" value="romance" />로맨스
-        <input type="checkbox" v-model="genres" value="science" />공상과학
-        <input type="checkbox" v-model="genres" value="tv" />TV영화
-        <input type="checkbox" v-model="genres" value="thriller" />스릴러
-        <input type="checkbox" v-model="genres" value="war" />전쟁
-        <input type="checkbox" v-model="genres" value="western" />서부
+        <p>영화 추천을 위한 장르를 선택해주세요</p>
+        <input type="checkbox" v-model="genres" value="action" id="action"/>
+        <label for="action" class="check-label">액션</label>
+
+        <input type="checkbox" v-model="genres" value="adventure" id="adventure"/>
+        <label for="adventure" class="check-label">모험</label>
+
+        <input type="checkbox" v-model="genres" value="animation" id="animation"/>
+        <label for="animation" class="check-label">애니메이션</label>
+
+        <input type="checkbox" v-model="genres" value="comedy" id="comedy"/>
+        <label for="comedy" class="check-label">코미디</label>
+
+        <input type="checkbox" v-model="genres" value="crime" id="crime"/>
+        <label for="crime" class="check-label">범죄</label>
+
+        <input type="checkbox" v-model="genres" value="documentary" id="documentary"/>
+        <label for="documentary" class="check-label">다큐멘터리</label>
+
+        <input type="checkbox" v-model="genres" value="drama" id="drama"/>
+        <label for="drama" class="check-label">드라마</label>
+
+        <input type="checkbox" v-model="genres" value="family" id="family"/>
+        <label for="family" class="check-label">가족</label>
+
+        <input type="checkbox" v-model="genres" value="fantasy" id="fantasy"/>
+        <label for="fantasy" class="check-label">판타지</label>
+
+        <input type="checkbox" v-model="genres" value="history" id="history"/>
+        <label for="history" class="check-label">역사</label>
+
+        <input type="checkbox" v-model="genres" value="horror" id="horror"/>
+        <label for="horror" class="check-label">공포</label>
+
+        <input type="checkbox" v-model="genres" value="music" id="music"/>
+        <label for="music" class="check-label">음악</label>
+
+        <input type="checkbox" v-model="genres" value="mystery" id="mystery"/>
+        <label for="mystery" class="check-label">미스터리</label>
+
+        <input type="checkbox" v-model="genres" value="romance" id="romance"/>
+        <label for="romance" class="check-label">로맨스</label>
+
+        <input type="checkbox" v-model="genres" value="science" id="science"/>
+        <label for="science" class="check-label">공상과학</label>
+
+        <input type="checkbox" v-model="genres" value="tv" id="tv"/>
+        <label for="tv" class="check-label">TV영화</label>
+
+        <input type="checkbox" v-model="genres" value="thriller" id="thriller"/>
+        <label for="thriller" class="check-label">스릴러</label>
+
+        <input type="checkbox" v-model="genres" value="war" id="war"/>
+        <label for="war" class="check-label">전쟁</label>
+
+        <input type="checkbox" v-model="genres" value="western" id="western"/>
+        <label for="western" class="check-label">서부</label>
+      </div>
+
+      <div class="form-in">
+        <div>
+          <label for="age">나이</label>
+          <input type="number" id="age" v-model="age" min="10" max="100" />
+        </div>
+
+        <div>
+          <label for="gender">성별</label>
+          <select name="gender" id="gender" v-model="gender">
+            <option value="" selected="selected">선택안함</option>
+            <option value="male">남성</option>
+            <option value="female">여성</option>
+          </select>
+        </div>
       </div>
 
       <div>
+        <label class="input-file-button" for="input-file" v-if="!reviewImg">프로필 사진</label>
+        <label class="input-file-button selected" for="input-file" v-else>프로필 사진 선택됨</label>
+        <input id="img" ref="image" type="file" accept="image/*" />
+      </div>
+
+      <div class="form-in">
         <label for="nickname">닉네임</label>
         <input type="text" id="nickname" v-model="nickname" />
       </div>
 
-      <div>
-        <label for="age">나이</label>
-        <input type="number" id="age" v-model="age" min="0" max="100" />
-      </div>
-
-      <div>
-        <label for="gender">성별</label>
-        <select name="gender" id="gender" v-model="gender">
-          <option value="" selected="selected">선택안함</option>
-          <option value="male">남성</option>
-          <option value="female">여성</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="img">프로필 사진</label>
-        <input id="img" ref="image" type="file" accept="image/*" />
-      </div>
-
-      <div>
+      <div class="form-in">
         <label for="intro">자기소개</label>
         <textarea
           name="intro"
@@ -57,7 +98,11 @@
           v-model="intro"
         ></textarea>
       </div>
-      <input type="submit" class="input-btn" />
+
+      <div class="form-btn">
+        <input type="submit" class="input-btn" value="완료" />
+      </div>
+
     </form>
   </div>
 </template>
@@ -115,5 +160,132 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.profile-div {
+  display: inline-block;
+  width: 550px;
+  height: 650px;
+  position: absolute;
+  top: 70px;
+  left: 200px;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 10px 3px rgb(136, 136, 136);
+  z-index: 999;
+  background-color: rgb(218, 210, 210);
+}
+
+.profile-div > div > p {
+  margin: 0;
+}
+
+.check-label {
+  display: inline-block;
+  width: 80px;
+  height: 25px;
+  /* box-shadow: 1px 1px gray; */
+  background-color:  #F7F4EF;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.check-label:hover {
+  transform: scale(1.1);
+}
+input[type="checkbox"]:checked + .check-label {
+  background-color: #E0B8B9;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+
+.form-in { 
+  display: inline-block;
+  position: relative;
+  width: 450px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2vh;
+  /* vertical-align: middle; */
+  font-size: 20px;
+}
+
+.form-in > label {
+  display: inline-block;
+  width: 100px;
+}
+
+.form-in > input[type="text"] {
+  padding-left: 15px;
+  width: 320px;
+  height: 40px;
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 10px;
+}
+
+.form-in > textarea {
+  padding-left: 15px;
+  width: 320px;
+  height: 150px;
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 10px;
+}
+.form-in > div > label {
+  margin-left: 30px;
+  margin-right: 20px;
+
+}
+.form-in > div > input[type="number"], .form-in > div > select {
+  width: 130px;
+  height: 40px;
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 10px;
+  padding-left: 15px;
+}
+
+div > input[type="file"] {
+  display: none;
+}
+
+.input-file-button{
+  text-align: center;
+  width: 80%;
+  /* padding: 6px 25px; */
+  background-color: rgb(240, 226, 215, 0.7);
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 30px;
+  color: black;
+  cursor: pointer;
+}
+
+.selected {
+  font-weight: bold;
+  background-color: rgb(240, 226, 215, 0.8);
+}
+.form-btn {
+  display: inline-block;
+  position: relative;
+  /* width: 50vw; */
+  display: flex;
+  justify-content: center;
+  
+  /* margin-top: 2vh; */
+}
+
+.form-btn > input[type="submit"] {
+  margin-top: 10px;
+  width: 50px;
+  height: 35px;
+  font-size: 17px;
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 5px;
+}
+
+
 </style>

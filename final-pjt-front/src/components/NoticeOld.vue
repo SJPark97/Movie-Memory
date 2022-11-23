@@ -23,6 +23,7 @@ export default {
   methods: {
     moveToReview(reviewId, noticeId) {
       this.$store.dispatch('visitNoti', noticeId)
+      this.$store.dispatch("getReviewComment", this.$route.params.review_id);
       this.$store.dispatch('getNotice')
       this.$router.push({name: 'review_detail', params: {review_id: reviewId}})
       this.$emit('close-notice')

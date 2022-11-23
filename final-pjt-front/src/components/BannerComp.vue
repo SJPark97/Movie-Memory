@@ -16,13 +16,13 @@
         @sliding-end="onSlideEnd"
       >
         <b-carousel-slide
-          caption="겨울이당"
-          img-src="https://picsum.photos/1024/480/?image=10"
+          caption="WINTER"
+          :img-src="require(`@/assets/home_alone.gif`)"
           ></b-carousel-slide>
           <!-- :img-src="`${weatherMovie.poster_URL}`" -->
         <b-carousel-slide
           caption="오늘 날씨가 참 좋네요"
-          img-src="https://picsum.photos/1024/480/?image=12"
+          :img-src="require(`@/assets/about_time.jpg`)"
         ></b-carousel-slide>
         <b-carousel-slide
           caption="이런 영화 좋아하시죠?"
@@ -73,7 +73,16 @@ export default {
 <style scoped>
 .slide {
   display: inline-block;
-  width: 80%;
+  width: 80vw;
+  height: 30vw;
   margin-bottom: 50px;
 }
+
+.slide > img {
+  display: inline-block;
+  width: 80vw;
+  height: 30vw;
+  object-fit: cover;
+}
+
 </style>

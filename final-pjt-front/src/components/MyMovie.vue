@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p v-show="movies == false">좋아하는 영화를 저장해보세요</p>
+    <p v-if="movies == false && this.$route.params.userId == this.$store.state.userId">좋아하는 영화를 저장해보세요</p>
+    <p v-else-if="movies == false && this.$route.params.userId !== this.$store.state.userId">아직 저장한 영화가 없습니다.</p>
     <div 
       class="feed"
       v-for="movie in movies.slice().reverse()" 

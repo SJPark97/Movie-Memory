@@ -1,64 +1,32 @@
 <template>
   <div class="update-div">
-    <font-awesome-icon 
-      icon="fa-solid fa-xmark" 
-      class="x-mark" 
-      @click="popExit"
-    />
     <form @submit.prevent="setUserInfo">
-
-      <!-- <p>선호하는 장르 선택</p>
-      <div>
-        <input type="checkbox" v-model="genres" value="action">액션
-        <input type="checkbox" v-model="genres" value="adventure">모험
-        <input type="checkbox" v-model="genres" value="animation">애니메이션
-        <input type="checkbox" v-model="genres" value="comedy">코미디
-        <input type="checkbox" v-model="genres" value="crime">범죄
-        <input type="checkbox" v-model="genres" value="documentary">다큐멘터리
-        <input type="checkbox" v-model="genres" value="drama">드라마
-        <input type="checkbox" v-model="genres" value="family">가족
-        <input type="checkbox" v-model="genres" value="fantasy">판타지
-        <input type="checkbox" v-model="genres" value="history">역사
-        <input type="checkbox" v-model="genres" value="horror">공포
-        <input type="checkbox" v-model="genres" value="music">음악
-        <input type="checkbox" v-model="genres" value="mystery">미스터리
-        <input type="checkbox" v-model="genres" value="romance">로맨스
-        <input type="checkbox" v-model="genres" value="science">공상과학
-        <input type="checkbox" v-model="genres" value="tv">TV영화
-        <input type="checkbox" v-model="genres" value="thriller">스릴러
-        <input type="checkbox" v-model="genres" value="war">전쟁
-        <input type="checkbox" v-model="genres" value="western">서부
-      </div> -->
-
-      <div>
+      <h2>회원 정보 수정</h2>
+      <font-awesome-icon 
+        icon="fa-solid fa-xmark" 
+        class="x-mark" 
+        @click="popExit"
+      />
+      <div class="form-in">
         <label for="nickname">닉네임</label>
         <input type="text" id="nickname" v-model="nickname">
       </div>
-
-      <!-- <div>
-        <label for="age">나이</label>
-        <input type="number" id="age" v-model="age" min="0" max="100">
-      </div> -->
-
-      <!-- <div>
-        <label for="gender">성별</label>
-        <select name="gender" id="gender" v-model="gender">
-          <option value="" selected="selected">선택안함</option>
-          <option value="male">남성</option>
-          <option value="female">여성</option>
-        </select>
-      </div> -->
-      <div>
-        <label for="img">프로필 사진</label>
-        <input id="img" ref="image" type="file" accept="image/*">
-      </div>
-
-      <div>
+      
+      <div class="form-in">
         <label for="intro">자기소개</label>
         <textarea name="intro" id="intro" cols="30" rows="3" v-model="intro"></textarea>
       </div>
+      
+      <div class="form-in input-file-button">
+        <label for="img">프로필 사진 <font-awesome-icon icon="fa-solid fa-image" /></label>
+        <input id="img" ref="image" type="file" accept="image/*">
+      </div>
+      <p>새로운 이미지를 등록하지 않으면 기존의 이미지가 저장됩니다.</p>
 
-      <input type="submit" class="input-btn">
+      <div class="form-btn">
+        <input type="submit" class="input-btn">
+      </div>
+
     </form>
   </div>
 </template>
@@ -73,11 +41,6 @@ export default {
   props: {
     user: Object,
   },
-  // computed: {
-  //   user() {
-  //     return this.$store.state.user
-  //   }
-  // },
   data() {
     return {
       nickname: this.user.nick_name,
@@ -122,51 +85,108 @@ export default {
 <style>
 .update-div {
   display: inline-block;
-  width: 550px;
-  height: 500px;
+  width: 500px;
+  height: 400px;
   position: absolute;
-  /* object-fit: contain; */
   top: -10px;
-  left: -20px;
-  padding-top: 40px;
-  padding-left: 60px;
-  padding-right: 60px;
+  left: 0px;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
   border: 1px solid gray;
   box-shadow: 5px 5px 10px 3px rgb(136, 136, 136);
   z-index: 999;
   background-color: rgb(218, 210, 210);
 }
-.update-div > h2 {
-  margin-bottom: 20px;
+
+.update-div > form > h2 {
+  font-size: 25px;
+  margin-bottom: 15px;
 }
 
-.signup-input { 
-  display: inline-block;
+.update-div > form > p {
+  font-size: 10px;
+  margin-bottom: 15px;
+}
+
+.form-in { 
+  /* display: inline-block; */
   position: relative;
-  width: 430px;
+  width: 440px;
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
+
+  /* inline-size: auto;
+  writing-mode: horizontal-tb; */
+
+  margin-top: 10px;
+  /* vertical-align: middle; */
+  font-size: 15px;
+
 }
 
 
-.signup-input > input {
-  width: 300px;
-  height: 33px;
-  border: 1px solid gray;
-  border-radius: 8px;
+.form-in > label {
+  padding-top: 5px;
+  vertical-align: baseline;
 }
 
-.input-btn {
+.form-in > input[type="text"] {
+  padding-left: 10px;
+  width: 360px;
+  height: 40px;
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 10px;
+}
+
+.form-in > textarea {
+  padding-left: 10px;
+  padding-top: 5px;
+  width: 360px;
+  height: 100px;
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 10px;
+}
+
+.form-in > input[type="file"] {
+  display: none;
+}
+
+.input-file-button{
+  width: 100%;
+  text-align: center;
   margin-top: 20px;
-  margin-bottom: 20px;
+  padding: 6px 170px;
+  color: black;
+  cursor: pointer;
+  background-color: rgb(240, 226, 215, 0.7);
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 30px;
 }
 
+
+.form-btn {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+  /* margin-top: 2vh; */
+}
+
+.form-btn > input[type="submit"] {
+  width: 50px;
+  height: 35px;
+  font-size: 17px;
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 5px;
+}
 
 .x-mark {
   position: absolute;
   top: 15px;
-  left: 510px;
+  left: 460px;
   color: white;
   font-size: 25px;
   cursor: pointer;

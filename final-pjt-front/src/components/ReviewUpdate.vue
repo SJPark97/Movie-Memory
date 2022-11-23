@@ -21,6 +21,7 @@
         <label class="input-file-button" for="input-file">이미지 파일 업로드</label>
         <input @change="uploadImg" ref="reviewImg" type="file" accept="image/*" id="input-file">
       </div>
+      <p>새로운 이미지를 등록하지 않으면 기존의 이미지가 저장됩니다.</p>
       
       <div class="form-btn">
         <input type="submit" value="수정">
@@ -90,9 +91,7 @@ export default {
 </script>
 
 <style scoped>
-div {
-  position: relative;
-}
+
 .review-create {
   display: inline-block;
   width: 60vw;
@@ -108,9 +107,18 @@ div {
   box-shadow: 5px 5px 10px 3px rgb(136, 136, 136);
   z-index: 999;
   background-color: rgb(218, 210, 210);
+  text-align: center;
 }
 
+.update-div > form > h2 {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
 
+.review-create > form > p {
+  font-size: 10px;
+  margin-bottom: 15px;
+}
 .form-in { 
   display: inline-block;
   position: relative;
@@ -119,20 +127,20 @@ div {
   justify-content: space-between;
   margin-top: 2vh;
   /* vertical-align: middle; */
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .form-in > input[type="text"] {
   width: 45vw;
   height: 40px;
-    border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
   border-radius: 10px;
 }
 
 .form-in > textarea {
   width: 45vw;
   height: 280px;
-    border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
   border-radius: 10px;
 }
 
@@ -143,12 +151,13 @@ div {
 .input-file-button{
   width: 100%;
   text-align: center;
+  margin-top: 20px;
   padding: 6px 25px;
+  color: black;
+  cursor: pointer;
   background-color: rgb(240, 226, 215, 0.8);
   border: 0.5px solid rgb(128, 128, 128, 0.5);
   border-radius: 30px;
-  color: black;
-  cursor: pointer;
 }
 
 .form-btn {

@@ -202,6 +202,7 @@ hr {
   left: -50px;
   width: 50px;
   text-align: center;
+  cursor: pointer;
 }
 
 .pop-name {

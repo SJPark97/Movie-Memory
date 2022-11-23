@@ -16,6 +16,7 @@
       <p>move</p>
     </div> -->
     <SetProfile v-show="this.$store.state.token && !this.$store.state.userId"/>
+    <!-- <SetProfile /> -->
   </div>
 </template>
 

@@ -18,7 +18,8 @@
       </div>
       
       <div class="form-in">
-        <label class="input-file-button" for="input-file">이미지 파일 업로드</label>
+        <label class="input-file-button" for="input-file" v-if="!reviewImg">이미지 파일 업로드</label>
+        <label class="input-file-button selected" for="input-file" v-else>이미지 파일 선택됨</label>
         <input @change="uploadImg" ref="reviewImg" type="file" accept="image/*" id="input-file">
       </div>
       
@@ -141,16 +142,19 @@ div {
 }
 
 .input-file-button{
-  width: 100%;
   text-align: center;
   padding: 6px 25px;
-  background-color: rgb(240, 226, 215, 0.8);
+  background-color: rgb(240, 226, 215, 0.7);
   border: 0.5px solid rgb(128, 128, 128, 0.5);
   border-radius: 30px;
   color: black;
   cursor: pointer;
 }
 
+.selected {
+  font-weight: bold;
+  background-color: rgb(240, 226, 215, 0.8);
+}
 .form-btn {
   display: inline-block;
   position: relative;

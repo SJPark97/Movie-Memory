@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>하이~! {{ $store.state.username }}님</h1>
+    <h1 class="top-text">JUST FOR YOU</h1>
     <!-- <h1 class="animate__animated animate__fadeInUp">An animated element</h1> -->
     <NowWeather />
     <BannerComp />
@@ -55,6 +55,11 @@ export default {
 </script>
 
 <style>
+.top-text {
+  font-family: Harmond;
+  color: black;
+  text-shadow: 2px 2px #764E03;
+}
 
 .recommend {
   display: inline-block;

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p v-show="reviews == false">좋아하는 리뷰를 저장해보세요</p>
+    <p v-if="reviews == false  && this.$route.params.userId == this.$store.state.userId">좋아하는 리뷰를 저장해보세요</p>
+    <p v-else-if="reviews == false && this.$route.params.userId !== this.$store.state.userId">아직 저장한 리뷰가 없습니다.</p>
     <div 
       class="feed"
       v-for="review in reviews.slice().reverse()" 

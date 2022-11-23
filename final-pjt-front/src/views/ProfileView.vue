@@ -113,10 +113,6 @@ svg {
   text-shadow: 2px 2px gray;
 }
 
-svg:focus-within {
-  color: red
-}
-
 span {
   font-size: 1.5vw;
   padding-left: 1.5vw;
