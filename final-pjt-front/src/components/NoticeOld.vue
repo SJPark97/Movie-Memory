@@ -1,13 +1,17 @@
 <template>
-  <div class="inside">
-    <p v-if="!oldNotices" class="no-notice">새 알림이 없습니다</p>
-    <div v-for="notice in oldNotices" :key="notice.id">
-      <p class="button" @click="moveToReview(notice.review, notice.id)">{{ notice.content }}</p>
+  <div>
+    <p @click="deleteCheckedNotices" class="delete-all-notices">삭제</p>
+    <div class="inside">
+      <p v-if="oldNotices == false" class="no-notice">새 알림이 없습니다</p>
+      <div v-for="notice in oldNotices" :key="notice.id">
+        <p class="button" @click="moveToReview(notice.review, notice.id)">{{ notice.content }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   name: 'NoticeNew',
@@ -22,6 +26,18 @@ export default {
       this.$store.dispatch('getNotice')
       this.$router.push({name: 'review_detail', params: {review_id: reviewId}})
       this.$emit('close-notice')
+    },
+    deleteCheckedNotices() {
+      axios({
+        method: 'delete',
+        url: 'http://127.0.0.1:8000/accounts/user/delete_checked_notice/',
+        headers: {
+          'Authorization': `Token ${this.$store.state.token}`
+        }
+      })
+        .then((response) => {
+          this.$store.dispatch('getNotice')
+        })
     }
   },
 }
@@ -70,5 +86,17 @@ export default {
   position: absolute;
   top: 50px;
   left: 80px;
+}
+
+.delete-all-notices {
+  position: absolute;
+  z-index: 999!important;
+  top: 27px;
+  left: 230px;
+  color: red;
+  font-size: 15px;
+}
+.delete-all-notices:hover{
+  cursor: pointer;
 }
 </style>

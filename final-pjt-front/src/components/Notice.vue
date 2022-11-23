@@ -12,7 +12,7 @@
         <b-tab avtive>
           <template v-slot:title>
             <span>
-            <font-awesome-icon icon="fa-solid fa-pen"/>
+            <font-awesome-icon icon="fa-solid fa-bell"/>
             </span>
           </template>
           <b-card-text>
@@ -22,7 +22,7 @@
         <b-tab >
           <template v-slot:title>
             <span>
-            <font-awesome-icon icon="fa-solid fa-clapperboard" />
+            <font-awesome-icon icon="fa-regular fa-bell"/>
             </span>
           </template>
           <b-card-text>
@@ -74,7 +74,7 @@ export default {
   padding-right: 60px;
   border: 1px solid rgba(128, 128, 128, 0.123);
   box-shadow: 1px 1px 1px 1px rgb(136, 136, 136);
-  z-index: 999;
+  z-index: 99;
   background-color: rgb(218, 210, 210);
 }
 
