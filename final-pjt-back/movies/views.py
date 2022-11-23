@@ -47,7 +47,7 @@ all_genres = {
 @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
 def movie_list(request):
-    movies = get_list_or_404(Movie)
+    movies = Movie.objects.all()
     movies = movies
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
@@ -55,21 +55,21 @@ def movie_list(request):
 
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
-    movie = get_object_or_404(Movie, pk=movie_pk)
+    movie = Movie.objects.get(pk=movie_pk)
     serializer = MovieSerializer(movie)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def review_list(request):
-    reviews = get_list_or_404(Review)
+    reviews = Review.objects.all()
     serializer = ReviewListSerializer(reviews, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def review_detail(request, review_pk):
-    review = get_object_or_404(Review, pk=review_pk)
+    review = Review.objects.get(pk=review_pk)
 
     if request.method == 'GET':
         serializer = ReviewSerializer(review)
@@ -89,9 +89,9 @@ def review_detail(request, review_pk):
 @api_view(['GET', 'POST'])
 def review_create(request, movie_pk):
     if request.method == 'POST':
-        movie = get_object_or_404(Movie, pk=movie_pk)
+        movie = Movie.objects.get(pk=movie_pk)
         genres = movie.genres.all()
-        profile = get_object_or_404(Profile, user=request.user.id)
+        profile = Profile.objects.get(user=request.user.id)
         for i in range(len(genres)):
             g = all_genres.get(genres[i].id)
             if g == 'action':profile.action += 1
@@ -120,7 +120,7 @@ def review_create(request, movie_pk):
             serializer.save(movie=movie, user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
     elif request.method == 'GET':
-        reviews = get_list_or_404(Review, movie=movie_pk)
+        reviews = Review.objects.filter(movie=movie_pk)
         serializer = ReviewListSerializer(reviews, many=True)
         return Response(serializer.data)
 
@@ -128,14 +128,14 @@ def review_create(request, movie_pk):
 @api_view(['GET'])
 def comment_list(request):
     if request.method == 'GET':
-        comments = get_list_or_404(Comment)
+        comments = Comment.objects.all()
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def comment_detail(request, comment_pk):
-    comment = get_object_or_404(Comment, pk=comment_pk)
+    comment = Comment.objects.get(pk=comment_pk)
 
     if request.method == 'GET':
         serializer = CommentSerializer(comment)
@@ -155,7 +155,7 @@ def comment_detail(request, comment_pk):
 @api_view(['GET', 'POST'])
 def comment_create(request, review_pk):
     if request.method == 'POST':
-        review = get_object_or_404(Review, pk=review_pk)
+        review = Review.objects.get(pk=review_pk)
         if request.user != review.user:
             serializer = NoticeSerializer(data=request.data)
             notices = Notice.objects.filter(user = review.user, review=review, is_checked = False)
@@ -168,28 +168,29 @@ def comment_create(request, review_pk):
             serializer.save(review=review, user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
     elif request.method == 'GET':
-        comments = get_list_or_404(Comment, review=review_pk)
+        comments = Comment.objects.filter(review=review_pk)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
 
 @api_view(['GET'])
 def user_reviews(request, user_pk):
-    reviews = get_list_or_404(Review, user=user_pk)
+    reviews = Review.objects.filter(user=user_pk)
+    reviews = reviews[::-1]
     serializer = ReviewListSerializer(reviews, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def user_comments(request, user_pk):
-    comments = get_list_or_404(Comment, user=user_pk)
+    comments = Comment.objects.filter(user=user_pk)
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
 def movies_like(request, movie_pk):
-    movie = get_object_or_404(Movie, pk=movie_pk)
+    movie = Movie.objects.get(pk=movie_pk)
     if movie.like_users.filter(pk=request.user.pk).exists():
         movie.like_users.remove(request.user)
         is_liked = False
@@ -205,7 +206,7 @@ def movies_like(request, movie_pk):
 
 @api_view(['POST'])
 def reviews_like(request, review_pk):
-    review = get_object_or_404(Review, pk=review_pk)
+    review = Review.objects.get(pk=review_pk)
     if review.like_users.filter(pk=request.user.pk).exists():
         review.like_users.remove(request.user)
         is_liked = False
@@ -221,7 +222,7 @@ def reviews_like(request, review_pk):
 
 @api_view(['POST'])
 def comments_like(request, comment_pk):
-    comment = get_object_or_404(Comment, pk=comment_pk)
+    comment = Comment.objects.get(pk=comment_pk)
     if comment.like_users.filter(pk=request.user.pk).exists():
         comment.like_users.remove(request.user)
         is_liked = False

@@ -15,7 +15,7 @@ class Profile(models.Model):
     age = models.IntegerField(default=0)
     gender = models.CharField(max_length=50)
     nick_name = models.CharField(max_length=100)
-    img = models.ImageField(upload_to='profile/%Y/%m/%d/', default='profile/basic.jpg')
+    img = models.ImageField(upload_to='profile/%Y/%m/%d/', default='basic.jpg')
 
     action = models.IntegerField(default=0)
     adventure = models.IntegerField(default=0)
