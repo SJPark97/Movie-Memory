@@ -112,7 +112,6 @@ export default new Vuex.Store({
       state.oldNotices = []
     },
     GET_USER_INFO(state, data) {
-      console.log(data)
       state.userId = data.user
       state.userImg = data.img
       state.nickname = data.nick_name
@@ -343,6 +342,7 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('GET_PROFILE', response.data)
+          context.dispatch('getUserInfo')
         })
         .catch((error) => {
           console.log(error)

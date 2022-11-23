@@ -13,13 +13,13 @@
       <hr>
       <br>
 
-      <p><span class="name">장르</span> |
-        <span v-for="(genre, index) in movie?.genres" :key="index" class="value">
+      <p><span class="name">장르</span> <span class="wall">|</span>
+        <span v-for="(genre, index) in movie?.genres" :key="index">
           {{ genre.name }}
         </span>
       </p>
-      <p><span class="name">평점</span> | <span class="value">{{ movie?.popularity }}</span></p>
-      <p><span class="name">개봉일</span> | <span class="value">{{ movie?.release_date }}</span></p>
+      <p><span class="name">평점</span> <span class="wall">| </span>{{ movie?.popularity }}</p>
+      <p><span class="name">개봉일</span><span class="wall"> | </span>{{ movie?.release_date }}</p>
     </div>
     
     <div class="overview">
@@ -97,6 +97,7 @@ export default {
 .movie-card > img {
   display: inline-block;
   width: 42%;
+  /* max-height: 80vh; */
   margin-right: 3%;
   margin-left: 5%;
   vertical-align: middle;
@@ -128,8 +129,8 @@ export default {
   font-weight: 600;
 }
 
-.value {
-  margin-left: 1.5vw;
+.wall {
+  margin-right: 1.5vw;
 }
 
 

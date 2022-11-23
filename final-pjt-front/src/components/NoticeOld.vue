@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p @click="deleteCheckedNotices" class="delete-all-notices">삭제</p>
+    <p @click="deleteCheckedNotices" class="delete-all-notices">전체삭제</p>
     <div class="inside">
       <p v-if="oldNotices.length === 0" class="no-notice">새 알림이 없습니다</p>
       <div v-for="notice in oldNotices" :key="notice.id">
@@ -89,12 +89,14 @@ export default {
 }
 
 .delete-all-notices {
+  display: inline-block;
+  width: 60px;
   position: absolute;
   z-index: 999!important;
-  top: 27px;
-  left: 230px;
+  top: 33px;
+  left: 218px;
   color: red;
-  font-size: 15px;
+  font-size: 13px;
 }
 .delete-all-notices:hover{
   cursor: pointer;

@@ -63,8 +63,8 @@ body {
 .back {
   color: black;
   position: absolute;
-  top: 10%;
-  right: 10%;
+  top: 7%;
+  right: 7%;
   text-decoration: none;
   border: thick double #908581;
   border-radius: 100%;

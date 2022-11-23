@@ -72,6 +72,7 @@ export default {
   z-index: 999;
   background-color: rgb(218, 210, 210);
 }
+
 .signup-div > h2 {
   margin-bottom: 20px;
 }

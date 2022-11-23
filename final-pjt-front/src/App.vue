@@ -6,6 +6,9 @@
       <!-- <router-view class="animate__animated animate__fadeInLeft"></router-view> -->
     </div>
     <a href="#app" class="moveToTop">TOP</a>
+    <footer>
+      <p>by YHCho, SJPark</p>
+    </footer>
   </div>
 </template>
 
@@ -119,5 +122,25 @@ p {
 .animate__fadeInLeft {
   animation-delay: 0.2s;
   animation-duration: 10s;
+}
+
+footer {
+  display: inline-block;
+  width: 100%;
+  height: 5%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  justify-content: center;
+  background-color: rgb(202, 184, 184);
+  padding-top: 15px;
+}
+
+footer > p {
+  font-family: Harmond;
+  // font-family: 'Rebecca';
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
 </style>

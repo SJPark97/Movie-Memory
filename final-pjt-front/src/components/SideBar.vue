@@ -159,7 +159,7 @@ h4 {
   background-color: rgba($color: #E6E6E6, $alpha: .8);
   // border: solid #fff;
   // border-width: 0 1px 0 0;
-  box-shadow: 0 3px #908581;
+  box-shadow: 1.5px 0px #90858133;
   z-index: 999;
   transition: all .5s ease-in-out;
   .control {

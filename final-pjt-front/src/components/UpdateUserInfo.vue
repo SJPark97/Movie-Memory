@@ -52,7 +52,7 @@
         <label for="img">프로필 사진</label>
         <input id="img" ref="image" type="file" accept="image/*">
       </div>
-      {{user}}
+
       <div>
         <label for="intro">자기소개</label>
         <textarea name="intro" id="intro" cols="30" rows="3" v-model="intro"></textarea>
@@ -82,29 +82,6 @@ export default {
     return {
       nickname: this.user.nick_name,
       image: this.user.img,
-      age: this.user.age,
-      gender: this.user.gender,
-
-      action: this.user.action,
-      adventure: this.user.adventure,
-      animation: this.user.animation,
-      comedy: this.user.comedy,
-      crime: this.user.crime,
-      documentary: this.user.documentary,
-      drama: this.user.drama,
-      family: this.user.family,
-      fantasy: this.user.fantasy,
-      history: this.user.history,
-      horror: this.user.horror,
-      music: this.user.music,
-      mystery: this.user.mystery,
-      romance: this.user.romance,
-      science: this.user.science,
-      tv: this.user.tv,
-      thriller: this.user.thriller,
-      war: this.user.war,
-      western: this.user.western,
-
       intro: this.user.self_introduction,
     }
   },
@@ -114,37 +91,11 @@ export default {
     },
     setUserInfo() {
       const formData = new FormData()
-      formData.append('age', this.age)
-      formData.append('gender', this.gender)
-      // formData.append('genres', this.genres)
-
-      formData.append('action', this.action)
-      formData.append('adventure', this.adventure)
-      formData.append('animation', this.animation)
-      formData.append('comedy', this.comedy)
-      formData.append('crime', this.crime)
-      formData.append('documentary', this.documentary)
-      formData.append('drama', this.drama)
-      formData.append('family', this.family)
-      formData.append('fantasy', this.fantasy)
-      formData.append('history', this.history)
-      formData.append('horror', this.horror)
-      formData.append('music', this.music)
-      formData.append('mystery', this.mystery)
-      formData.append('romance', this.romance)
-      formData.append('science', this.science)
-      formData.append('tv', this.tv)
-      formData.append('thriller', this.thriller)
-      formData.append('war', this.war)
-      formData.append('western', this.western)
-
       formData.append('nick_name', this.nickname)
-      formData.append('img', this.$refs.image.files[0])
       formData.append('self_introduction', this.intro)
-
-      // for(const genre of this.genres) {
-      //   formData.append(`${genre}`, 1)
-      // }
+      if (this.$refs.image.files[0]) {
+        formData.append('img', this.$refs.image.files[0])
+      }
 
       axios({
         method: 'put',

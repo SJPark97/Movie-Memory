@@ -7,15 +7,24 @@
     />
     <h2>리뷰 작성</h2>
     <form @submit.prevent="createReview">
-      <label for="review-title">제목</label>
-      <input type="text" id="review-title" v-model.trim="reviewTitle">
-      <br>
-      <label for="review-content">내용</label>
-      <textarea name="review-content" id="review-content" cols="70" rows="10" v-model.trim="reviewContent"></textarea>
-      <br>
-      <input @change="uploadImg" ref="reviewImg" type="file" accept="image/*">
-      <br>
-      <input type="submit" value="작성">
+      <div class="form-in">
+        <label for="review-title">제목</label>
+        <input type="text" id="review-title" v-model.trim="reviewTitle">
+      </div>
+
+      <div class="form-in">
+        <label for="review-content">내용</label>
+        <textarea name="review-content" id="review-content" cols="70" rows="10" v-model.trim="reviewContent"></textarea>
+      </div>
+      
+      <div class="form-in">
+        <label class="input-file-button" for="input-file">이미지 파일 업로드</label>
+        <input @change="uploadImg" ref="reviewImg" type="file" accept="image/*" id="input-file">
+      </div>
+      
+      <div class="form-btn">
+        <input type="submit" class="input-btn" value="작성">
+      </div>
     </form>
   </div>
 </template>
@@ -47,6 +56,10 @@ export default {
       this.reviewImg = this.$refs.reviewImg.files
     },
     createReview() {
+      if (!this.$refs.reviewImg.files[0]) {
+        alert('이미지를 선택하세요')
+        return
+      }
       const formData = new FormData()
       formData.append('title', this.reviewTitle)
       formData.append('content', this.reviewContent)
@@ -79,26 +92,94 @@ div {
 }
 .review-create {
   display: inline-block;
-  width: 800px;
-  height: 500px;
-  position: absolute;
+  width: 60vw;
+  height: 600px;
   /* object-fit: contain; */
-  top: 100px;
-  left: 180px;
+  position: absolute;
+  top: 15vh;
+  left: 20vw;
   padding-top: 40px;
-  padding-left: 60px;
-  padding-right: 60px;
+  padding-left: 5vw;
+  padding-right: 5vw;
   border: 1px solid gray;
   box-shadow: 5px 5px 10px 3px rgb(136, 136, 136);
   z-index: 999;
   background-color: rgb(218, 210, 210);
 }
+
+.review-create:active {
+    /* transform: scale(1.01); */
+    /* transition-delay: 0.2s; */
+}
+.form-in { 
+  display: inline-block;
+  position: relative;
+  width: 50vw;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2vh;
+  /* vertical-align: middle; */
+  font-size: 20px;
+}
+
+.form-in > input[type="text"] {
+  width: 45vw;
+  height: 40px;
+    border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 10px;
+}
+
+.form-in > textarea {
+  width: 45vw;
+  height: 280px;
+    border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 10px;
+}
+
+.form-in > input[type="file"] {
+  display: none;
+}
+
+.input-file-button{
+  width: 100%;
+  text-align: center;
+  padding: 6px 25px;
+  background-color: rgb(240, 226, 215, 0.8);
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 30px;
+  color: black;
+  cursor: pointer;
+}
+
+.form-btn {
+  display: inline-block;
+  position: relative;
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  
+  /* margin-top: 2vh; */
+}
+
+.form-btn > input[type="submit"] {
+  width: 50px;
+  height: 35px;
+  font-size: 17px;
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 5px;
+}
+
+/* form > input[type="text"] {
+  width: 40vw;
+  height: 3vh;
+} */
 .x-mark {
   position: absolute;
-  top: 20px;
-  left: 750px;
+  top: 1.5vh;
+  left: 56vw;
   color: white;
   font-size: 25px;
   cursor: pointer;
 }
+
 </style>

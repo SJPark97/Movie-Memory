@@ -94,9 +94,9 @@ export default {
 .storage {
   position: relative;
   display: flex;
-  // bottom: 100px;
+  bottom: 100px;
   width: 70%;
-  margin-top: 5%;
+  margin-top: 15%;
   margin-left: 15%;
   // margin-right: 15%;
   padding-bottom: 10vh;
@@ -118,7 +118,9 @@ svg:focus-within {
 }
 
 span {
-  font-size: 130%;
+  font-size: 1.5vw;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
   color: black;
 }
 

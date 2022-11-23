@@ -3,17 +3,11 @@
       <div class="profile-img">
         <img :src="`http://127.0.0.1:8000${user.img}`" alt="#">
 
-              <!-- 회원 정보 수정은 나만 가능 -->
-        <div v-show="user.username === this.$store.state.username">
-          <button @click="updateInfo" >회원 정보 수정</button>
-          <UpdateUserInfo :user="user" v-show="updateAva" @pop-exit="popExit"/>
-        </div>
-
 
       </div>
       <div class="profile-text">
-        <h1>{{ user?.username }}</h1>
-        <h4>{{ user?.nick_name }}</h4>
+        <h1>{{ user?.nick_name }}</h1>
+        <h4>{{ user?.username }}</h4>
         <p v-if="user.self_introduction !== 'null'"> {{ user?.self_introduction }}</p>
       </div>
 
@@ -26,8 +20,16 @@
           <p>팔로잉</p>
           <h5>{{ followings }}</h5>
         </div>
+
+        
+        <!-- 회원 정보 수정은 나만 가능 -->
+        <span v-if="user.id === this.$store.state.userId">
+          <button @click="updateInfo" class="update-info">회원 정보 수정</button>
+          <UpdateUserInfo :user="user" v-show="updateAva" @pop-exit="popExit"/>
+        </span>
+
         <!-- 내가 아닐 때만 팔로우/언팔로우 가능 -->
-        <span v-show="user.username !== this.$store.state.username">
+        <span v-else>
           <button @click="follow" class="follow" v-show="!is_followed">팔로우</button>
           <button @click="follow" class="following" v-show="is_followed">팔로잉</button>
         </span>
@@ -118,16 +120,6 @@ export default {
   border-radius: 100%;
 }
 
-.profile-img > div> button {
-  width: 15vw;
-  margin-top: 20px;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 0px;
-  padding-right: 0px;
-  font-size: 1.2vw;
-  font-weight: bold;
-}
 
 .profile-text {
   display: inline-block;
@@ -217,8 +209,12 @@ button {
   padding-right: 0px;
   font-size: 1.2vw;
   font-weight: bold;
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
 }
 
+.update-info {
+  background-color:  rgba(199, 199, 199, 0.795);
+}
 .follow {
   background-color: rgb(219, 227, 230);
 }
