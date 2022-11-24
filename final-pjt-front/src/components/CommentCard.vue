@@ -14,7 +14,7 @@
 
     <div class="comment-create" v-else>
       <form @submit.prevent="changeComment(comment.id)">
-        <input type="text" v-model.trim="newComment">
+        <input type="text" v-model.trim="newComment" maxlength="50">
         <input type="submit" value="작성">
       </form>
     </div>
@@ -202,7 +202,6 @@ hr {
   left: -50px;
   width: 50px;
   text-align: center;
-  cursor: pointer;
 }
 
 .pop-name {
@@ -215,13 +214,12 @@ hr {
 
 
 .pop-name:hover {
-  cursor: pointer;
   font-weight: bold;
 }
 
 .comment-create {
   display: inline-block;
-  width: 80%;
+  width: 100%;
   text-align: left;
   margin-left: 30px;
   margin-right: 30px;
@@ -230,7 +228,7 @@ hr {
 }
 
 .comment-create > form > input[type='text'] {
-  width: 50vw;
+  width: 40vw;
   height: 45px;
   border-radius: 10px;
   border: 1px solid gray;

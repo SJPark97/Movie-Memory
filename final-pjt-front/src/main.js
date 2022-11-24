@@ -20,6 +20,8 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartNone } from "@fortawesome/free-regular-svg-icons";
 import 'animate.css';
 import Popover from 'vue-js-popover'
@@ -48,6 +50,8 @@ library.add(faHeartNone)
 library.add(faEllipsisVertical)
 library.add(faAnglesLeft)
 library.add(faImage)
+library.add(faMagnifyingGlass)
+library.add(faChevronUp)
 
 Vue.config.productionTip = false
 

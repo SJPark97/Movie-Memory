@@ -4,12 +4,12 @@
     <form @submit.prevent="LogIn">
       <div class="login-input">
         <label for="username-login">아이디</label>
-        <input type="text" id="username-login" v-model="username">
+        <input type="text" id="username-login" v-model="username" placeholder="ID">
       </div>
       
       <div class="login-input">
         <label for="password-login">비밀번호</label>
-        <input type="password" id="password-login" v-model="password">
+        <input type="password" id="password-login" v-model="password" placeholder="Password">
       </div>
         
       <input type="submit" class="input-btn">
@@ -94,11 +94,18 @@ h2 {
   margin-top: 5px;
 }
 
+.login-input > label { 
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}
+
 .login-input > input {
   width: 280px;
   height: 33px;
   border: 1px solid gray;
   border-radius: 8px;
+  padding-left: 10px;
 }
 
 .input-btn {

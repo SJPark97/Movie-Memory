@@ -212,7 +212,7 @@ export default new Vuex.Store({
         })
         .catch((error) => {
           console.log(error)
-          alert('응 돌아가~')
+          alert('아이디 또는 비밀번호를 잘못 입력했습니다')
         })
     },
     getMovies(context) {

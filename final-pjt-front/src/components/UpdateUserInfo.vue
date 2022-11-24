@@ -9,12 +9,12 @@
       />
       <div class="form-in">
         <label for="nickname">닉네임</label>
-        <input type="text" id="nickname" v-model="nickname">
+        <input type="text" id="nickname" v-model="nickname" maxlength="10">
       </div>
       
       <div class="form-in">
         <label for="intro">자기소개</label>
-        <textarea name="intro" id="intro" cols="30" rows="3" v-model="intro"></textarea>
+        <textarea name="intro" id="intro" cols="30" rows="3" v-model="intro" maxlength="60"></textarea>
       </div>
       
       <div class="form-in input-file-button">
@@ -158,7 +158,6 @@ export default {
   margin-top: 20px;
   padding: 6px 170px;
   color: black;
-  cursor: pointer;
   background-color: rgb(240, 226, 215, 0.7);
   border: 0.5px solid rgb(128, 128, 128, 0.5);
   border-radius: 30px;
@@ -189,6 +188,5 @@ export default {
   left: 460px;
   color: white;
   font-size: 25px;
-  cursor: pointer;
 }
 </style>

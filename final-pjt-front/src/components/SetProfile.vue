@@ -1,7 +1,47 @@
 <template>
   <div class="profile-div">
     <form @submit.prevent="setUserInfo">
-      <div>
+      <h2>프로필 작성</h2>
+      <div class="form-in">
+        <div>
+          <label for="age">나이</label>
+          <input type="number" id="age" v-model="age" min="10" max="100" class="age-input"/>
+        </div>
+
+        <div>
+          <label for="gender">성별</label>
+          <select name="gender" id="gender" v-model="gender">
+            <option value="" selected="selected">선택안함</option>
+            <option value="male">남성</option>
+            <option value="female">여성</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-in">
+        <label for="nickname">닉네임</label>
+        <input type="text" id="nickname" v-model="nickname" maxlength="10"/>
+      </div>
+
+      <div class="form-in">
+        <label for="intro">자기소개</label>
+        <textarea
+          name="intro"
+          id="intro"
+          cols="30"
+          rows="3"
+          v-model="intro"
+          maxlength="60"
+        ></textarea>
+      </div>
+
+      <div class="img-btn">
+        <label class="input-file-button" for="img" v-if="!image">프로필 사진 <font-awesome-icon icon="fa-solid fa-image" /></label>
+        <label class="input-file-button selected" for="img" v-else>프로필 사진 선택됨</label>
+        <input id="img" ref="image" type="file" accept="image/*"/>
+      </div>
+
+      <div class="genre-select">
         <p>영화 추천을 위한 장르를 선택해주세요</p>
         <input type="checkbox" v-model="genres" value="action" id="action"/>
         <label for="action" class="check-label">액션</label>
@@ -54,6 +94,7 @@
         <input type="checkbox" v-model="genres" value="thriller" id="thriller"/>
         <label for="thriller" class="check-label">스릴러</label>
 
+        
         <input type="checkbox" v-model="genres" value="war" id="war"/>
         <label for="war" class="check-label">전쟁</label>
 
@@ -61,43 +102,6 @@
         <label for="western" class="check-label">서부</label>
       </div>
 
-      <div class="form-in">
-        <div>
-          <label for="age">나이</label>
-          <input type="number" id="age" v-model="age" min="10" max="100" />
-        </div>
-
-        <div>
-          <label for="gender">성별</label>
-          <select name="gender" id="gender" v-model="gender">
-            <option value="" selected="selected">선택안함</option>
-            <option value="male">남성</option>
-            <option value="female">여성</option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label class="input-file-button" for="input-file" v-if="!reviewImg">프로필 사진</label>
-        <label class="input-file-button selected" for="input-file" v-else>프로필 사진 선택됨</label>
-        <input id="img" ref="image" type="file" accept="image/*" />
-      </div>
-
-      <div class="form-in">
-        <label for="nickname">닉네임</label>
-        <input type="text" id="nickname" v-model="nickname" />
-      </div>
-
-      <div class="form-in">
-        <label for="intro">자기소개</label>
-        <textarea
-          name="intro"
-          id="intro"
-          cols="30"
-          rows="3"
-          v-model="intro"
-        ></textarea>
-      </div>
 
       <div class="form-btn">
         <input type="submit" class="input-btn" value="완료" />
@@ -153,7 +157,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          alert("다른 이미지를 선택해주세요.");
+          alert("모든 항목을 입력해주세요");
         });
     },
   },
@@ -161,10 +165,25 @@ export default {
 </script>
 
 <style scoped>
+
+.genre-select {
+  /* width: 500px; */
+  background-color: #f7f4ef5b;
+  border-radius: 15px;
+  padding: 10px 0px 10px 0px;
+  margin-top: 25px;
+}
+
+.genre-select > p {
+  text-decoration-line: underline;
+}
+
+
+
 .profile-div {
   display: inline-block;
   width: 550px;
-  height: 650px;
+  height: 730px;
   position: absolute;
   top: 70px;
   left: 200px;
@@ -177,6 +196,10 @@ export default {
   background-color: rgb(218, 210, 210);
 }
 
+
+.profile-div > form > h2 {
+  margin-bottom: 20px;
+}
 .profile-div > div > p {
   margin: 0;
 }
@@ -189,15 +212,15 @@ export default {
   background-color:  #F7F4EF;
   border-radius: 10px;
   margin: 5px;
-  cursor: pointer;
   font-size: 15px;
 }
 
 .check-label:hover {
   transform: scale(1.1);
 }
+
 input[type="checkbox"]:checked + .check-label {
-  background-color: #E0B8B9;
+  background-color: #b94a1760;
 }
 
 input[type="checkbox"] {
@@ -211,7 +234,7 @@ input[type="checkbox"] {
   width: 450px;
   display: flex;
   justify-content: space-between;
-  margin-top: 2vh;
+  margin-top: 10px;
   /* vertical-align: middle; */
   font-size: 20px;
 }
@@ -241,8 +264,17 @@ input[type="checkbox"] {
   margin-right: 20px;
 
 }
-.form-in > div > input[type="number"], .form-in > div > select {
-  width: 130px;
+.form-in > div > input[type="number"] {
+  width: 110px;
+  height: 40px;
+  border: 0.5px solid rgb(128, 128, 128, 0.5);
+  border-radius: 10px;
+  padding-left: 15px;
+  margin-left: 43px;
+}
+
+.form-in > div > select {
+  width: 110px;
   height: 40px;
   border: 0.5px solid rgb(128, 128, 128, 0.5);
   border-radius: 10px;
@@ -253,21 +285,24 @@ div > input[type="file"] {
   display: none;
 }
 
+
 .input-file-button{
-  text-align: center;
   width: 80%;
-  /* padding: 6px 25px; */
+  padding: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
   background-color: rgb(240, 226, 215, 0.7);
   border: 0.5px solid rgb(128, 128, 128, 0.5);
   border-radius: 30px;
   color: black;
-  cursor: pointer;
+  font-size: 20px;
 }
 
 .selected {
   font-weight: bold;
   background-color: rgb(240, 226, 215, 0.8);
 }
+
 .form-btn {
   display: inline-block;
   position: relative;
@@ -275,7 +310,7 @@ div > input[type="file"] {
   display: flex;
   justify-content: center;
   
-  /* margin-top: 2vh; */
+  margin-top: 10px;
 }
 
 .form-btn > input[type="submit"] {

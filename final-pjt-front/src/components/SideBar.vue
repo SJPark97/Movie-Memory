@@ -163,11 +163,10 @@ h4 {
   margin-bottom: 10px;
   color: rgb(254, 181, 68, 0.6);
   font-size: 40px;
-  cursor: pointer;
 }
 
 .alert-message {
-  font-size: 20px;
+  font-size: 22px;
   margin-top: 50px;
 }
 .container {
@@ -194,7 +193,6 @@ h4 {
       color: beige;
       font-size: 2.5rem;
       margin-left: 10px;
-      cursor: pointer;
       transition: all 0.5s ease-in-out;
     }
   }
@@ -218,7 +216,6 @@ h4 {
       font-size: 2rem;
       // padding-left: 10px;
       margin-bottom: 30px;
-      cursor: pointer;
       &:hover {
         color: #fff;
       }

@@ -5,7 +5,7 @@
       <router-view></router-view>
       <!-- <router-view class="animate__animated animate__fadeInLeft"></router-view> -->
     </div>
-    <a href="#app" class="moveToTop">TOP</a>
+    <a href="#app" class="moveToTop"><font-awesome-icon icon="fa-solid fa-chevron-up" /></a>
     <footer>
       <p>by YHCho, SJPark</p>
     </footer>
@@ -97,8 +97,14 @@ p {
 
 .moveToTop {
   position: fixed;
-  bottom: 5px;
-  right: 5px;
+  bottom: 50px;
+  right: 15px;
+  color: darkgray;
+  font-size: 30px;
+}
+
+.moveToTop :hover {
+  color: black;
 }
 
 .is-pulled {
@@ -117,7 +123,19 @@ p {
   animation-delay: 0.2s;
   animation-duration: 10s;
 }
+body, html {
+  cursor: url(assets/icecream.png)  20 30, auto;
+}
 
+body:active, html:active {
+  cursor: url(assets/icecream_bite.png)  20 30, auto;
+}
+
+a, button:hover {
+  cursor: url(assets/icecream_bite.png)  20 30, auto
+}
+
+// .link:hover { cursor : url(cursor.png) 20 30, url(cursor2.png) 20 30, auto; }
 footer {
   display: inline-block;
   width: 100%;
@@ -139,4 +157,9 @@ footer > p {
   width: 100%;
   text-align: center;
 }
+
+// p, span, h1, h2, h3, h4, h5 {
+//   white-space: normal; 
+//   word-break: keep-all;
+// }
 </style>

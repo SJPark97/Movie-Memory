@@ -9,17 +9,17 @@
     <form @submit.prevent="SignUp">
       <div class="signup-input">
         <label for="username">아이디</label>
-        <input type="text" id="username" v-model="username">
+        <input type="text" id="username" v-model="username" placeholder="ID">
       </div>
 
       <div class="signup-input">
         <label for="password1">비밀번호</label>
-        <input type="password" id="password1" v-model="password1">
+        <input type="password" id="password1" v-model="password1" placeholder="Password">
       </div>
 
       <div class="signup-input">
         <label for="password2">비밀번호 확인</label>
-        <input type="password" id="password2" v-model="password2">
+        <input type="password" id="password2" v-model="password2" placeholder="Password">
       </div>
 
       <input type="submit" class="input-btn" value="다음">
@@ -86,12 +86,18 @@ export default {
   margin-top: 5px;
 }
 
+.signup-input > label { 
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}
 
 .signup-input > input {
   width: 300px;
   height: 33px;
   border: 1px solid gray;
   border-radius: 8px;
+  padding-left: 10px;
 }
 
 .input-btn {
@@ -106,7 +112,7 @@ export default {
   left: 510px;
   color: white;
   font-size: 25px;
-  cursor: pointer;
+
 }
 
 </style>

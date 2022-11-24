@@ -84,7 +84,6 @@ export default {
   left: 317px;
   color: white;
   font-size: 25px;
-  cursor: pointer;
 }
 
 .storage {

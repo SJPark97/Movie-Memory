@@ -14,8 +14,10 @@
       <br>
 
       <p><span class="name">장르</span> <span class="wall">|</span>
-        <span v-for="(genre, index) in movie?.genres" :key="index">
-          {{ genre.name }}
+        <span>
+          <span v-for="(genre, index) in movie?.genres" :key="index">
+            {{ genre.name }}
+        </span>
         </span>
       </p>
       <p><span class="name">평점</span> <span class="wall">| </span>{{ movie?.popularity }}</p>
@@ -113,6 +115,9 @@ export default {
 
 }
 .content > p{
+  display: flex;
+  white-space: normal; 
+  word-break: keep-all;
   margin-bottom: 10px;
   font-size: 1.5vw;
 }
@@ -123,6 +128,8 @@ export default {
   /* font-size: 150%; */
   font-family: 'Rebecca';
   text-shadow: 2px 2px  #746a6a61;
+  white-space: normal; 
+  word-break: keep-all;
 }
 
 .name {
@@ -154,5 +161,7 @@ svg {
 
 .overview > p {
   font-size: 1.3vw;
+  white-space: normal; 
+  word-break: keep-all;
 }
 </style>

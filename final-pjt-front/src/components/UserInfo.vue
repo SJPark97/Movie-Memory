@@ -126,6 +126,8 @@ export default {
   text-align: left;
   width: 50%;
   margin-left: 5%;
+  white-space: normal; 
+  word-break: keep-all;
 }
 
 .profile-text > h1 {

@@ -29,7 +29,7 @@
         <br>
 
         <!-- 버튼 리뷰 작성자에게만 보임 -->
-        <button 
+        <button
           v-show="this.$store.state.userId === review.user" 
           @click="updateReview"
           class="update"
@@ -60,7 +60,7 @@
         <p v-if="this.$store.state.reviewComments.length !== 0">{{ this.$store.state.reviewComments.length }}개의 댓글이 있습니다.</p>
         <p v-else>댓글이 아직 없습니다.</p>
         <form @submit.prevent="createComment">
-          <input type="text" v-model.trim="comment">
+          <input type="text" v-model.trim="comment" maxlength="50">
           <input type="submit" value="작성">
         </form>
       </div>
@@ -391,8 +391,12 @@ button {
   font-size: 1.3vw;
 }
 
+.comment-create > form {
+  display: flex;
+  justify-content: space-between;
+}
 .comment-create > form > input[type='text'] {
-  width: 50vw;
+  width: 55vw;
   height: 45px;
   border-radius: 10px;
   border: 1px solid gray;
@@ -410,6 +414,7 @@ button {
   width: 50px;
   height: 45px;
   margin-left: 10px;
+  margin-right: 1vw;
   text-decoration: none;
   background-color: rgb(218, 210, 210);
 }

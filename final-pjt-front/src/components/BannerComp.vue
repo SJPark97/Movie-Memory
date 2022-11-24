@@ -1,38 +1,53 @@
 <template>
   <div>
     <div class="slide">
-      <!-- https://bootstrap-vue.org/docs/components/carousel -->
+
       <b-carousel
         id="carousel-no-animation"
-        style="text-shadow: 1px 1px 2px #333;"
         no-animation
-        controls
         indicators
+        controls
         v-model="slide"
         :interval="4000"
         img-width="256"
         img-height="120"
+        class="display-1"
         @sliding-start="onSlideStart"
         @sliding-end="onSlideEnd"
       >
         <b-carousel-slide
-          caption="WINTER"
-          :img-src="require(`@/assets/home_alone.gif`)"
-          ></b-carousel-slide>
-          <!-- :img-src="`${weatherMovie.poster_URL}`" -->
+          :img-src="require(`@/assets/winter-shadow.png`)"
+          
+          >
+          <h2 class="winter">WINTER</h2>
+        </b-carousel-slide>
+
         <b-carousel-slide
-          caption="오늘 날씨가 참 좋네요"
-          :img-src="require(`@/assets/about_time.jpg`)"
-        ></b-carousel-slide>
+          :img-src="require(`@/assets/sunny-shadow.png`)"
+        >
+        <h2 class="sunny">SUNNY</h2>
+        </b-carousel-slide>
+
         <b-carousel-slide
-          caption="이런 영화 좋아하시죠?"
-          img-src="https://picsum.photos/1024/480/?image=22"
-        ></b-carousel-slide>
+          :img-src="require(`@/assets/cloudy-shadow.png`)"
+        >
+        <h2 class="cloudy">CLOUDY</h2>
+        </b-carousel-slide>
+
         <b-carousel-slide
-          caption="아니면 이거?"
-          img-src="https://picsum.photos/1024/480/?image=23"
-        ></b-carousel-slide>
+          :img-src="require(`@/assets/rainy-shadow.png`)"
+        >
+        <h2 class="rainy">RAINY</h2>
+        </b-carousel-slide>
+
+        <b-carousel-slide
+          :img-src="require(`@/assets/snow-shadow.png`)"
+        >
+        <h2 class="snow">SNOW</h2>
+        </b-carousel-slide>
+
       </b-carousel>
+
     </div>
   </div>
 </template>
@@ -71,18 +86,70 @@ export default {
 </script>
 
 <style scoped>
+
+div {
+  margin-bottom: 70px;
+}
 .slide {
+  position: relative;
   display: inline-block;
   width: 80vw;
   height: 30vw;
-  margin-bottom: 50px;
 }
 
-.slide > img {
+h2 { 
   display: inline-block;
-  width: 80vw;
-  height: 30vw;
-  object-fit: cover;
+  text-align: left;
+  position: absolute;
+  top: -35vw;
+  left: -5vw;
+  font-size: 10vw;
+  font-family: Harmond;
+  color: white;
+  text-shadow: 2px 2px #764E03;
 }
+
+.winter {
+  top: -35vw;
+  left: 5vw;
+  color: rgb(255, 255, 255, 0.85);
+  text-shadow: 2px 2px #764E03;
+}
+
+.sunny {
+  font-size: 11vw;
+  top: -33vw;
+  left: -5vw;
+  color: rgb(255, 255, 255, 0.9);
+  text-shadow: 2.5px 2px  #5e1819a2;
+}
+
+.cloudy {
+  font-size: 9.5vw;
+  top: -10vw;
+  left: -8vw;
+  color: rgb(180, 186, 210, 0.8);
+  text-shadow: 2px 2px rgba(218, 72, 53, 0.774);
+}
+
+
+.rainy {
+  font-size: 10.5vw;
+  top: -10vw;
+  left: 25vw;
+  color: rgb(233, 179, 193, 0.8);
+  text-shadow: 2px 2px rgb(177, 168, 168, 0.8);
+}
+
+.snow {
+  top: -10vw;
+  left: 9vw;
+  color: rgba(143, 93, 150, 0.651) ;
+  text-shadow: 2px 2px #eed4eed3;
+}
+
+
+
+
 
 </style>

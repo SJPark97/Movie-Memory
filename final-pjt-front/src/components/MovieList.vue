@@ -83,10 +83,8 @@ export default {
 }
 
 .movie-card:hover {
-  cursor: pointer;
   transform: scale(1.2);
   z-index: 1 !important;
-
 }
 
 .movie-card>img {

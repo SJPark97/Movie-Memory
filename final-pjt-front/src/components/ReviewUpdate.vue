@@ -9,16 +9,17 @@
     <form @submit.prevent="updateReview">
       <div class="form-in">
         <label for="review-title">제목</label>
-        <input type="text" id="review-title" v-model.trim="reviewTitle">
+        <input type="text" id="review-title" v-model.trim="reviewTitle" maxlength="50">
       </div>
 
       <div class="form-in">
         <label for="review-content">내용</label>
-        <textarea name="review-content" id="review-content" cols="70" rows="10" v-model.trim="reviewContent"></textarea>
+        <textarea name="review-content" id="review-content" cols="70" rows="10" v-model.trim="reviewContent" maxlength="500"></textarea>
       </div>
       
       <div class="form-in">
-        <label class="input-file-button" for="input-file">이미지 파일 업로드</label>
+        <label class="input-file-button" for="input-file" v-if="this.review.img === reviewImg">이미지 파일 업로드</label>
+        <label class="input-file-button selected" for="input-file" v-else>이미지 파일 수정됨</label>
         <input @change="uploadImg" ref="reviewImg" type="file" accept="image/*" id="input-file">
       </div>
       <p>새로운 이미지를 등록하지 않으면 기존의 이미지가 저장됩니다.</p>
@@ -95,7 +96,7 @@ export default {
 .review-create {
   display: inline-block;
   width: 60vw;
-  height: 600px;
+  height: 630px;
   /* object-fit: contain; */
   position: absolute;
   top: 15vh;
@@ -154,10 +155,14 @@ export default {
   margin-top: 20px;
   padding: 6px 25px;
   color: black;
-  cursor: pointer;
   background-color: rgb(240, 226, 215, 0.8);
   border: 0.5px solid rgb(128, 128, 128, 0.5);
   border-radius: 30px;
+}
+
+.selected {
+  font-weight: bold;
+  background-color: rgb(240, 226, 215, 0.8);
 }
 
 .form-btn {
@@ -184,6 +189,5 @@ export default {
   left: 56vw;
   color: white;
   font-size: 25px;
-  cursor: pointer;
 }
 </style>

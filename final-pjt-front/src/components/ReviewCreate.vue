@@ -9,12 +9,12 @@
     <form @submit.prevent="createReview">
       <div class="form-in">
         <label for="review-title">제목</label>
-        <input type="text" id="review-title" v-model.trim="reviewTitle">
+        <input type="text" id="review-title" v-model.trim="reviewTitle" maxlength="50">
       </div>
 
       <div class="form-in">
         <label for="review-content">내용</label>
-        <textarea name="review-content" id="review-content" cols="70" rows="10" v-model.trim="reviewContent"></textarea>
+        <textarea name="review-content" id="review-content" cols="70" rows="10" v-model.trim="reviewContent" maxlength="500"></textarea>
       </div>
       
       <div class="form-in">
@@ -108,10 +108,6 @@ div {
   background-color: rgb(218, 210, 210);
 }
 
-.review-create:active {
-    /* transform: scale(1.01); */
-    /* transition-delay: 0.2s; */
-}
 .form-in { 
   display: inline-block;
   position: relative;
@@ -148,7 +144,6 @@ div {
   border: 0.5px solid rgb(128, 128, 128, 0.5);
   border-radius: 30px;
   color: black;
-  cursor: pointer;
 }
 
 .selected {
@@ -183,7 +178,6 @@ div {
   left: 56vw;
   color: white;
   font-size: 25px;
-  cursor: pointer;
 }
 
 </style>

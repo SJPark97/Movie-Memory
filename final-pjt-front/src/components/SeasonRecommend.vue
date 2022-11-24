@@ -113,7 +113,6 @@ svg {
 }
 
 .movie > img:hover {
-  cursor: pointer;
   transform: scale(1.1);
   z-index: 1 !important;
 }

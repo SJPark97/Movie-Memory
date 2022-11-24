@@ -1,6 +1,7 @@
 <template>
   <span>
     <input type="text" v-model="keyword" @input="searchMovie" />
+    <font-awesome-icon class="search-icon" icon="fa-solid fa-magnifying-glass" />
   </span>
 </template>
 
@@ -20,7 +21,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.search-bar {
+  position: relative;
+}
 .search-bar > input[type="text"] {
   display: inline-block;
   width: calc(50% - 10px * 4);
@@ -31,5 +35,13 @@ export default {
   border-style: solid;
   border-width: 1px;
   box-shadow: 1px 1px 1px 0px gray;
+}
+
+.search-icon {
+  position: absolute;
+  left: calc(100% - 10px * 4);
+  top: 1px;
+  font-size: 23px;
+  color: rgb(87, 86, 86);
 }
 </style>

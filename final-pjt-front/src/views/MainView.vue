@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1 class="top-text">JUST FOR YOU</h1>
+    <h1 class="top-text">Movie Memory</h1>
+    <p>{{ weather }}</p>
     <!-- <h1 class="animate__animated animate__fadeInUp">An animated element</h1> -->
-    <NowWeather />
     <BannerComp />
     <UserRecommend />
     <RandomGenreRecommend />
@@ -21,7 +21,11 @@ import RandomGenreRecommend from "@/components/RandomGenreRecommend";
 import NewKindRecommend from "@/components/NewKindRecommend";
 import WeatherRecommend from "@/components/WeatherRecommend";
 import SeasonRecommend from "@/components/SeasonRecommend";
-import NowWeather from "@/components/NowWeather";
+
+import axios from 'axios'
+
+const API_KEY = process.env.VUE_APP_WEATHER_API_KEY
+
 
 export default {
   name: "MainView",
@@ -33,11 +37,41 @@ export default {
     NewKindRecommend,
     WeatherRecommend,
     SeasonRecommend,
-    NowWeather,
+  },
+  data() {
+    return {
+      weather: null,
+    }
   },
   methods: {
     getNotice() {
       this.$store.dispatch('getNotice')
+    },
+    getWeather() {
+      axios({
+        method: 'get',
+        url: 'https://api.openweathermap.org/data/2.5/weather',
+        params: {
+          q: 'seoul,kor',
+          APPID: API_KEY,
+        }
+      })
+        .then((response) => {
+          console.log(response.data)
+          const weather = response.data.weather[0].description
+          if (weather ===  'clear sky') {
+            this.weather = 'sunny'
+          } else if (weather.includes('clouds')) {
+            this.weather = 'cloudy'
+          } else if (['shower rain','rain', 'thunderstorm', 'mist'].includes(weather)) {
+            this.weather = 'rainy'
+          } else if (weather === 'snow') {
+            this.weather = 'snow'
+          }
+        })
+        .catch((error) => {
+          console.log('에러', error)
+        })
     }
   },
   created() {
@@ -47,9 +81,10 @@ export default {
     this.$store.dispatch("getNewKindGenreMovie");
     this.$store.dispatch("getWeatherGenreMovie");
     this.$store.dispatch("getSeasonGenreMovie");
-    getNoti = setInterval(() => {
+    setInterval(() => {
       this.getNotice()
-    }, 5000)
+    }, 5000);
+    this.getWeather()
   },
 };
 </script>
@@ -58,7 +93,7 @@ export default {
 .top-text {
   font-family: Harmond;
   color: black;
-  text-shadow: 2px 2px #764E03;
+  text-shadow: 1.5px 1.5px #764E03;
 }
 
 .recommend {

@@ -51,7 +51,6 @@ export default {
   overflow: hidden;
 }
 .button:hover {
-  cursor: pointer;
   transform: scale(1.03);
   color: rgb(184, 159, 159);
   font-weight: bold;
