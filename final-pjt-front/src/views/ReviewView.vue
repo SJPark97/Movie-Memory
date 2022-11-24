@@ -421,7 +421,7 @@ button {
 
 .name {
   display: inline-block;
-  width: 4.2vw;
+  width: 4.3vw;
   text-align: left;
   font-weight: 600;
   margin-bottom: 20px;
@@ -443,7 +443,7 @@ button {
 
 .day-name {
   display: inline-block;
-  width: 3vw;
+  width: 4.3vw;
   text-align: left;
   font-size: 1vw;
   font-weight: 600;

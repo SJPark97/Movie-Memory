@@ -228,7 +228,7 @@ hr {
 }
 
 .comment-create > form > input[type='text'] {
-  width: 40vw;
+  width: 35vw;
   height: 45px;
   border-radius: 10px;
   border: 1px solid gray;

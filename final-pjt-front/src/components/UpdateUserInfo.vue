@@ -18,8 +18,9 @@
       </div>
       
       <div class="form-in input-file-button">
-        <label for="img">프로필 사진 <font-awesome-icon icon="fa-solid fa-image" /></label>
-        <input id="img" ref="image" type="file" accept="image/*">
+        <label for="img" v-if="this.user.img === image">프로필 사진 <font-awesome-icon icon="fa-solid fa-image" /></label>
+        <label for="img" class="selected" v-else>사진 선택됨</label>
+        <input @change="uploadImg" id="img" ref="image" type="file" accept="image/*">
       </div>
       <p>새로운 이미지를 등록하지 않으면 기존의 이미지가 저장됩니다.</p>
 
@@ -49,6 +50,9 @@ export default {
     }
   },
   methods: {
+    uploadImg() {
+      this.image = this.$refs.image.files
+    },
     popExit() {
       this.$emit('pop-exit')
     },
@@ -156,7 +160,8 @@ export default {
   width: 100%;
   text-align: center;
   margin-top: 20px;
-  padding: 6px 170px;
+  text-align: center;
+  padding: 5px 170px;
   color: black;
   background-color: rgb(240, 226, 215, 0.7);
   border: 0.5px solid rgb(128, 128, 128, 0.5);
@@ -180,6 +185,11 @@ export default {
   font-size: 17px;
   border: 0.5px solid rgb(128, 128, 128, 0.5);
   border-radius: 5px;
+}
+
+.selected {
+  font-weight: bold;
+  background-color: rgb(240, 226, 215, 0.8);
 }
 
 .x-mark {
