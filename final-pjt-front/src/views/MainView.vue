@@ -108,7 +108,6 @@ export default {
 
 .weather-img > span > img {
   height: 50px;
-  z-index: 999 !important;
 }
 
 .weather-img> span > img:hover {
