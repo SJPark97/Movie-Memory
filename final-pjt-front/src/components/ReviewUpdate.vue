@@ -83,7 +83,6 @@ export default {
           this.popExit()
         })
         .catch((error) => {
-          console.log(error)
           alert('리뷰를 수정할 수 없습니다.')
         })
     },

@@ -1,12 +1,10 @@
 <template>
   <div>
     <div class="slide">
-
       <b-carousel
         id="carousel-no-animation"
         no-animation
         indicators
-        controls
         v-model="slide"
         :interval="4000"
         img-width="256"
@@ -23,24 +21,28 @@
         </b-carousel-slide>
 
         <b-carousel-slide
+          v-if="weather === 'sunny'"
           :img-src="require(`@/assets/sunny-shadow.png`)"
         >
         <h2 class="sunny">SUNNY</h2>
         </b-carousel-slide>
 
         <b-carousel-slide
+          v-else-if="weather === 'cloudy'"
           :img-src="require(`@/assets/cloudy-shadow.png`)"
         >
         <h2 class="cloudy">CLOUDY</h2>
         </b-carousel-slide>
 
         <b-carousel-slide
+          v-else-if="weather === 'rainy'"
           :img-src="require(`@/assets/rainy-shadow.png`)"
         >
         <h2 class="rainy">RAINY</h2>
         </b-carousel-slide>
 
         <b-carousel-slide
+          v-else
           :img-src="require(`@/assets/snow-shadow.png`)"
         >
         <h2 class="snow">SNOW</h2>
@@ -58,30 +60,9 @@ import _ from 'lodash';
 
 export default {
   name: 'BannerComp',
-  computed: {
-    // 근데 현재 날씨에 맞는 추천 영화가 들어가면 좋음 (계절도 마찬가지)
-    weatherMovie() {
-      return _.sample(this.$store.state.weatherMovies)
-    },
-    seasonMovie() {
-      return _.sample(this.$store.state.seasonMovies)
-    }
-  },
-  data() {
-    return {
-      slide: 0,
-      sliding: null
-    }
-  },
-  methods: {
-    onSlideStart(slide) {
-      this.sliding = true
-    },
-    onSlideEnd(slide) {
-      this.sliding = false
-    }
-  }
-  
+  props: {
+    weather: String,
+  },  
 }
 </script>
 

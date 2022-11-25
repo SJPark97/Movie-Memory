@@ -79,7 +79,6 @@ export default {
           this.$router.push({name: 'review_detail', params: {review_id: response.data.id}})
         })
         .catch((error) => {
-          console.log(error)
           alert('리뷰를 작성할 수 없습니다')
         })
     } 

@@ -39,7 +39,7 @@ span {
 
 .comment-list {
   display: inline-block;
-  width: 90%;
+  width: 50vw;
   text-align: left;
   margin-left: 30px;
   margin-right: 30px;

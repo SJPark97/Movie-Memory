@@ -1,9 +1,16 @@
 <template>
   <div>
     <h1 class="top-text">Movie Memory</h1>
-    <p>{{ weather }}</p>
+
+    <div class="weather-img">
+      <span v-if="weather === 'sunny'">맑음<img :src="require(`@/assets/sun.png`)" alt="#"></span>
+      <span v-else-if="weather === 'cloudy'">흐림<img :src="require(`@/assets/cloud.png`)" alt="#"></span>
+      <span v-else-if="weather === 'rainy'">비<img :src="require(`@/assets/rain.png`)" alt="#"></span>
+      <span v-else>눈<img :src="require(`@/assets/snow.png`)" alt="#"></span>
+    </div>
+
     <!-- <h1 class="animate__animated animate__fadeInUp">An animated element</h1> -->
-    <BannerComp />
+    <BannerComp :weather="weather"/>
     <UserRecommend />
     <RandomGenreRecommend />
     <NewKindRecommend />
@@ -52,7 +59,7 @@ export default {
         method: 'get',
         url: 'https://api.openweathermap.org/data/2.5/weather',
         params: {
-          q: 'seoul,kor',
+          q: 'daejeon,kor',
           APPID: API_KEY,
         }
       })
@@ -68,9 +75,6 @@ export default {
           } else if (weather === 'snow') {
             this.weather = 'snow'
           }
-        })
-        .catch((error) => {
-          console.log('에러', error)
         })
     }
   },
@@ -94,6 +98,21 @@ export default {
   font-family: Harmond;
   color: black;
   text-shadow: 1.5px 1.5px #764E03;
+}
+
+.weather-img {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+}
+
+.weather-img > span > img {
+  height: 50px;
+  z-index: 999 !important;
+}
+
+.weather-img> span > img:hover {
+  transform: scale(3) translate(-10px, 10px);
 }
 
 .recommend {

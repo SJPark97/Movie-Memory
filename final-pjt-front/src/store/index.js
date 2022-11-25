@@ -73,7 +73,6 @@ export default new Vuex.Store({
     },
     GET_ONE_REVIEW(state, review) {
       state.review = review
-      // state.reviewComments = null
     },
     GET_REVIEW_COMMENTS(state, comments) {
       state.reviewComments = comments
@@ -81,9 +80,6 @@ export default new Vuex.Store({
     NO_COMMENTS(state) {
       state.reviewComments = null
     },
-    // GET_ONE_COMMENT(state, comment) {
-    //   console.log(comment)
-    // },
     LogIn(state, username) {
       state.username = username
     },
@@ -190,8 +186,7 @@ export default new Vuex.Store({
           context.commit('LogIn', username)
         })
         .catch((error) => {
-          console.log(error)
-          alert('사용할 수 없는 아이디입니다.')
+          alert('비밀번호를 다시 확인해주세요')
         })
     },
     logIn(context, payload) {
@@ -211,7 +206,6 @@ export default new Vuex.Store({
           context.commit('LogIn', username)
         })
         .catch((error) => {
-          console.log(error)
           alert('아이디 또는 비밀번호를 잘못 입력했습니다')
         })
     },
@@ -223,9 +217,6 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_MOVIES', response.data)
         })
-        .catch((error) => {
-          console.log('getMovies', error)
-        })
     },
     getOneMovie(context, movieId) {
       axios({
@@ -235,9 +226,6 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_ONE_MOVIE', response.data)
         })
-        .catch((error) => {
-          console.log('getOneMovies', error)
-        })
     },
     getReviews(context) {
       axios({
@@ -246,9 +234,6 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('GET_REVIEWS', response.data)
-        })
-        .catch((error) => {
-          console.log('getReviews', error)
         })
     },
     getMovieReview(context, movieId) {
@@ -260,7 +245,6 @@ export default new Vuex.Store({
           context.commit('GET_MOVIE_REVIEWS', response.data)
         })
         .catch((error) => {
-          console.log('getMovieReviews', error)
           context.commit('GET_MOVIE_REVIEWS', "error")
         })
     },
@@ -271,9 +255,6 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('GET_ONE_REVIEW', response.data)
-        })
-        .catch((error) => {
-          console.log(error)
         })
     },
     getReviewComment(context, reviewId) {
@@ -286,7 +267,6 @@ export default new Vuex.Store({
         })
         .catch((error) => {
           context.commit('NO_COMMENTS')
-          console.log(error)
         })
     },
     getOneComment(context, commentId) {
@@ -296,9 +276,6 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('GET_ONE_COMMENT', response.data)
-        })
-        .catch((error) => {
-          console.log(error)
         })
     },
     getUserInfo(context) {
@@ -313,9 +290,6 @@ export default new Vuex.Store({
           // console.log(response)
           context.commit('GET_USER_INFO', response.data)
         })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     MyReviews(context, userId) {
       axios({
@@ -327,9 +301,6 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('MY_REVIEWS', response.data)
-        })
-        .catch((error) => {
-          console.log(error)
         })
     },
     getProfile(context, userId) {
@@ -344,9 +315,6 @@ export default new Vuex.Store({
           context.commit('GET_PROFILE', response.data)
           context.dispatch('getUserInfo')
         })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     userLikedMovie(context, userId) {
       axios({
@@ -359,9 +327,6 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('USER_LIKED_MOVIE', response.data)
         })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     userLikedReview(context, userId) {
       axios({
@@ -373,9 +338,6 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('USER_LIKED_REVIEW', response.data)
-        })
-        .catch((error) => {
-          console.log(error)
         })
     },
     getNotice(context) {
@@ -402,9 +364,6 @@ export default new Vuex.Store({
           }
           context.commit('GET_NOTICE', payload)
         })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     visitNoti(context, id) {
       axios({
@@ -429,9 +388,6 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_MY_GENRE_MOVIE', response.data)
         })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     getRandomGenreMovie(context) {
       const genres = { 28: '액션', 12: '모험', 16: '애니메이션', 35: '코미디', 80: '범죄', 99: '다큐멘터리', 18: '드라마', 10751: '가족', 14: '판타지', 36: '역사', 27: '공포', 10402: '음악', 9648: '미스터리', 10749: '로맨스', 878: '공상과학', 10770: 'TV영화', 53: '스릴러', 10752: '전쟁', 37: '서부' }
@@ -449,9 +405,6 @@ export default new Vuex.Store({
           context.commit('GET_RANDOM_GENRE_MOVIE', response.data)
           context.commit('RANDOM_MOVIE_GENRE', genre)
         })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     getNewKindGenreMovie(context) {
       axios({
@@ -463,9 +416,6 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('GET_NEW_KIND_GENRE_MOVIE', response.data)
-        })
-        .catch((error) => {
-          console.log(error)
         })
     },
     getWeatherGenreMovie(context) {
@@ -483,9 +433,6 @@ export default new Vuex.Store({
           context.commit('GET_WEATHER_MOVIE', response.data)
           context.commit('WEATHER_MOVIE_GENRE', weather_info)
         })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     getSeasonGenreMovie(context) {
       const season = { 1: '봄', 2: '여름', 3: '가을', 4: '겨울' }
@@ -502,9 +449,6 @@ export default new Vuex.Store({
           context.commit('GET_SEASON_MOVIE', response.data)
           context.commit('SEASON_MOVIE_GENRE', season_info)
         })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     FirstFollow(context, userId) {
       axios({
@@ -517,9 +461,6 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('FIRST_FOLLOW', response.data)
         })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     follow(context, userId) {
       axios({
@@ -531,9 +472,6 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('FOLLOW', response.data)
-        })
-        .catch((error) => {
-          console.log(error)
         })
     }
   },

@@ -66,9 +66,6 @@ export default {
           this.like_users_count = response.data.like_users_count
           this.$store.dispatch('getOneMovie', movie_id)
         })
-        .catch((error) => {
-          console.log(error)
-        })
       },
     likeUnlike() {
       this.getMovieLike(this.$route.params.movie_id)

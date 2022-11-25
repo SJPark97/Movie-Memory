@@ -5,7 +5,10 @@
     <h5>{{ famousLine }}</h5>
 
     <div>
-      <h1>MOVIE</h1>
+      <h1 class="movie">MOVIE</h1>
+      <h1 class="memory">MEMORY</h1>
+      <h1 class="m1">M</h1>
+      <h1 class="m2">M</h1>
     </div>  
     <div class="box">
       <img src="https://i.pinimg.com/564x/83/33/9d/83339d35fe78f3560079301346164b42.jpg" alt="">
@@ -109,17 +112,72 @@ img {
 }
 
 .home > div > h1 {
-  font-size: 10vw;
+  font-size: 8vw;
   z-index: 3;
   position: absolute;
+  display: inline-block;
   font-family: Harmond;
   margin: 0;
-  top: 110px;
+  /* background-color: black; */
+  width: 10vw;
+}
+
+.movie {
+  top: 12vh;
+  left: 21vw;
   color: #E6C628;
   text-shadow: 3px 3px #764E03;
-  /* background-color: black; */
-  width: 100%;
+  animation-name: fadeOut;
+  animation-duration: 2.5s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
 }
+
+.memory {
+  top: 21vh;
+  left: 30vw;
+  color: #764E03;
+  text-shadow: 3px 3px #E6C628;
+  animation-name: fadeOut;
+  animation-duration: 2.5s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
+.m1 {
+  top: 12vh;
+  left: 21vw;
+  color: #E6C628;
+  text-shadow: 3px 3px #764E03;
+  /* transform: translate(30vw, 2vh); */
+  animation-name: example;
+  animation-duration: 2.5s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes example {
+  0%   {left:21vw; top:12vh; font-size: 8vw}
+  100% {left:35vw; top:13vh;  font-size: 11vw}
+}
+
+.m2 {
+  top: 21vh;
+  left: 47vw;
+  color: #764E03;
+  text-shadow: 3px 3px #E6C628;
+  animation-name: example2;
+  animation-duration: 2.5s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes example2 {
+  0%   {left:47vw; top:21vh; font-size: 8vw}
+  100% {left:49vw; top:12.7vh; font-size: 11vw}
+}
+
+
 .loader{
   position: absolute;
   width: 64%;
@@ -188,7 +246,7 @@ img {
 }
 
 .login-pop {
-  /* animation-delay: 6.7s; */
+  animation-delay: 6.7s;
 }
 .move {
   font-size: 3vw;

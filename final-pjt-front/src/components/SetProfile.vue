@@ -38,7 +38,7 @@
       <div class="img-btn">
         <label class="input-file-button" for="img" v-if="!image">프로필 사진 <font-awesome-icon icon="fa-solid fa-image" /></label>
         <label class="input-file-button selected" for="img" v-else>프로필 사진 선택됨</label>
-        <input id="img" ref="image" type="file" accept="image/*"/>
+        <input @change="uploadImg" id="img" ref="image" type="file" accept="image/*"/>
       </div>
 
       <div class="genre-select">
@@ -129,6 +129,9 @@ export default {
     };
   },
   methods: {
+    uploadImg() {
+      this.image = this.$refs.image.files
+    },
     setUserInfo() {
       const formData = new FormData();
       formData.append("age", this.age);
@@ -156,7 +159,6 @@ export default {
           this.$router.push({ name: "main" });
         })
         .catch((error) => {
-          console.log(error);
           alert("모든 항목을 입력해주세요");
         });
     },

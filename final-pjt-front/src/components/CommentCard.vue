@@ -76,9 +76,6 @@ export default {
           this.like_users_count = response.data.like_users_count
           this.$emit('change-comments')
         })
-        .catch((error) => {
-          console.log(error)
-        })
       },
     likeUnlike() {
       this.getCommentLike(this.comment.id)
@@ -100,9 +97,6 @@ export default {
       })
         .then((response) => {
           this.$emit('change-comments')
-        })
-        .catch((error) => {
-          console.log(error)
         })
     },
     changeInput() {
@@ -128,9 +122,6 @@ export default {
         .then((response) => {
           console.log(response)
           this.$store.dispatch('getReviewComment', this.$route.params.review_id)
-        })
-        .catch((error) => {
-          console.log(error)
         })
       this.update = false
     }
@@ -228,7 +219,7 @@ hr {
 }
 
 .comment-create > form > input[type='text'] {
-  width: 40vw;
+  width: 35vw;
   height: 45px;
   border-radius: 10px;
   border: 1px solid gray;
