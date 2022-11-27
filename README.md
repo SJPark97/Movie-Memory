@@ -1,18 +1,15 @@
-# FINAL PJT
+# 🎞Movie Memory🎞
 
 영화 추천 알고리즘 기반 커뮤니티 서비스
-
-### 🎞Movie Memory🎞
 
 <br><br>
 
 ---
 
 # Contributors 👨🏼‍🤝‍👨🏻
-| Backend | Frontend |
-|:------:|:------:|
-||![yonghyun](https://user-images.githubusercontent.com/93974908/203923626-fe6bcfc9-6b77-4931-8219-6ca5b0f22195.png)|
-| 🐊 박승재| 😎 조용현|
+|                 Backend                 |                 Frontend                 |
+| :-------------------------------------: | :--------------------------------------: |
+| 🤪 [박승재](https://github.com/SJPark97) | 😎 [조용현](https://github.com/Yonghyunc) |
 
 
 <br><br>
@@ -119,28 +116,22 @@
 
 # 프로젝트 기반
 
-## 기술 스택
-![image](https://user-images.githubusercontent.com/93974908/203924990-2d638811-0a8c-4f36-8edc-d5ac4f73f2ab.png)
+### ⚙ 기술 스택
 
-
-![image](https://user-images.githubusercontent.com/93974908/203925060-0361b2a2-5ac2-4eb5-a60e-d014e864c00e.png)
+<img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=Vue.js&logoColor=white">
+<img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=Django&logoColor=white">
 
 
 <br>
 
+### 🔩 프로젝트 활용 도구
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
+<img src="https://img.shields.io/badge/GiTHub-181717?style=for-the-badge&logo=GitHub&logoColor=white">
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
+<img src="https://img.shields.io/badge/Pinterst-BD081C?style=for-the-badge&logo=Pinterest&logoColor=white">
 
-## 프로젝트 활용 도구
-
-notion
-draw.io
-github
-figma
 
 <br>
-
-
-# 프로젝트 아키텍쳐
-
 
 ### 📋 ERD
 ![ERD](https://user-images.githubusercontent.com/93974908/203925328-0e7089ec-1d7b-43d3-a59d-bb0d0103246d.png)
@@ -154,24 +145,32 @@ figma
 
 <br>
 
-### 🖌 Wireframe
-(Figma 이용)   
+
+<br/><details>
+  <summary>
+    <b>🖌 Wireframe</b>
+  </summary>
+
+  <div markdown="1">
+  
+    ![image](https://user-images.githubusercontent.com/93974908/203926613-289055b3-eccc-45f5-a074-d78badff4189.png)
 
 
-![image](https://user-images.githubusercontent.com/93974908/203926613-289055b3-eccc-45f5-a074-d78badff4189.png)
+    ![image](https://user-images.githubusercontent.com/93974908/203926790-6771edd1-2b5a-4584-bdf0-d4c866b6c390.png)
 
 
-![image](https://user-images.githubusercontent.com/93974908/203926790-6771edd1-2b5a-4584-bdf0-d4c866b6c390.png)
+    ![image](https://user-images.githubusercontent.com/93974908/203926728-aefa104c-31c4-46be-a034-21751b645516.png)
+
+    ![image](https://user-images.githubusercontent.com/93974908/203926844-7f9cce70-0463-410a-a083-dfc72e94b1de.png)
 
 
-![image](https://user-images.githubusercontent.com/93974908/203926728-aefa104c-31c4-46be-a034-21751b645516.png)
+    ![image](https://user-images.githubusercontent.com/93974908/203926898-367a47f3-a8fc-4450-b23f-ae1ecc453774.png)
 
-![image](https://user-images.githubusercontent.com/93974908/203926844-7f9cce70-0463-410a-a083-dfc72e94b1de.png)
+    ![image](https://user-images.githubusercontent.com/93974908/203926962-8330b56c-7b9b-4b54-8df1-4a61ceb2e39d.png)
 
+  </div>
+</details>
 
-![image](https://user-images.githubusercontent.com/93974908/203926898-367a47f3-a8fc-4450-b23f-ae1ecc453774.png)
-
-![image](https://user-images.githubusercontent.com/93974908/203926962-8330b56c-7b9b-4b54-8df1-4a61ceb2e39d.png)
 
 <br><br>
 
@@ -179,108 +178,75 @@ figma
 
 # 기능 구현 🔧
 
-GET 요청
 
-|    기능명    |     URL(Back)    | Action | Mutation |
-|:------------:|:----------------:|:-------:|:--------:|
-| 전체 영화 조회 | `api/v1/movies/` | getMovies | GET_MOVIES |
-| 영화 상세 | `api/v1/movies/<int:movie_pk>/`| getOneMovie | GET_ONE_MOVIE|
-| 전체 리뷰 조회 |`api/v1/reviews/`|getReviews|GET_REVIEWS|
-| 영화 리뷰 조회 | `api/v1/movies/<int:movie_pk>/reviews/` | getMovieReview| GET_MOVIE_REVIEWS |
-| 리뷰 상세 |`api/v1/reviews/<int:review_pk>/`|getOneReview|GET_ONE_REVIEW|
-| 리뷰 댓글 조회 |`api/v1/reviews/<int:review_pk>/comments/`|getReviewComment|GET_REVIEW_COMMENTS & NO_COMMENTS|
-| 댓글 상세 |`api/v1/comments/<int:comment_pk>/`|getOneComment|GET_ONE_COMMENT|
+<br/><details>
+  <summary>
+    <b>GET 요청</b>
+  </summary>
 
-| 계절별 영화 조회 |`api/v1/season/<int:season>/ `|getSeasonGenreMovie|GET_SEASON_MOVIE & SEASON_MOVIE_GENRE|
-| 날씨별 영화 조회 |`api/v1/weather/<int:weather>/ `|getWeatherGenreMovie|GET_WEATHER_MOVIE & WEATHER_MOVIE_GENRE|
+  <div markdown="2">
+  
+|          기능명          |                   URL(Back)                   |                         Action & Mutation                         |
+| :----------------------: | :-------------------------------------------: | :---------------------------------------------------------------: |
+|      전체 영화 조회      |               `api/v1/movies/`                |                      getMovies / GET_MOVIES                       |
+|        영화 상세         |        `api/v1/movies/<int:movie_pk>/`        |                    getOneMovie / GET_ONE_MOVIE                    |
+|      전체 리뷰 조회      |               `api/v1/reviews/`               |                     getReviews / GET_REVIEWS                      |
+|      영화 리뷰 조회      |    `api/v1/movies/<int:movie_pk>/reviews/`    |                getMovieReview / GET_MOVIE_REVIEWS                 |
+|        리뷰 상세         |       `api/v1/reviews/<int:review_pk>/`       |                   getOneReview / GET_ONE_REVIEW                   |
+|      리뷰 댓글 조회      |  `api/v1/reviews/<int:review_pk>/comments/`   |       getReviewComment / GET_REVIEW_COMMENTS & NO_COMMENTS        |
+|        댓글 상세         |      `api/v1/comments/<int:comment_pk>/`      |                  getOneComment / GET_ONE_COMMENT                  |
+|     계절별 영화 조회     |        `api/v1/season/<int:season>/ `         |    getSeasonGenreMovie / GET_SEASON_MOVIE & SEASON_MOVIE_GENRE    |
+|     날씨별 영화 조회     |       `api/v1/weather/<int:weather>/ `        |  getWeatherGenreMovie / GET_WEATHER_MOVIE & WEATHER_MOVIE_GENRE   |
+|      내 프로필 조회      |          `accounts/user/myprofile/`           |                    getUserInfo / GET_USER_INFO                    |
+|      유저 리뷰 조회      |     `api/v1/user/<int:user_pk>/reviews/`      |                      MyReviews / MY_REVIEWS                       |
+|   좋아요 한 영화 조회    |  `api/v1/movies/<int:user_pk>/like_movies/`   |                 userLikedMovie / USER_LIKED_MOVIE                 |
+|   좋아요 한 리뷰 조회    | `api/v1/reviews/<int:user_pk>/like_reviews/`  |                userLikedReview / USER_LIKED_REVIEW                |
+|     유저 프로필 조회     |    `accounts/user/<int:user_id>/profile/`     |                     getProfile / GET_PROFILE                      |
+|       내 알람 조회       |          `accounts/user/my_notice/`           |                      getNotice / GET_NOTICE                       |
+|      읽은 알람 확인      | `accounts/user/<int:notic_id>/change_notice/` |                             visitNoti                             |  |
+| 유저 맞춤 장르 영화 조회 |        `accounts/user/genres_movies/`         |               getMyGenreMovie / GET_MY_GENRE_MOVIE                |
+|   랜덤 장르 영화 조회    |   `api/v1/movies/genres/<int:random_num>/`    | getRandomGenreMovie / GET_RANDOM_GENRE_MOVIE & RANDOM_MOVIE_GENRE |
+|  색다른 장르 영화 조회   |       `accounts/user/new_kind_movies/`        |          getNewKindGenreMovie / GET_NEW_KIND_GENRE_MOVIE          |
+|     유저 팔로우 조회     | `accounts/user/<int:user_id>/profile/follow/` |                    FirstFollow / FIRST_FOLLOW                     |
 
+  </div>
+</details>
 
-| 내 프로필 조회 |`accounts/user/myprofile/`|getUserInfo|GET_USER_INFO|
-| 유저 리뷰 조회 |`api/v1/user/<int:user_pk>/reviews/`|MyReviews|MY_REVIEWS|
-| 좋아요 한 영화 조회|`api/v1/movies/<int:user_pk>/like_movies/`|userLikedMovie|USER_LIKED_MOVIE|
-|좋아요 한 리뷰 조회 |`api/v1/reviews/<int:user_pk>/like_reviews/`|userLikedReview|USER_LIKED_REVIEW|
-| 유저 프로필 조회 |`accounts/user/<int:user_id>/profile/`|getProfile|GET_PROFILE|
+<br/><details>
+  <summary>
+    <b>POST 요청</b>
+  </summary>
 
-|내 알람 조회 |`accounts/user/my_notice/`|getNotice|GET_NOTICE|
-|||visitNoti||
-|유저 맞춤 장르 영화 조회 |`accounts/user/genres_movies/`|getMyGenreMovie|GET_MY_GENRE_MOVIE|
+  <div markdown="3">
+  
+|      기능명      |                   URL(Back)                   |         Action & Mutation          |
+| :--------------: | :-------------------------------------------: | :--------------------------------: |
+|     회원가입     |              `accounts/signup/`               | SignUp / SIGNUP_SAVE_TOKEN & LogIn |
+|      로그인      |               `accounts/login/`               |  logIn / LOGIN_SAVE_TOKEN & LogIn  |
+|   영화 좋아요    |     `api/v1/movies/<int:movie_pk>/likes/`     |            getMovieLike            |
+|      팔로우      | `accounts/user/<int:user_id>/profile/follow/` |          follow / FOLLOW           |
+|    댓글 작성     |  `api/v1/reviews/<int:review_pk>/comments/`   |           createComment            |
+|   리뷰 좋아요    |    `api/v1/reviews/<int:movie_pk>/likes/`     |           getReviewLike            |
+|    리뷰 삭제     |       `api/v1/reviews/<int:review_pk>`        |            DeleteReview            |
+|   댓글 좋아요    |   `api/v1/comments/<int:comment_pk>/likes/`   |           getCommentLike           |
+|    댓글 삭제     |      `api/v1/comments/<int:comment_pk>/`      |           deleteComment            |
+|    댓글 수정     |      `api/v1/comments/<int:comment_pk>/`      |           changeComment            |
+|   영화 좋아요    |     `api/v1/movies/<int:movie_pk>/likes/`     |            getMovieLike            |
+|    알림 삭제     |    `accounts/user/delete_checked_notice/`     |        deleteCheckedNotices        |
+|    리뷰 생성     |    `api/v1/movies/<int:movie_pk>/reviews/`    |            createReview            |
+|    리뷰 수정     |       `api/v1/reviews/<int:review_pk>/`       |            updateReview            |
+|   프로필 생성    |          `accounts/user/myprofile/`           |            setUserInfo             |
+| 프로필 정보 수정 |          `accounts/user/myprofile/`           |            setUserInfo             |
 
-| 랜덤 장르 영화 조회 |`api/v1/movies/genres/<int:random_num>/`|getRandomGenreMovie|GET_RANDOM_GENRE_MOVIE & RANDOM_MOVIE_GENRE|
-|색다른 장르 영화 조회 |`accounts/user/new_kind_movies/`|getNewKindGenreMovie|GET_NEW_KIND_GENRE_MOVIE|
-| 유저 팔로우 조회 |`accounts/user/<int:user_id>/profile/follow/`|FirstFollow|FIRST_FOLLOW|
+  </div>
+</details>
 
-<br>
-
-POST 요청 
-|    기능명    |     URL(Back)    | Action | Mutation |
-|:------------:|:----------------:|:-------:|:--------:|
-| 회원가입 | `accounts/signup/` | SignUp | SIGNUP_SAVE_TOKEN & LogIn |
-| 로그인 | `accounts/login/` |logIn | LOGIN_SAVE_TOKEN & LogIn |
-| 영화 좋아요 |`api/v1/movies/<int:movie_pk>/likes/`|||
-|팔로우|`accounts/user/<int:user_id>/profile/follow/`|follow|FOLLOW|
-|댓글 작성 |`api/v1/reviews/<int:review_pk>/comments/`|createComment||
-| 리뷰 좋아요|`api/v1/reviews/<int:movie_pk>/likes/`|getReviewLike||
-| 리뷰 삭제 |`api/v1/reviews/<int:review_pk>`|DeleteReview||
-
-| 댓글 좋아요 |`api/v1/comments/<int:comment_pk>/likes/`|getCommentLike||
-| 댓글 삭제 |`api/v1/comments/<int:comment_pk>/`|deleteComment||
-| 댓글 수정 |`api/v1/comments/<int:comment_pk>/`|changeComment||
-
-| 영화 좋아요 |`api/v1/movies/<int:movie_pk>/likes/`|getMovieLike||
-
-
-|알림 삭제 |`accounts/user/delete_checked_notice/`|deleteCheckedNotices||
-|리뷰 생성|`api/v1/movies/<int:movie_pk>/reviews/`|createReview||
-|리뷰 수정|`api/v1/reviews/<int:review_pk>/`|updateReview||
-|프로필 생성|`accounts/user/myprofile/`|setUserInfo||
-|프로필 정보 수정 |`accounts/user/myprofile/`|setUserInfo||
-
-
-
-
-
-
-
-
-
-
-1. 영화 목록 (찜)
-2. 리뷰 목록 (좋아요)
-3. 댓글 (대댓글, 좋아요)
-4. 회원가입
-5. 로그인 
-6. 정보 찾기 (비밀번호 변경&찾기)
-7. 추천영화 알고리즘
-8. 계절(겨울)/날씨별 영화 추천
-9. 검색 (자동완성, 포스터)
-10. 리뷰&댓글 알림 (새 알림, 이전 알림, 모든 알림)
+ 
 
 
 
-[TMDB API](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id)
-
-# Front
-
-1. 홈페이지
-2. 메인 추천 페이지
-3. 영화 조회 페이지
-4. 영화 디테일 페이지
-5. 회원가입 (*3D모델링 예정*)
-6. 로그인
-7. 개인정보 수정
-8. 프로필
-9. 리뷰 작성 페이지
-
----
-코드 모음 (스타일 가이드)
 
 
-
-<br><br>
-
----
-
-<br><br>
 
 추천 알고리즘
 1.
