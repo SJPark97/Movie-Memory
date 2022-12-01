@@ -7,10 +7,10 @@
 ---
 
 # Contributors 👨🏼‍🤝‍👨🏻
-|                                Backend                                 |                              Frontend                              |
-| :--------------------------------------------------------------------: | :----------------------------------------------------------------: |
-| <img src="https://i.ibb.co/M7hMR76/image.jpg" alt="승재님" border="0"> | <img src="https://i.ibb.co/Cv9NFhX/image.jpg" alt="나" border="0"> |
-|                🤪 [박승재](https://github.com/SJPark97)                 |              😎 [조용현](https://github.com/Yonghyunc)              |
+|                                      Backend                                       |                                    Frontend                                    |
+| :--------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: |
+| <img src="https://i.ibb.co/M7hMR76/image.jpg" alt="승재님" border="0" width="180"> | <img src="https://i.ibb.co/Cv9NFhX/image.jpg" alt="나" border="0" width="180"> |
+|                      🤪 [박승재](https://github.com/SJPark97)                       |                    😎 [조용현](https://github.com/Yonghyunc)                    |
 
 
 <br><br>
@@ -141,7 +141,7 @@
 <br>
 
 ### 📝 컴포넌트 구조  
-<img src="https://i.ibb.co/0GcWHgy/image.jpg" alt="image" border="0">
+<img src="https://i.ibb.co/ZxPGy1b/image.jpg" alt="image" border="0"></a><br />
 
 
 <br>
@@ -264,7 +264,7 @@
 
 
 ### ⭐ 사이드 바 ⭐
-<img src="https://i.ibb.co/ygvsGtT/06.jpg" alt="06_사이드바" border="0">
+<img src="https://i.ibb.co/zn2yL12/06.jpg" alt="06_사이드바" border="0">
 
 <br>
 
@@ -294,7 +294,7 @@
 ## 3️⃣ 영화 검색
 
 
-<img src="https://i.ibb.co/qF89QNs/10-1.jpg" alt="10-1" border="0">
+<img src="https://i.ibb.co/VNKTmsq/10-1.jpg" alt="10-1" border="0">
 
 <br><br>
 
