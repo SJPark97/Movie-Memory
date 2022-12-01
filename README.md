@@ -141,7 +141,7 @@
 <br>
 
 ### 📝 컴포넌트 구조  
-<img src="https://i.ibb.co/ZxPGy1b/image.jpg" alt="image" border="0">
+![image](https://user-images.githubusercontent.com/93974908/204995033-9fca2864-6880-4847-ae67-74decf9196ce.png)
 
 
 <br>
