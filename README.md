@@ -141,7 +141,7 @@
 <br>
 
 ### 📝 컴포넌트 구조  
-<img src="https://i.ibb.co/ZxPGy1b/image.jpg" alt="image" border="0"></a><br />
+<img src="https://i.ibb.co/ZxPGy1b/image.jpg" alt="image" border="0">
 
 
 <br>
