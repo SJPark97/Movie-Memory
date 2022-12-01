@@ -7,9 +7,10 @@
 ---
 
 # Contributors 👨🏼‍🤝‍👨🏻
-|                 Backend                 |                 Frontend                 |
-| :-------------------------------------: | :--------------------------------------: |
-| 🤪 [박승재](https://github.com/SJPark97) | 😎 [조용현](https://github.com/Yonghyunc) |
+|                                Backend                                 |                              Frontend                              |
+| :--------------------------------------------------------------------: | :----------------------------------------------------------------: |
+| <img src="https://i.ibb.co/M7hMR76/image.jpg" alt="승재님" border="0"> | <img src="https://i.ibb.co/Cv9NFhX/image.jpg" alt="나" border="0"> |
+|                🤪 [박승재](https://github.com/SJPark97)                 |              😎 [조용현](https://github.com/Yonghyunc)              |
 
 
 <br><br>
@@ -140,7 +141,7 @@
 <br>
 
 ### 📝 컴포넌트 구조  
-
+<img src="https://i.ibb.co/0GcWHgy/image.jpg" alt="image" border="0">
 
 
 <br>
@@ -153,20 +154,17 @@
 
   <div markdown="1">
   
-    ![image](https://user-images.githubusercontent.com/93974908/203926613-289055b3-eccc-45f5-a074-d78badff4189.png)
+  ![image](https://user-images.githubusercontent.com/93974908/203926613-289055b3-eccc-45f5-a074-d78badff4189.png)
 
+  ![image](https://user-images.githubusercontent.com/93974908/203926790-6771edd1-2b5a-4584-bdf0-d4c866b6c390.png)
 
-    ![image](https://user-images.githubusercontent.com/93974908/203926790-6771edd1-2b5a-4584-bdf0-d4c866b6c390.png)
+  ![image](https://user-images.githubusercontent.com/93974908/203926728-aefa104c-31c4-46be-a034-21751b645516.png)
 
+  ![image](https://user-images.githubusercontent.com/93974908/203926844-7f9cce70-0463-410a-a083-dfc72e94b1de.png)
 
-    ![image](https://user-images.githubusercontent.com/93974908/203926728-aefa104c-31c4-46be-a034-21751b645516.png)
+  ![image](https://user-images.githubusercontent.com/93974908/203926898-367a47f3-a8fc-4450-b23f-ae1ecc453774.png)
 
-    ![image](https://user-images.githubusercontent.com/93974908/203926844-7f9cce70-0463-410a-a083-dfc72e94b1de.png)
-
-
-    ![image](https://user-images.githubusercontent.com/93974908/203926898-367a47f3-a8fc-4450-b23f-ae1ecc453774.png)
-
-    ![image](https://user-images.githubusercontent.com/93974908/203926962-8330b56c-7b9b-4b54-8df1-4a61ceb2e39d.png)
+  ![image](https://user-images.githubusercontent.com/93974908/203926962-8330b56c-7b9b-4b54-8df1-4a61ceb2e39d.png)
 
   </div>
 </details>
@@ -242,25 +240,105 @@
 </details>
 
  
+<br><br>
+
+---
+
+# 결과⛄
+
+## 1️⃣ 홈 페이지
+
+<img src="https://i.ibb.co/Vxxst3V/01-1.jpg" alt="01-1" border="0">
+
+<br>
+
+<img src="https://i.ibb.co/Pt0JgZF/02-2.jpg" alt="02-2" border="0">
+
+<br>
+
+<img src="https://i.ibb.co/JyY7qvD/03-3.jpg" alt="03-3" border="0">
+
+<br><br>
+
+## 2️⃣ 메인 페이지
 
 
+### ⭐ 사이드 바 ⭐
+<img src="https://i.ibb.co/ygvsGtT/06.jpg" alt="06_사이드바" border="0">
+
+<br>
+
+<img src="https://i.ibb.co/5x5Lw9M/07-1.jpg" alt="07-1" border="0">
+
+<br>
+
+<img src="https://i.ibb.co/vXpsLqT/08-2.jpg" alt="08-2" border="0">
+
+<br>
+
+<img src="https://i.ibb.co/b30dW1Z/09-3.jpg" alt="09-3" border="0">
 
 
+### 🐾 추천 알고리즘
 
-
-추천 알고리즘
-1.
-남, 여 나이대별로
-신규 가입자가 좋아하는 콘텐츠와 성별 나이대의 영화를 결합해서 추천하는 방식
-
-2.
-신규 가입자가 좋아하는 콘텐츠와 리뷰를 작성한 장르를 종합해서
+1. 신규 가입자가 좋아하는 콘텐츠와 리뷰를 작성한 장르를 종합해서
 가장 많이 중복된 장르에서 랜덤으로 추천
 
-3.
-날씨별로 영화에 어울리는 날씨정보를 입력해서 오늘의 날씨에 해당하는 영화를
-추출하여 사용자의 장르와 중복되는 영화들 중 랜덤 추출
+2. 계절/날씨별로 영화에 어울리는 계절/날씨정보를 입력해서 오늘의 계절/날씨에 해당하는 영화를 추출하여 사용자의 장르와 중복되는 영화들 중 랜덤 추출
 
-4.
-사용자가 잘 보지 않는 장르들과 보지 않은 영화에서 평점이 제일 높고 리뷰가 제일 많은 영화 추천
+3. 사용자가 잘 보지 않는 장르들과 보지 않은 영화에서 평점이 제일 높고 리뷰가 제일 많은 영화 추천
 (이런 영화는 어떠신가요?)
+
+<br><br>
+
+## 3️⃣ 영화 검색
+
+
+<img src="https://i.ibb.co/qF89QNs/10-1.jpg" alt="10-1" border="0">
+
+<br><br>
+
+## 4️⃣ 영화 상세
+
+
+<img src="https://i.ibb.co/0XF1gkV/11-1.jpg" alt="11-1" border="0">
+
+<br>
+
+### ⭐ 리뷰 작성 ⭐
+
+<img src="https://i.ibb.co/S3x12BW/12.jpg" alt="12" border="0">
+
+<br><br>
+
+## 5️⃣ 리뷰 상세
+
+<img src="https://i.ibb.co/3kShyzM/13-1.jpg" alt="13-1" border="0">
+
+<br><br>
+
+## 6️⃣ 프로필
+
+<img src="https://i.ibb.co/rkrd3NK/04-1.jpg" alt="04-1" border="0">
+
+<br>
+
+<img src="https://i.ibb.co/6FsY43C/05-2.jpg" alt="05-2" border="0">
+
+<br>
+
+<img src="https://i.ibb.co/KLZXGhb/14-3.jpg" alt="14-3" border="0">
+
+<br>
+
+<img src="https://i.ibb.co/Jxd9SNs/15-4.jpg" alt="15-4" border="0">
+
+
+<br><br>
+
+## 7️⃣ 알림
+
+<img src="https://i.ibb.co/BPsfhkp/16.jpg" alt="16" border="0">
+
+
+
